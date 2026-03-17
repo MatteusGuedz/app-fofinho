@@ -1,0 +1,2404 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💍 Khemely & Mateus</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Jost:wght@300;400;500;600&family=Dancing+Script:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --r:#e8b4b8;--r2:#d4878d;--r3:#b8545c;--r4:#8b3a42;
+  --bl:#fdf0f1;--bl2:#fce8ea;--bl3:#f9d8dd;
+  --ch:#f5e6d3;--ch2:#e8d0b0;--ch3:#d4b88a;
+  --gd:#c9a84c;--gd2:#a8873a;
+  --sg:#a8b89a;--sg2:#7a9068;--sg3:#5a7050;
+  --iv:#fefcf8;--cr:#faf7f2;
+  --dk:#2a1a1e;--tx:#3a2a2e;--tx2:#6b4c52;--tx3:#9a7a80;--tx4:#c4a8ae;
+  --sh:rgba(180,100,110,.14);--sh2:rgba(180,100,110,.28);
+  --sw:220px;
+}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{font-family:'Jost',sans-serif;background:var(--cr);color:var(--tx);overflow-x:hidden;min-height:100vh;min-height:100dvh}
+input,select,textarea,button{font-family:'Jost',sans-serif}
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-track{background:var(--bl)}
+::-webkit-scrollbar-thumb{background:var(--r2);border-radius:3px}
+
+/* LOADER */
+#loader{position:fixed;inset:0;z-index:99999;background:linear-gradient(135deg,#fdf0f1,#fce8ea 40%,#f5e6d3);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .7s,transform .7s}
+#loader.out{opacity:0;transform:scale(1.03);pointer-events:none}
+.lr-ring{width:90px;height:90px;position:relative;margin-bottom:1.2rem}
+.lr-ring div{position:absolute;border-radius:50%;border:3px solid transparent;animation:lrspin linear infinite}
+.lr-ring div:nth-child(1){inset:0;border-top-color:var(--r2);animation-duration:1.8s}
+.lr-ring div:nth-child(2){inset:11px;border-top-color:var(--gd);animation-duration:1.3s;animation-direction:reverse}
+.lr-ring div:nth-child(3){inset:22px;border-top-color:var(--sg2);animation-duration:.9s}
+.lr-ring div:nth-child(4){position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:1.6rem;animation:pulse 1s ease-in-out infinite}
+@keyframes lrspin{to{transform:rotate(360deg)}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
+.lr-text{font-family:'Dancing Script',cursive;font-size:1.5rem;color:var(--r3)}
+.lr-sub{font-size:.68rem;color:var(--tx3);letter-spacing:.2em;text-transform:uppercase;margin-top:.2rem}
+.lr-dots{display:flex;gap:7px;margin-top:.9rem}
+.lr-dot{width:8px;height:8px;border-radius:50%;animation:lrb .7s ease-in-out infinite}
+.lr-dot:nth-child(1){background:var(--r2)}
+.lr-dot:nth-child(2){background:var(--gd);animation-delay:.14s}
+.lr-dot:nth-child(3){background:var(--sg2);animation-delay:.28s}
+@keyframes lrb{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+/* LOGIN */
+#loginScreen{position:fixed;inset:0;z-index:9998;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#1e0e12 0%,#3a1e24 50%,#1e0e2a 100%);overflow:hidden;transition:opacity .7s,transform .7s}
+#loginScreen.out{opacity:0;transform:scale(1.03);pointer-events:none}
+.lgbg{position:absolute;font-family:'Dancing Script',cursive;font-size:18vw;color:rgba(255,255,255,.03);font-weight:700;user-select:none;animation:bgfloat 8s ease-in-out infinite;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-8deg)}
+@keyframes bgfloat{0%,100%{transform:translate(-50%,-50%) rotate(-8deg) translateY(0)}50%{transform:translate(-50%,-50%) rotate(-8deg) translateY(-15px)}}
+.lgbox{background:rgba(255,252,248,.06);backdrop-filter:blur(18px);border:1px solid rgba(232,180,184,.2);border-radius:22px;padding:2.8rem 2.4rem;width:min(410px,94vw);max-width:calc(100vw - 1.5rem);position:relative;z-index:2;box-shadow:0 25px 70px rgba(0,0,0,.4);animation:fadeup .7s ease .4s both;box-sizing:border-box}
+@keyframes fadeup{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.lg-rings{display:flex;justify-content:center;gap:4px;margin-bottom:1.3rem;font-size:2.2rem}
+.lg-ra{animation:rsw 2.2s ease-in-out infinite}.lg-rb{animation:rsw 2.2s ease-in-out infinite .35s}
+@keyframes rsw{0%,100%{transform:rotate(-7deg)}50%{transform:rotate(7deg)}}
+.lg-title{font-family:'Dancing Script',cursive;font-size:2.3rem;color:#fff;text-align:center;line-height:1.2}
+.lg-sub{text-align:center;color:rgba(255,255,255,.45);font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;margin:5px 0 1.8rem}
+.lg-hint{background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.22);border-radius:10px;padding:.65rem .9rem;margin-bottom:1.1rem;font-size:.72rem;color:rgba(201,168,76,.85);display:flex;align-items:flex-start;gap:7px;line-height:1.4}
+.lg-fl{margin-bottom:.8rem}
+.lg-fl label{display:block;font-size:.68rem;color:rgba(255,255,255,.45);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.3rem}
+.lg-fl input{width:100%;padding:11px 13px;background:rgba(255,255,255,.07);border:1px solid rgba(232,180,184,.2);border-radius:11px;color:#fff;font-size:.84rem;outline:none;transition:all .18s}
+.lg-fl input:focus{border-color:var(--r2);background:rgba(255,255,255,.11);box-shadow:0 0 0 3px rgba(232,180,184,.14)}
+.lg-fl input::placeholder{color:rgba(255,255,255,.28)}
+.lg-btn{width:100%;padding:12px;background:linear-gradient(135deg,var(--r2),var(--r3));color:#fff;border:none;border-radius:11px;font-size:.88rem;font-weight:600;letter-spacing:.07em;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:7px}
+.lg-btn:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(212,135,141,.38)}
+.lg-err{color:#f48;font-size:.75rem;text-align:center;margin-top:.7rem;display:none}
+.lg-foot{text-align:center;margin-top:1.3rem;font-size:.67rem;color:rgba(255,255,255,.22)}
+
+/* PETAL */
+#petalLayer{position:fixed;inset:0;pointer-events:none;z-index:9990;overflow:hidden}
+.petal{position:absolute;top:-30px;animation:pfal linear forwards;pointer-events:none}
+@keyframes pfal{0%{opacity:0;transform:translateY(-20px) rotate(0deg)}10%{opacity:.7}90%{opacity:.5}100%{opacity:0;transform:translateY(103vh) rotate(560deg) translateX(50px)}}
+.heartburst{position:fixed;pointer-events:none;z-index:9993;animation:hbup 2.5s ease-out forwards}
+@keyframes hbup{0%{opacity:0;transform:translateY(0) scale(.4)}20%{opacity:1;transform:translateY(-35px) scale(1.1)}100%{opacity:0;transform:translateY(-160px) scale(.7)}}
+
+/* SIDEBAR */
+#sidebar{position:fixed;left:0;top:0;bottom:0;width:var(--sw);background:linear-gradient(180deg,#fff8f9,#fdf3f0 60%,#faf5ee);border-right:1px solid rgba(232,180,184,.18);z-index:200;display:flex;flex-direction:column;box-shadow:2px 0 25px var(--sh);transition:transform .3s}
+.sb-brand{padding:1.3rem .9rem .9rem;text-align:center;border-bottom:1px solid rgba(232,180,184,.13)}
+.sb-crown{font-size:1.3rem;animation:crfl 3s ease-in-out infinite}
+@keyframes crfl{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+.sb-names{font-family:'Dancing Script',cursive;font-size:1.2rem;color:var(--r3);line-height:1.3}
+.sb-date{font-size:.62rem;color:var(--tx3);letter-spacing:.1em;text-transform:uppercase;margin-top:2px}
+.sb-cd{display:flex;gap:4px;justify-content:center;margin-top:.5rem;flex-wrap:wrap}
+.cdm{background:var(--bl2);border-radius:6px;padding:3px 5px;text-align:center;min-width:32px}
+.cdm-n{font-size:.82rem;font-weight:700;color:var(--r3);font-family:'Playfair Display',serif}
+.cdm-l{font-size:.5rem;color:var(--tx3);text-transform:uppercase;letter-spacing:.04em}
+nav.sb-nav{flex:1;overflow-y:auto;padding:.4rem 0}
+.ngl{padding:.55rem .9rem .15rem;font-size:.56rem;color:var(--tx3);letter-spacing:.18em;text-transform:uppercase;font-weight:700}
+.ni{display:flex;align-items:center;gap:8px;padding:.54rem .9rem;cursor:pointer;font-size:.78rem;color:var(--tx2);border-left:3px solid transparent;transition:all .17s;border-radius:0 8px 8px 0;margin:1px .3rem 1px 0}
+.ni:hover{background:var(--bl2);color:var(--r3)}
+.ni.active{background:var(--bl2);color:var(--r3);border-left-color:var(--r2);font-weight:600}
+.ni-ico{font-size:.95rem;width:18px;text-align:center;flex-shrink:0}
+.ni-badge{margin-left:auto;background:var(--r2);color:#fff;font-size:.57rem;padding:2px 5px;border-radius:10px;font-weight:700}
+.sb-bot{padding:.7rem;border-top:1px solid rgba(232,180,184,.13);display:flex;gap:5px}
+.sb-bbt{flex:1;padding:6px;background:none;border:1px solid rgba(232,180,184,.35);border-radius:8px;color:var(--tx3);font-size:.7rem;cursor:pointer;transition:all .17s;display:flex;align-items:center;justify-content:center;gap:3px;font-family:'Jost',sans-serif}
+.sb-bbt:hover{background:var(--bl2);color:var(--r3);border-color:var(--r2)}
+
+/* TOPBAR */
+#topbar{position:fixed;top:0;left:var(--sw);right:0;min-height:50px;padding-top:env(safe-area-inset-top);background:rgba(255,252,248,.93);backdrop-filter:blur(12px);border-bottom:1px solid rgba(232,180,184,.18);z-index:150;display:flex;align-items:center;justify-content:space-between;padding:0 .9rem;box-shadow:0 2px 18px var(--sh)}
+.tb-l{display:flex;align-items:center;gap:8px;flex:1;overflow:hidden;min-width:0}
+.menu-tog{display:none;background:none;border:none;font-size:1.2rem;cursor:pointer;min-width:36px;width:36px;height:36px;border-radius:8px;align-items:center;justify-content:center;flex-shrink:0;transition:background .15s}
+.menu-tog:hover{background:var(--bl2)}
+.tb-title{font-family:'Playfair Display',serif;font-size:.98rem;color:var(--tx);display:flex;align-items:center;gap:5px;min-width:0;overflow:hidden;text-overflow:ellipsis;word-break:break-word}
+.tb-r{display:flex;gap:5px;align-items:center;flex-shrink:0}
+
+/* SYNC BAR */
+#syncBar{position:fixed;top:50px;left:var(--sw);right:0;height:32px;background:linear-gradient(90deg,rgba(201,168,76,.1),rgba(232,180,184,.1));border-bottom:1px solid rgba(201,168,76,.2);z-index:149;display:flex;align-items:center;padding:0 1rem;gap:.8rem;font-size:.7rem;color:var(--tx2);flex-wrap:nowrap;min-width:0}
+#syncBar span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sync-dot{width:7px;height:7px;border-radius:50%;background:var(--sg2);animation:syncp 2s ease-in-out infinite}
+@keyframes syncp{0%,100%{opacity:.5;transform:scale(.8)}50%{opacity:1;transform:scale(1.2)}}
+
+/* MAIN */
+#app{margin-left:var(--sw);padding-top:82px}
+.page{display:none;padding:1.1rem;animation:pin .25s ease}
+.page.active{display:block}
+@keyframes pin{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
+
+/* MUSIC BAR */
+#mbar{position:fixed;bottom:0;left:var(--sw);right:0;background:rgba(255,252,248,.95);backdrop-filter:blur(10px);border-top:1px solid rgba(232,180,184,.18);padding:6px 1.1rem;display:flex;align-items:center;gap:9px;z-index:148;font-size:.75rem}
+.vv{font-size:1rem;animation:vspin 3s linear infinite}
+.vv.paused{animation-play-state:paused}
+@keyframes vspin{to{transform:rotate(360deg)}}
+.mpb{width:26px;height:26px;border-radius:50%;background:var(--r2);color:#fff;border:none;cursor:pointer;font-size:.75rem;display:flex;align-items:center;justify-content:center;transition:transform .15s}
+.mpb:hover{transform:scale(1.1)}
+.minfo{flex:1;overflow:hidden}
+.mnow{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--tx2);font-style:italic}
+.mart{font-size:.65rem;color:var(--tx3)}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:4px;padding:6px 13px;border-radius:20px;cursor:pointer;font-size:.76rem;letter-spacing:.03em;font-family:'Jost',sans-serif;border:1.5px solid var(--r2);color:var(--r3);background:transparent;transition:all .17s}
+.btn:hover{background:var(--r2);color:#fff;transform:translateY(-1px)}
+.btn-s{background:var(--r2);color:#fff}.btn-s:hover{background:var(--r3)}
+.btn-gd{border-color:var(--gd);color:var(--gd2)}.btn-gd:hover{background:var(--gd);color:#fff}
+.btn-sg{border-color:var(--sg2);color:var(--sg2)}.btn-sg:hover{background:var(--sg2);color:#fff}
+.btn-sm{padding:4px 9px;font-size:.7rem}
+.btn-xs{padding:3px 7px;font-size:.65rem}
+
+/* CARDS */
+.card{background:#fff;border-radius:15px;border:1px solid rgba(232,180,184,.2);padding:1rem;box-shadow:0 4px 18px var(--sh);transition:transform .18s,box-shadow .18s;min-width:0;overflow-wrap:break-word}
+.card:hover{transform:translateY(-2px);box-shadow:0 8px 28px var(--sh2)}
+.ct{font-family:'Playfair Display',serif;font-size:.95rem;color:var(--tx);margin-bottom:.65rem;display:flex;align-items:center;gap:7px}
+
+/* STAT GRID */
+.sg4{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;margin-bottom:1.1rem}
+.sc{background:linear-gradient(135deg,#fff,var(--bl));border-radius:13px;border:1px solid rgba(232,180,184,.22);padding:.9rem;text-align:center;box-shadow:0 3px 13px var(--sh);transition:transform .18s}
+.sc:hover{transform:translateY(-3px)}
+.sc-ico{font-size:1.6rem;margin-bottom:.25rem}
+.sc-val{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--r3)}
+.sc-lbl{font-size:.62rem;color:var(--tx3);letter-spacing:.08em;text-transform:uppercase}
+
+/* GRIDS */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:.9rem}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem}
+
+/* FORMS */
+.fr{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+.fr3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.75rem}
+.fg{margin-bottom:.75rem}
+.fl{display:block;font-size:.67rem;color:var(--tx3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.28rem}
+input[type=text],input[type=number],input[type=email],input[type=url],input[type=date],input[type=password],select,textarea{width:100%;padding:8px 10px;font-family:'Jost',sans-serif;font-size:.82rem;background:#fff;border:1px solid rgba(232,180,184,.32);border-radius:9px;color:var(--tx);outline:none;transition:all .17s}
+input:focus,select:focus,textarea:focus{border-color:var(--r2);box-shadow:0 0 0 2.5px rgba(232,180,184,.16)}
+textarea{resize:vertical;min-height:65px}
+
+/* MODAL */
+.mb{position:fixed;inset:0;background:rgba(42,26,30,.52);backdrop-filter:blur(5px);z-index:500;display:none;align-items:center;justify-content:center;padding:.9rem}
+.mb.open{display:flex}
+.mo{background:#fff;border-radius:20px;padding:1.6rem;width:min(560px,98vw);max-height:90vh;overflow-y:auto;box-shadow:0 28px 70px rgba(42,26,30,.32);animation:moin .26s ease;position:relative}
+@keyframes moin{from{transform:translateY(20px) scale(.97);opacity:0}to{transform:none;opacity:1}}
+.mh{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.1rem}
+.mt2{font-family:'Playfair Display',serif;font-size:1.1rem;font-style:italic;color:var(--tx)}
+.mc{background:none;border:none;cursor:pointer;font-size:1rem;color:var(--tx3);width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background .14s}
+.mc:hover{background:var(--bl2)}
+
+/* DETAIL MODAL */
+.det-hero{border-radius:14px;padding:1.2rem;margin-bottom:1.1rem;position:relative;overflow:hidden}
+.det-hero-img{width:100%;height:160px;object-fit:cover;border-radius:12px;margin-bottom:.8rem}
+.det-badges{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:.7rem}
+.det-row{display:flex;gap:8px;align-items:flex-start;padding:.45rem 0;border-bottom:1px solid rgba(232,180,184,.1)}
+.det-row:last-child{border-bottom:none}
+.det-key{font-size:.68rem;color:var(--tx3);text-transform:uppercase;letter-spacing:.08em;min-width:90px;flex-shrink:0;padding-top:1px}
+.det-val{font-size:.83rem;color:var(--tx);flex:1;word-break:break-word;overflow-wrap:break-word;min-width:0}
+.det-link{color:var(--gd2);text-decoration:none;font-size:.8rem;display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border:1px solid rgba(201,168,76,.35);border-radius:20px;transition:all .15s}
+.det-link:hover{background:var(--gd);color:#fff;border-color:var(--gd)}
+.price-compare{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin:.7rem 0}
+.pc-box{border-radius:10px;padding:.6rem;text-align:center;border:1.5px solid transparent}
+.pc-box.active-tier{border-color:var(--r2)}
+.pc-eco{background:var(--sg-light,#f0f4ee);}.pc-mid{background:var(--bl)}.pc-prem{background:#fef9e7}
+.pc-lbl{font-size:.6rem;text-transform:uppercase;letter-spacing:.07em;color:var(--tx3)}
+.pc-val{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--tx)}
+.pc-tot{font-size:.68rem;color:var(--r3);font-weight:700}
+
+/* BADGE */
+.badge{display:inline-flex;align-items:center;gap:2px;padding:3px 8px;border-radius:20px;font-size:.62rem;font-weight:700;letter-spacing:.03em;text-transform:uppercase}
+.b-rose{background:var(--bl2);color:var(--r3)}
+.b-gd{background:#fef9e7;color:var(--gd2)}
+.b-sg{background:#f0f4ee;color:var(--sg2)}
+.b-gr{background:#e8f5e9;color:#388e3c}
+.b-rd{background:#fce4e4;color:#c62828}
+.b-gy{background:#f5f5f5;color:#757575}
+.b-bl{background:#e8f0fe;color:#1a73e8}
+
+/* PROGRESS */
+.pt{height:6px;background:var(--bl2);border-radius:3px;overflow:hidden}
+.pf{height:100%;background:linear-gradient(90deg,var(--r),var(--r3));border-radius:3px;transition:width .5s ease}
+
+/* TABLE */
+.tw{overflow-x:auto;border-radius:11px;border:1px solid rgba(232,180,184,.18)}
+table{width:100%;border-collapse:collapse;font-size:.78rem}
+thead{background:linear-gradient(135deg,var(--bl),var(--ch))}
+th{padding:8px 10px;text-align:left;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--tx2);font-weight:700;white-space:nowrap}
+td{padding:8px 10px;border-bottom:1px solid rgba(232,180,184,.09);color:var(--tx);vertical-align:middle}
+tr:hover td{background:rgba(232,180,184,.04)}
+tr:last-child td{border-bottom:none}
+.tr-click{cursor:pointer}
+.tr-click:hover td{background:rgba(232,180,184,.08)!important}
+
+/* TABS */
+.tabs{display:flex;gap:3px;flex-wrap:wrap;margin-bottom:.9rem}
+.tab{padding:5px 12px;border-radius:20px;font-size:.73rem;cursor:pointer;border:1px solid rgba(232,180,184,.32);color:var(--tx3);background:transparent;transition:all .17s;font-family:'Jost',sans-serif}
+.tab:hover{background:var(--bl2);color:var(--r3)}
+.tab.active{background:var(--r2);color:#fff;border-color:var(--r2)}
+
+/* TOAST */
+#toast{position:fixed;bottom:4.2rem;right:1.3rem;z-index:9997;background:var(--dk);color:#fff;padding:10px 16px;border-radius:11px;font-size:.78rem;display:flex;align-items:center;gap:7px;transform:translateY(18px);opacity:0;transition:all .26s;pointer-events:none;box-shadow:0 8px 22px rgba(0,0,0,.28)}
+#toast.show{transform:translateY(0);opacity:1}
+
+/* SECTION HERO */
+.sh{text-align:center;padding:1.2rem 1rem .9rem;margin-bottom:.4rem}
+.sh h1{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--tx);font-style:italic}
+.sh p{color:var(--tx3);font-size:.82rem;margin-top:.25rem}
+.fd{display:flex;align-items:center;justify-content:center;gap:8px;color:var(--r2);font-size:.95rem;margin:.5rem 0}
+.fd::before,.fd::after{content:'';flex:1;max-width:70px;height:1px;background:linear-gradient(90deg,transparent,var(--r2),transparent)}
+
+/* LOVE BANNER */
+.lb{background:linear-gradient(135deg,var(--bl),var(--ch));border:1px solid rgba(232,180,184,.28);border-radius:17px;padding:1.4rem;text-align:center;position:relative;overflow:hidden;margin-bottom:1.1rem}
+.lb-bg{position:absolute;font-family:'Dancing Script',cursive;font-size:min(14vw,110px);color:rgba(232,180,184,.1);top:50%;left:50%;transform:translate(-50%,-50%) rotate(-8deg);white-space:nowrap;user-select:none;font-weight:700}
+
+/* COUNTDOWN */
+.cdh{display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap;margin:1rem 0}
+.cdb{background:#fff;border-radius:13px;border:1px solid rgba(232,180,184,.22);padding:.9rem 1.1rem;text-align:center;min-width:75px;box-shadow:0 3px 16px var(--sh)}
+.cdbig{font-family:'Playfair Display',serif;font-size:2.4rem;color:var(--r3);line-height:1}
+.cdlbl{font-size:.58rem;color:var(--tx3);letter-spacing:.11em;text-transform:uppercase;margin-top:3px}
+
+/* ============== VENUE DESIGNER ============== */
+.venue-wrap{position:relative;width:100%;overflow:hidden}
+.venue-tabs{display:flex;gap:4px;margin-bottom:.8rem;flex-wrap:wrap}
+.venue-tab{padding:6px 14px;border-radius:20px;font-size:.75rem;cursor:pointer;border:1.5px solid rgba(232,180,184,.35);color:var(--tx2);background:transparent;transition:all .18s;font-family:'Jost',sans-serif;display:flex;align-items:center;gap:5px}
+.venue-tab:hover{background:var(--bl2)}
+.venue-tab.active{background:var(--r2);color:#fff;border-color:var(--r2)}
+
+.venue-canvas{position:relative;border-radius:18px;border:2px solid rgba(168,184,154,.3);min-height:520px;overflow:hidden;cursor:default;user-select:none}
+
+/* Environment themes */
+.env-tenda{background:linear-gradient(160deg,#f8f3ee 0%,#f0ebe4 40%,#ede5d8 100%)}
+.env-salao{background:linear-gradient(160deg,#f5f0f8 0%,#ede8f2 40%,#e8e0f0 100%)}
+.env-jantar{background:linear-gradient(160deg,#1e1410 0%,#2e1e14 40%,#241810 100%)}
+
+/* Floor patterns */
+.env-tenda::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 40px,rgba(168,140,100,.06) 40px,rgba(168,140,100,.06) 41px),repeating-linear-gradient(90deg,transparent,transparent 40px,rgba(168,140,100,.06) 40px,rgba(168,140,100,.06) 41px)}
+.env-salao::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 30px,rgba(180,150,220,.05) 30px,rgba(180,150,220,.05) 31px),repeating-linear-gradient(-45deg,transparent,transparent 30px,rgba(180,150,220,.05) 30px,rgba(180,150,220,.05) 31px)}
+.env-jantar::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 35px,rgba(201,168,76,.04) 35px,rgba(201,168,76,.04) 36px),repeating-linear-gradient(90deg,transparent,transparent 35px,rgba(201,168,76,.04) 35px,rgba(201,168,76,.04) 36px)}
+
+/* Draggable elements */
+.ve-el{position:absolute;cursor:grab;transition:filter .18s,transform .18s;user-select:none;touch-action:none}
+.ve-el:hover{filter:drop-shadow(0 4px 12px rgba(232,180,184,.5));z-index:10}
+.ve-el.dragging{cursor:grabbing;z-index:20;filter:drop-shadow(0 8px 20px rgba(232,180,184,.6));transform:scale(1.04)}
+.ve-el.selected{outline:2px dashed var(--r2);outline-offset:4px;border-radius:4px}
+
+/* Portal / Arch SVG elements */
+.el-label{position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);font-size:.6rem;color:var(--tx2);white-space:nowrap;font-family:'Dancing Script',cursive;text-align:center;pointer-events:none}
+
+/* Tent fabric drapes decoration */
+.tent-drape{position:absolute;top:0;left:0;right:0;pointer-events:none;z-index:1}
+
+/* Control panel */
+.venue-ctrl{background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-radius:12px;border:1px solid rgba(232,180,184,.25);padding:.8rem;margin-bottom:.8rem}
+.venue-ctrl-title{font-size:.68rem;color:var(--tx3);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.5rem;font-weight:700}
+.el-palette{display:flex;gap:6px;flex-wrap:wrap}
+.el-btn{padding:5px 10px;border-radius:8px;font-size:.7rem;cursor:pointer;border:1px solid rgba(232,180,184,.3);background:rgba(255,255,255,.8);color:var(--tx2);transition:all .15s;font-family:'Jost',sans-serif;display:flex;align-items:center;gap:4px}
+.el-btn:hover{background:var(--bl2);border-color:var(--r2)}
+.sel-panel{background:rgba(255,255,255,.95);border:1px solid rgba(232,180,184,.3);border-radius:10px;padding:.7rem;margin-top:.6rem;animation:pin .2s ease}
+
+/* Table SVG */
+.tbl-svg{cursor:pointer}
+
+/* Guest card */
+.gc{background:#fff;border-radius:12px;border:1px solid rgba(232,180,184,.22);padding:.8rem;display:flex;align-items:center;gap:9px;transition:all .18s;cursor:pointer}
+.gc:hover{transform:translateY(-2px);box-shadow:0 6px 18px var(--sh2)}
+.gca{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.95rem;color:#fff;flex-shrink:0;font-family:'Playfair Display',serif;font-style:italic}
+
+/* BUDGET HERO */
+.bh{background:linear-gradient(135deg,var(--r3),#7a2a32);border-radius:17px;padding:1.4rem;color:#fff;position:relative;overflow:hidden;margin-bottom:1.1rem}
+.bh::before{content:'💎';position:absolute;right:-5px;bottom:-8px;font-size:6rem;opacity:.11}
+
+/* VENDOR CARD */
+.vc{background:#fff;border-radius:13px;overflow:hidden;border:1px solid rgba(232,180,184,.22);transition:transform .18s;cursor:pointer}
+.vc:hover{transform:translateY(-3px)}
+.vc-banner{height:68px;display:flex;align-items:center;justify-content:center;font-size:2rem}
+
+/* NOTE */
+.nc{border-radius:12px;padding:.9rem;position:relative;transition:transform .18s;cursor:pointer}
+.nc:hover{transform:translateY(-2px)}
+.nc::before{content:'📌';position:absolute;top:-7px;right:9px;font-size:.95rem}
+
+/* MOODBOARD */
+.mg{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:7px}
+.mi{border-radius:11px;overflow:hidden;aspect-ratio:1;border:2px solid rgba(232,180,184,.22);position:relative;cursor:pointer;transition:transform .18s}
+.mi:hover{transform:scale(1.04)}
+.mi img{width:100%;height:100%;object-fit:cover}
+.mi-ph{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--bl),var(--ch));gap:3px}
+.mi-ov{position:absolute;inset:0;background:linear-gradient(0deg,rgba(42,26,30,.62) 0%,transparent 50%);display:flex;align-items:flex-end;padding:7px;opacity:0;transition:opacity .18s;font-size:.63rem;color:#fff}
+.mi:hover .mi-ov{opacity:1}
+
+/* GROOMSMAN */
+.gmc{background:#fff;border-radius:13px;overflow:hidden;border:1px solid rgba(232,180,184,.2);text-align:center;transition:transform .18s;cursor:pointer}
+.gmc:hover{transform:translateY(-3px)}
+.gm-av{width:65px;height:65px;border-radius:50%;margin:1rem auto .4rem;display:flex;align-items:center;justify-content:center;font-size:2rem}
+
+/* HONEYMOON */
+.hd{background:#fff;border-radius:15px;overflow:hidden;border:1px solid rgba(232,180,184,.18);transition:transform .18s,box-shadow .18s;cursor:pointer}
+.hd:hover{transform:translateY(-4px);box-shadow:0 12px 32px var(--sh2)}
+.hdb{height:110px;display:flex;align-items:center;justify-content:center;font-size:3.5rem;position:relative;overflow:hidden}
+
+/* EMPTY */
+.empty{text-align:center;padding:2.5rem 1rem;color:var(--tx3)}
+.empty-ico{font-size:2.8rem;margin-bottom:.7rem}
+.empty-txt{font-size:.85rem}
+
+/* SEARCH */
+.sw{position:relative}
+.sw input{padding-left:32px}
+.si{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--tx3);font-size:.82rem;pointer-events:none}
+
+/* PHOTO BOOTH */
+.pb{background:linear-gradient(135deg,#1a0e14,#2e1a22);border-radius:18px;padding:1.4rem;border:2px solid rgba(232,180,184,.18);position:relative;overflow:hidden}
+.pf-opts{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:.9rem}
+.pf-o{padding:5px 10px;border-radius:20px;font-size:.7rem;cursor:pointer;border:1px solid rgba(232,180,184,.28);color:rgba(255,255,255,.65);background:transparent;transition:all .18s;font-family:'Jost',sans-serif}
+.pf-o.active,.pf-o:hover{background:var(--r2);color:#fff;border-color:var(--r2)}
+.pbcw{border-radius:11px;overflow:hidden;border:2px solid rgba(232,180,184,.28);background:#000;margin-bottom:.9rem;position:relative}
+.pbcw canvas{width:100%;display:block}
+.stt{display:flex;gap:7px;flex-wrap:wrap;padding:.7rem;background:rgba(255,255,255,.04);border-radius:11px;margin-bottom:.7rem}
+.stk{font-size:1.4rem;cursor:pointer;padding:3px;border-radius:7px;transition:transform .14s;background:none;border:none}
+.stk:hover{transform:scale(1.25)}
+
+/* FIREBASE SETUP STYLES */
+.fb-step{display:flex;gap:8px;align-items:flex-start;margin-bottom:.5rem;font-size:.78rem;color:var(--tx2);line-height:1.5}
+.fb-sn{width:20px;height:20px;border-radius:50%;background:var(--r2);color:#fff;font-size:.65rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;font-weight:700}
+
+/* Sync indicator in topbar */
+#syncIndicator{display:flex;align-items:center;gap:5px;font-size:.7rem;color:var(--tx3);padding:3px 9px;border-radius:20px;border:0.5px solid var(--color-border-tertiary,rgba(180,120,130,.2));white-space:nowrap}
+#syncIndicator .sdot{width:7px;height:7px;border-radius:50%;background:var(--tx4);flex-shrink:0;transition:background .3s}
+#syncIndicator.syncing .sdot{background:var(--gd);animation:syncp 1s ease-in-out infinite}
+#syncIndicator.live .sdot{background:#4caf50}
+#syncIndicator.error .sdot{background:#e53935}
+@media(max-width:480px){#syncIndicator span.si-label{display:none}}
+
+/* MOBILE BOTTOM NAV (hidden on desktop) */
+#mobileNav{
+  display:none;
+  position:fixed;bottom:0;left:0;right:0;
+  height:58px;height:max(58px,calc(58px + env(safe-area-inset-bottom)));
+  padding-bottom:env(safe-area-inset-bottom);
+  z-index:160;
+  background:rgba(255,252,248,.97);
+  backdrop-filter:blur(14px);
+  border-top:1px solid rgba(232,180,184,.25);
+  box-shadow:0 -4px 20px rgba(180,100,110,.1);
+  flex-direction:row;align-items:stretch;
+}
+.mbn{
+  flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:none;border:none;cursor:pointer;
+  font-size:1.15rem;gap:2px;padding:4px 2px;
+  color:var(--tx3);transition:color .15s;
+  -webkit-tap-highlight-color:transparent;
+  position:relative;
+}
+.mbn span{font-size:.6rem;letter-spacing:.03em;font-family:'Jost',sans-serif}
+.mbn.active{color:var(--r3)}
+.mbn.active::after{
+  content:'';position:absolute;bottom:0;left:25%;right:25%;
+  height:3px;background:var(--r2);border-radius:3px 3px 0 0;
+}
+.mbn:active{transform:scale(.92)}
+
+/* ================================================
+   RESPONSIVE — mobile-first full overhaul
+   ================================================ */
+
+/* Sidebar hidden by default on mobile, toggled via JS */
+@media(max-width:768px){
+  /* reset sidebar offset everywhere */
+  :root{--sw:0px}
+
+  /* Sidebar slides in as overlay */
+  #sidebar{
+    transform:translateX(-240px);
+    width:240px;
+    z-index:300;
+    box-shadow:4px 0 30px rgba(0,0,0,.25);
+  }
+  #sidebar.open{transform:translateX(0)}
+
+  /* Overlay backdrop when sidebar open */
+  #sidebar.open::after{
+    content:'';
+    position:fixed;
+    inset:0;
+    left:240px;
+    background:rgba(42,26,30,.45);
+    z-index:-1;
+  }
+
+  /* Top bar, sync bar: full width */
+  #topbar{left:0;right:0;padding:0 .75rem}
+  #syncBar{left:0;right:0;padding:0 .75rem;font-size:.63rem;gap:.4rem}
+  #syncBar span:last-of-type{display:none}
+
+  /* Music bar hidden on mobile (bottom nav replaces it) */
+  #mbar{display:none}
+
+  /* Mobile bottom nav VISIBLE */
+  #mobileNav{display:flex}
+
+  /* Hamburger visible */
+  .menu-tog{display:flex!important}
+
+  /* Main app area: no left margin, pad bottom for mobile nav + safe area */
+  #app{margin-left:0;padding-top:82px;padding-bottom:max(70px,calc(70px + env(safe-area-inset-bottom)))}
+
+  /* Pages padding tighter */
+  .page{padding:.75rem}
+
+  /* GRIDS collapse */
+  .sg4{grid-template-columns:repeat(2,1fr);gap:.55rem}
+  .g2,.g3,.g4{grid-template-columns:1fr;gap:.65rem}
+  .fr{grid-template-columns:1fr}
+  .fr3{grid-template-columns:1fr 1fr}
+
+  /* CARDS less padding */
+  .card{padding:.8rem}
+
+  /* Love banner tighter */
+  .lb{padding:1rem .75rem}
+
+  /* Budget hero */
+  .bh{padding:1.1rem}
+  .bh .flex{flex-wrap:wrap;gap:.5rem}
+
+  /* Tables: allow horizontal scroll */
+  .tw{-webkit-overflow-scrolling:touch;overflow-x:auto;max-width:100%}
+  table{font-size:.74rem;min-width:280px}
+  th,td{padding:6px 8px;word-break:break-word}
+
+  /* Countdown boxes smaller */
+  .cdb{min-width:60px;padding:.7rem .8rem}
+  .cdbig{font-size:2rem}
+  .cdlbl{font-size:.55rem}
+
+  /* Stat cards */
+  .sc{padding:.75rem .5rem}
+  .sc-val{font-size:1.2rem}
+  .sc-ico{font-size:1.4rem}
+
+  /* Section hero */
+  .sh{padding:.9rem .5rem .6rem}
+  .sh h1{font-size:1.35rem}
+
+  /* Modals bottom-sheet style */
+  .mb{padding:.5rem;align-items:flex-end}
+  .mo{
+    border-radius:18px 18px 0 0;
+    width:100%;
+    max-width:100%;
+    max-height:92vh;
+    padding:1.2rem 1rem 1.5rem;
+    margin:0;
+  }
+
+  /* Drag handle hint on modals */
+  .mo::before{
+    content:'';display:block;width:40px;height:4px;
+    background:rgba(180,100,110,.2);border-radius:2px;
+    margin:0 auto .8rem;
+  }
+
+  /* Detail modal prices */
+  .price-compare{grid-template-columns:repeat(3,1fr);gap:.35rem}
+  .pc-box{padding:.5rem .3rem}
+  .pc-val{font-size:.95rem}
+  .pc-lbl{font-size:.55rem}
+
+  /* Venue designer: stack vertically */
+  #page-venue .g2{grid-template-columns:1fr}
+  .venue-canvas{min-height:340px}
+  .venue-ctrl{padding:.6rem}
+  .el-palette{gap:4px}
+  .el-btn{font-size:.65rem;padding:4px 7px}
+
+  /* Grids forced 2-col */
+  #gmGrid{grid-template-columns:repeat(2,1fr)!important}
+  #hmDests{grid-template-columns:repeat(2,1fr)!important}
+  #bCatC{grid-template-columns:repeat(2,1fr)!important}
+
+  /* Photo booth stack */
+  #page-photobooth .g2{grid-template-columns:1fr}
+
+  /* Vendor grid 1 col */
+  #vGrid{grid-template-columns:1fr!important}
+
+  /* Moodboard grid smaller items */
+  .mg{grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:5px}
+
+  /* Notes grid 1 col */
+  #ntCon{grid-template-columns:1fr!important}
+
+  /* Vows grid 1 col */
+  #page-vows .g2{grid-template-columns:1fr}
+
+  /* Filter row: selects full width, no overflow */
+  .flex.fw select{width:100%!important;min-width:0}
+  .flex.fw{min-width:0}
+  .page{min-width:0;overflow-x:hidden}
+
+  /* Countdown milestone 2 col */
+  #cdMs{grid-template-columns:repeat(2,1fr)!important}
+
+  /* Guests grid 1 col */
+  #gList{grid-template-columns:1fr!important}
+
+  /* Budget category cards 2 cols */
+  #bCatC{grid-template-columns:repeat(2,1fr)!important}
+
+  /* sync bar button smaller */
+  #syncBar .btn{padding:3px 8px;font-size:.62rem}
+
+  /* sb bottom buttons */
+  .sb-bot{padding:.5rem}
+  .sb-bbt{font-size:.65rem;padding:5px}
+}
+
+/* Small phones */
+@media(max-width:400px){
+  .sg4{grid-template-columns:repeat(2,1fr);gap:.4rem}
+  .sc-val{font-size:1.05rem}
+  .sc-ico{font-size:1.2rem}
+  .cdb{min-width:52px;padding:.55rem .6rem}
+  .cdbig{font-size:1.65rem}
+  .page{padding:.5rem}
+  .card{padding:.65rem}
+  .mo{padding:1rem .7rem 1.5rem}
+  .fr3{grid-template-columns:1fr}
+  .mg{grid-template-columns:repeat(auto-fill,minmax(90px,1fr))}
+  .lb{padding:.7rem .4rem}
+  .sh h1{font-size:1.15rem}
+  #mobileNav{height:54px}
+  .mbn{font-size:1.05rem}
+  .mbn span{font-size:.56rem}
+}
+
+/* UTILS */
+.mt1{margin-top:.4rem}.mt2{margin-top:.9rem}.mt3{margin-top:1.4rem}
+.mb1{margin-bottom:.4rem}.mb2{margin-bottom:.9rem}.mb3{margin-bottom:1.4rem}
+.flex{display:flex}.aic{align-items:center}.jb{justify-content:space-between}.fw{flex-wrap:wrap}
+.gap1{gap:.4rem}.gap2{gap:.9rem}.gap3{gap:1.3rem}
+.wf{width:100%}.tc{text-align:center}
+.tsm{font-size:.8rem}.txs{font-size:.7rem}.tmu{color:var(--tx3)}
+.fser{font-family:'Playfair Display',serif}.fscr{font-family:'Dancing Script',cursive}.fser{font-style:normal}
+.tro{color:var(--r3)}.tgd{color:var(--gd2)}.tsg{color:var(--sg2)}
+.h-{display:none!important}
+.pointer{cursor:pointer}
+</style>
+</head>
+<body>
+
+<!-- If JS is blocked (preview/sandbox/CSP), this stays visible -->
+<div id="jsBlockedBanner" style="position:fixed;inset:0;z-index:100000;background:linear-gradient(135deg,#1e0e12 0%,#3a1e24 50%,#1e0e2a 100%);color:#fff;display:flex;align-items:center;justify-content:center;padding:1.1rem">
+  <div style="width:min(520px,96vw);background:rgba(255,252,248,.06);border:1px solid rgba(232,180,184,.22);border-radius:18px;padding:1.1rem 1.1rem;backdrop-filter:blur(14px);box-shadow:0 25px 70px rgba(0,0,0,.4)">
+    <div style="font-family:'Dancing Script',cursive;font-size:2rem;line-height:1.1;margin-bottom:.35rem">Ative o JavaScript</div>
+    <div style="opacity:.8;font-size:.86rem;line-height:1.55">
+      Se você abriu este arquivo em um <b>preview</b> (Drive/WhatsApp/OneDrive) ou com bloqueio de scripts, os botões não funcionam.
+      <br>Abra diretamente no navegador (arquivo <code>.html</code> normal) ou publique no Netlify.
+    </div>
+    <div style="margin-top:.8rem;opacity:.7;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase">Dica: no Netlify funciona normalmente</div>
+  </div>
+</div>
+
+<div id="loader"><div class="lr-ring"><div></div><div></div><div></div><div>💍</div></div><div class="lr-text">Khemely &amp; Mateus</div><div class="lr-sub">Carregando com amor...</div><div class="lr-dots"><div class="lr-dot"></div><div class="lr-dot"></div><div class="lr-dot"></div></div></div>
+<div id="petalLayer"></div>
+<div id="toast"></div>
+
+<!-- LOGIN -->
+<div id="loginScreen">
+  <div class="lgbg">amor</div>
+  <div id="lgpart" style="position:absolute;inset:0;overflow:hidden;pointer-events:none"></div>
+  <div class="lgbox">
+    <div class="lg-rings"><span class="lg-ra">💍</span><span style="font-size:1.3rem;color:rgba(255,255,255,.35)">×</span><span class="lg-rb">💍</span></div>
+    <div class="lg-title">Khemely &amp; Mateus</div>
+    <div class="lg-sub">✦ Portal do Nosso Grande Dia ✦</div>
+    <div class="lg-hint">💡 <div><b>Login:</b> usuário <code>noivos</code> · senha <code>amor2025</code><br><span style="opacity:.8">Ou: khemely / mateus com a mesma senha</span></div></div>
+    <div class="lg-fl"><label>Usuário</label><input type="text" id="lgU" placeholder="noivos" autocomplete="off"></div>
+    <div class="lg-fl"><label>Senha</label><input type="password" id="lgP" placeholder="••••••••"></div>
+    <button class="lg-btn" onclick="doLogin()">💒 Entrar no Planejador</button>
+    <div class="lg-err" id="lgErr">❌ Tente: noivos / amor2025</div>
+    <div class="lg-foot">Feito com 💕 para o casal mais lindo do mundo</div>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="mainApp" style="display:none">
+
+<!-- SIDEBAR -->
+<div id="sidebar">
+  <div class="sb-brand">
+    <div class="sb-crown">👑</div>
+    <div class="sb-names" id="sbNames">Khemely<br>&amp; Mateus</div>
+    <div class="sb-date" id="sbDate">Configure a data ↓</div>
+    <div class="sb-cd" id="sbCD"></div>
+  </div>
+  <nav class="sb-nav">
+    <div class="ngl">Principal</div>
+    <div class="ni active" onclick="go('dashboard')"><span class="ni-ico">🏠</span>Início</div>
+    <div class="ni" onclick="go('countdown')"><span class="ni-ico">⏳</span>Contagem</div>
+    <div class="ni" onclick="go('checklist')"><span class="ni-ico">✅</span>Checklist<span class="ni-badge" id="nb-c">0</span></div>
+    <div class="ngl">Celebração</div>
+    <div class="ni" onclick="go('guests')"><span class="ni-ico">👥</span>Convidados<span class="ni-badge" id="nb-g">0</span></div>
+    <div class="ni" onclick="go('venue')"><span class="ni-ico">🏛️</span>Ambientes</div>
+    <div class="ni" onclick="go('groomsmen')"><span class="ni-ico">💐</span>Padrinhos</div>
+    <div class="ni" onclick="go('menu')"><span class="ni-ico">🍽️</span>Cardápio</div>
+    <div class="ngl">Planejamento</div>
+    <div class="ni" onclick="go('budget')"><span class="ni-ico">💰</span>Orçamento</div>
+    <div class="ni" onclick="go('vendors')"><span class="ni-ico">🏪</span>Fornecedores</div>
+    <div class="ni" onclick="go('decor')"><span class="ni-ico">🌸</span>Decoração</div>
+    <div class="ni" onclick="go('honeymoon')"><span class="ni-ico">🌴</span>Lua de Mel</div>
+    <div class="ngl">Memórias</div>
+    <div class="ni" onclick="go('moodboard')"><span class="ni-ico">🖼️</span>Moodboard</div>
+    <div class="ni" onclick="go('photobooth')"><span class="ni-ico">📸</span>Foto Divertida</div>
+    <div class="ni" onclick="go('music')"><span class="ni-ico">🎵</span>Músicas</div>
+    <div class="ni" onclick="go('vows')"><span class="ni-ico">📜</span>Votos</div>
+    <div class="ni" onclick="go('notes')"><span class="ni-ico">📝</span>Notas</div>
+    <div class="ni" onclick="go('settings')"><span class="ni-ico">⚙️</span>Config.</div>
+  </nav>
+  <div class="sb-bot">
+    <button class="sb-bbt" onclick="doLogout()">🚪 Sair</button>
+    <button class="sb-bbt" onclick="shareData()" title="Compartilhar">📤 Sync</button>
+  </div>
+</div>
+
+<!-- TOPBAR -->
+<div id="topbar">
+  <div class="tb-l">
+    <button class="menu-tog" onclick="toggleSB()">☰</button>
+    <div class="tb-title" id="tbTitle">🏠 Início</div>
+  </div>
+  <div class="tb-r" id="tbAct">
+    <div id="syncIndicator" title="Status de sincronização">
+      <div class="sdot"></div>
+      <span class="si-label">Local</span>
+    </div>
+  </div>
+</div>
+
+<!-- SYNC BAR -->
+<div id="syncBar">
+  <div class="sync-dot"></div>
+  <span>💾 Salvo localmente</span>
+  <span style="margin-left:auto;opacity:.7">Compartilhe via 📤 Sync para o parceiro(a) ver</span>
+  <button class="btn btn-sm btn-gd" onclick="shareData()">📤 Exportar Link</button>
+</div>
+
+<!-- MUSIC BAR -->
+<div id="mbar">
+  <span class="vv paused" id="vv">🎵</span>
+  <button class="mpb" id="mpbtn" onclick="toggleMusic()">▶</button>
+  <div class="minfo"><div class="mnow" id="mnow">♪ Sua trilha sonora do amor...</div><div class="mart" id="mart">Adicione músicas na aba 🎵</div></div>
+  <span class="txs tmu" id="mmom"></span>
+</div>
+
+<!-- MOBILE BOTTOM NAV -->
+<nav id="mobileNav">
+  <button onclick="go('dashboard')" class="mbn active" id="mbn-dashboard">🏠<span>Início</span></button>
+  <button onclick="go('checklist')" class="mbn" id="mbn-checklist">✅<span>Lista</span></button>
+  <button onclick="go('guests')" class="mbn" id="mbn-guests">👥<span>Conv.</span></button>
+  <button onclick="go('budget')" class="mbn" id="mbn-budget">💰<span>Orçam.</span></button>
+  <button onclick="toggleSB()" class="mbn" id="mbn-more">☰<span>Menu</span></button>
+</nav>
+
+<!-- PAGES -->
+<div id="app">
+
+<!-- DASHBOARD -->
+<div class="page active" id="page-dashboard">
+  <div class="lb"><div class="lb-bg">amor</div>
+    <div style="position:relative">
+      <div class="fscr tro" style="font-size:1.9rem" id="dbTitle">💕 Khemely &amp; Mateus</div>
+      <div class="tsm tmu mt1">Tudo para o dia mais especial ✨</div>
+      <div id="dbCouple" style="margin-top:.8rem;display:flex;align-items:flex-end;justify-content:center;gap:0;cursor:pointer" onclick="spawnHearts(event)"></div>
+    </div>
+  </div>
+  <div class="sg4" id="dbStats"></div>
+  <div class="g2 gap2">
+    <div>
+      <div class="card mb2"><div class="ct">⏳ Contagem Regressiva</div><div class="cdh" id="dbCD"></div></div>
+      <div class="card"><div class="ct flex jb aic"><span>✅ Próximas Tarefas</span><button class="btn btn-sm" onclick="go('checklist')">ver todas</button></div><div id="dbTasks"></div></div>
+    </div>
+    <div>
+      <div class="card mb2"><div class="ct">💰 Orçamento</div><div id="dbBudget"></div></div>
+      <div class="card"><div class="ct">💌 Confirmações</div><div id="dbRsvp"></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- COUNTDOWN -->
+<div class="page" id="page-countdown">
+  <div class="sh"><h1 style="font-family:'Dancing Script',cursive;font-size:2.3rem">Faltam apenas...</h1><div class="fd">💍</div></div>
+  <div class="cdh" id="cdHero"></div>
+  <div class="card tc mt2"><div class="fscr tro" style="font-size:1.35rem">📅 Data do Grande Dia</div><div style="font-size:1.05rem;margin:.4rem 0" id="cdDate">—</div><div class="txs tmu" id="cdDay"></div><div id="cdFact" class="mt2 tsm italic tmu"></div></div>
+  <div class="card mt2" style="background:linear-gradient(180deg,#e8f0ff 0%,#f8f0ff 30%,#fff8e8 100%);border:none">
+    <div class="fscr tro tc" style="font-size:1.4rem;margin-bottom:.9rem">O Altar de Vocês</div>
+    <div style="width:min(220px,70%);margin:0 auto;border:3.5px solid var(--r2);border-bottom:none;border-radius:50% 50% 0 0/55% 55% 0 0;padding:1.5rem 1.2rem 0;background:linear-gradient(180deg,rgba(232,180,184,.12),transparent);position:relative">
+      <div style="position:absolute;top:-9px;left:-4px;font-size:1.3rem;letter-spacing:-3px;transform:rotate(15deg)">🌸🌺🌸</div>
+      <div style="position:absolute;top:-9px;right:-4px;font-size:1.3rem;letter-spacing:-3px;transform:rotate(-15deg)">🌸🌺🌸</div>
+      <div id="altarCouple" style="display:flex;align-items:flex-end;justify-content:center;gap:-4px;margin-bottom:.3rem"></div>
+    </div>
+    <div style="width:min(220px,70%);margin:0 auto;height:3px;background:linear-gradient(90deg,transparent,var(--r2),transparent)"></div>
+    <div class="fscr tro tc mt2" style="font-size:1.1rem">Unidos para sempre 💍</div>
+    <div class="g3 gap1 mt2" id="cdMs"></div>
+  </div>
+</div>
+
+<!-- CHECKLIST -->
+<div class="page" id="page-checklist">
+  <div class="sh"><h1>✅ Checklist</h1><p>Organize cada detalhe do grande dia!</p><div class="fd">🌸</div></div>
+  <div class="card mb2">
+    <div class="flex jb aic mb1"><div><span class="fser tro" style="font-size:1.35rem" id="ckPct">0%</span><span class="tsm tmu"> concluído</span></div><button class="btn btn-s" onclick="openM('mTask')">+ Tarefa</button></div>
+    <div class="pt"><div class="pf" id="ckBar" style="width:0%"></div></div>
+    <div class="txs tmu mt1" id="ckSt"></div>
+  </div>
+  <div class="tabs" id="ckTabs">
+    <button class="tab active" onclick="fCk('all',this)">Todas</button>
+    <button class="tab" onclick="fCk('pendente',this)">Pendentes</button>
+    <button class="tab" onclick="fCk('done',this)">Concluídas</button>
+    <button class="tab" onclick="fCk('alta',this)">🔴 Urgente</button>
+  </div>
+  <div id="ckCon"></div>
+</div>
+
+<!-- GUESTS -->
+<div class="page" id="page-guests">
+  <div class="sh"><h1>👥 Convidados</h1><p>Clique em qualquer convidado para ver detalhes</p><div class="fd">💌</div></div>
+  <div class="sg4 mb2" id="gStats"></div>
+  <div class="flex gap2 mb2 fw">
+    <div class="sw" style="flex:1;min-width:160px"><span class="si">🔍</span><input type="text" id="gSrch" placeholder="Buscar..." oninput="rGuests()"></div>
+    <select id="gGF" style="width:auto" onchange="rGuests()"><option value="">Todos grupos</option><option value="familiaNoiva">👗 Família Noiva</option><option value="familiaNoivo">🤵 Família Noivo</option><option value="amigos">👫 Amigos</option><option value="trabalho">💼 Trabalho</option><option value="outro">👤 Outro</option></select>
+    <select id="gRF" style="width:auto" onchange="rGuests()"><option value="">Todos RSVP</option><option value="confirmado">✅ Confirmado</option><option value="pendente">⏳ Pendente</option><option value="recusado">❌ Recusado</option></select>
+    <button class="btn btn-s" onclick="openM('mGuest')">+ Convidado</button>
+  </div>
+  <div class="g2 gap1" id="gList"></div>
+</div>
+
+<!-- VENUE DESIGNER -->
+<div class="page" id="page-venue">
+  <div class="sh"><h1>🏛️ Ambientes & Mesas</h1><p>Arraste e personalize cada elemento! Clique para ver detalhes.</p><div class="fd">🌹</div></div>
+  <div class="g2 gap2">
+    <div>
+      <!-- Env selector -->
+      <div class="venue-ctrl mb2">
+        <div class="venue-ctrl-title">Selecionar Ambiente</div>
+        <div class="venue-tabs" id="venueTabs">
+          <button class="venue-tab active" onclick="setEnv('tenda',this)">🏕️ Tenda Drapeada</button>
+          <button class="venue-tab" onclick="setEnv('salao',this)">🏛️ Salão</button>
+          <button class="venue-tab" onclick="setEnv('jantar',this)">🕯️ Jantar</button>
+        </div>
+      </div>
+      <div class="venue-ctrl mb2">
+        <div class="venue-ctrl-title">Adicionar Elementos</div>
+        <div class="el-palette" id="elPalette"></div>
+        <div id="selPanel" style="display:none" class="sel-panel">
+          <div class="flex jb aic mb1"><div class="txs" id="selName">Elemento selecionado</div><div class="flex gap1"><button class="btn btn-xs" onclick="editSelEl()">✏️ Editar</button><button class="btn btn-xs" style="border-color:#e53;color:#e53" onclick="delSelEl()">🗑️</button><button class="btn btn-xs" onclick="deselect()">✕</button></div></div>
+          <div id="selInfo" class="txs tmu"></div>
+        </div>
+      </div>
+      <div class="venue-ctrl">
+        <div class="venue-ctrl-title">Legenda</div>
+        <div class="flex gap2 fw txs">
+          <div class="flex aic gap1"><div style="width:10px;height:10px;border-radius:50%;background:var(--r);border:1.5px solid var(--r2)"></div>Livre</div>
+          <div class="flex aic gap1"><div style="width:10px;height:10px;border-radius:50%;background:var(--r3)"></div>Ocupado</div>
+          <div class="flex aic gap1"><div style="width:10px;height:10px;border-radius:50%;background:var(--gd)"></div>VIP</div>
+          <div class="flex aic gap1"><span style="font-size:.9rem">⬛</span>Arrastar</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="venue-canvas env-tenda" id="venueCanvas">
+        <!-- elements rendered by JS -->
+      </div>
+    </div>
+  </div>
+  <!-- Table list below map -->
+  <div class="card mt2">
+    <div class="ct flex jb aic"><span>📋 Elementos no Ambiente</span><button class="btn btn-s btn-sm" onclick="openM('mTable')">+ Mesa</button></div>
+    <div id="venueList"></div>
+  </div>
+</div>
+
+<!-- GROOMSMEN -->
+<div class="page" id="page-groomsmen">
+  <div class="sh"><h1>💐 Padrinhos &amp; Madrinhas</h1><p>Clique em cada um para ver detalhes e responsabilidades</p><div class="fd">🌹</div></div>
+  <div class="tabs mb2" id="gmTabs">
+    <button class="tab active" onclick="fGm('todos',this)">Todos</button>
+    <button class="tab" onclick="fGm('padrinho',this)">🤵 Padrinhos</button>
+    <button class="tab" onclick="fGm('madrinha',this)">💐 Madrinhas</button>
+    <button class="tab" onclick="fGm('florista',this)">🌸 Floristas</button>
+    <button class="tab" onclick="fGm('outro',this)">✨ Outros</button>
+  </div>
+  <div class="flex gap1 mb2"><button class="btn btn-s" onclick="openM('mGm')">+ Padrinho/Madrinha</button></div>
+  <div class="g4 gap1" id="gmGrid"></div>
+</div>
+
+<!-- MENU -->
+<div class="page" id="page-menu">
+  <div class="sh"><h1>🍽️ Cardápio</h1><p>Clique em cada prato para detalhes</p><div class="fd">🥂</div></div>
+  <div class="flex gap1 mb2"><button class="btn btn-s" onclick="openM('mMenu')">+ Item</button></div>
+  <div id="menuCon"></div>
+</div>
+
+<!-- BUDGET -->
+<div class="page" id="page-budget">
+  <div class="sh"><h1>💰 Orçamento</h1><p>Clique em qualquer item para ver todos os detalhes</p><div class="fd">💎</div></div>
+  <div class="bh">
+    <div style="font-size:.7rem;opacity:.75;letter-spacing:.1em;text-transform:uppercase">TOTAL ORÇADO</div>
+    <div class="fser" style="font-size:1.9rem" id="bTotV">R$ 0</div>
+    <div style="display:flex;gap:1.2rem;margin-top:.7rem;flex-wrap:wrap">
+      <div style="font-size:.77rem"><span style="display:block;opacity:.7;font-size:.63rem;text-transform:uppercase;letter-spacing:.07em">GASTO</span><span id="bSpent">R$ 0</span></div>
+      <div style="font-size:.77rem"><span style="display:block;opacity:.7;font-size:.63rem;text-transform:uppercase;letter-spacing:.07em">PAGO</span><span id="bPaid">R$ 0</span></div>
+      <div style="font-size:.77rem"><span style="display:block;opacity:.7;font-size:.63rem;text-transform:uppercase;letter-spacing:.07em">RESTANTE</span><span id="bRem">R$ 0</span></div>
+    </div>
+    <div class="pt mt2" style="background:rgba(255,255,255,.2)"><div class="pf" id="bPrg" style="background:#fff;width:0%"></div></div>
+    <div class="flex gap1 mt2">
+      <button class="btn btn-sm" style="background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.35);color:#fff" onclick="setT('eco')">Eco</button>
+      <button class="btn btn-sm" style="background:rgba(255,255,255,.28);border-color:rgba(255,255,255,.5);color:#fff;font-weight:700" onclick="setT('mid')">★ Médio</button>
+      <button class="btn btn-sm" style="background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.35);color:#fff" onclick="setT('prem')">Premium</button>
+    </div>
+  </div>
+  <div class="flex gap1 mb2 fw">
+    <button class="btn btn-s" onclick="openM('mBudget')">+ Item</button>
+    <select id="bCF" style="width:auto" onchange="rBudget()"><option value="">Todas cat.</option><option value="local">Local</option><option value="decoracao">Decoração</option><option value="buffet">Buffet</option><option value="musica">Música</option><option value="foto">Foto/Vídeo</option><option value="vestuario">Vestuário</option><option value="papelaria">Papelaria</option><option value="outro">Outro</option></select>
+  </div>
+  <div class="tw mb2"><table><thead><tr><th>Item</th><th>Cat.</th><th>Qtd</th><th>Eco</th><th>Médio</th><th>Prem</th><th>Total</th><th>Status</th><th></th></tr></thead><tbody id="bTbody"></tbody></table></div>
+  <div class="g4 gap1" id="bCatC"></div>
+</div>
+
+<!-- VENDORS -->
+<div class="page" id="page-vendors">
+  <div class="sh"><h1>🏪 Fornecedores</h1><p>Clique para ver todos os contatos e detalhes</p><div class="fd">🤝</div></div>
+  <div class="flex gap1 mb2 fw">
+    <button class="btn btn-s" onclick="openM('mVendor')">+ Fornecedor</button>
+    <select id="vCF" style="width:auto" onchange="rVendors()"><option value="">Todas</option><option value="decoracao">Decoração</option><option value="buffet">Buffet</option><option value="foto">Foto/Vídeo</option><option value="musica">Música/DJ</option><option value="local">Local</option><option value="vestuario">Vestuário</option><option value="flores">Flores</option><option value="outro">Outro</option></select>
+  </div>
+  <div class="g3 gap1" id="vGrid"></div>
+</div>
+
+<!-- DECOR -->
+<div class="page" id="page-decor">
+  <div class="sh"><h1>🌸 Decoração</h1><p>Clique em cada item para ver detalhes e referências</p><div class="fd">🌷</div></div>
+  <div class="tabs mb2" id="dTabs">
+    <button class="tab active" onclick="fDec('all',this)">Todos</button>
+    <button class="tab" onclick="fDec('cerimonia',this)">💒 Cerimônia</button>
+    <button class="tab" onclick="fDec('recepcao',this)">🥂 Recepção</button>
+    <button class="tab" onclick="fDec('entrada',this)">🚪 Entrada</button>
+    <button class="tab" onclick="fDec('mesa',this)">🌹 Mesas</button>
+  </div>
+  <div class="flex gap2 aic mb2 fw">
+    <button class="btn btn-s" onclick="openM('mDecor')">+ Item</button>
+    <div class="flex gap1 aic txs tmu">Faixa:
+      <button class="btn btn-sm" id="dt-eco" onclick="setT('eco')">Eco</button>
+      <button class="btn btn-sm btn-s" id="dt-mid" onclick="setT('mid')">★ Médio</button>
+      <button class="btn btn-sm" id="dt-prem" onclick="setT('prem')">Premium</button>
+    </div>
+  </div>
+  <div id="decCon"></div>
+</div>
+
+<!-- HONEYMOON -->
+<div class="page" id="page-honeymoon">
+  <div class="sh"><h1>🌴 Lua de Mel</h1><p>A viagem mais romântica da vida de vocês!</p><div class="fd">✈️</div></div>
+  <div class="card mb3">
+    <div class="ct">🗺️ Destino dos Sonhos</div>
+    <div class="fr"><div class="fg"><label class="fl">Destino</label><input type="text" id="hmD" placeholder="Paris, Maldivas..." oninput="saveHm()"></div><div class="fg"><label class="fl">Datas</label><input type="text" id="hmDt" placeholder="10-20 de Nov..." oninput="saveHm()"></div></div>
+    <div class="fr"><div class="fg"><label class="fl">Hotel</label><input type="text" id="hmH" placeholder="Nome do hotel..." oninput="saveHm()"></div><div class="fg"><label class="fl">Orçamento (R$)</label><input type="number" id="hmB" oninput="saveHm()"></div></div>
+    <div class="fg"><label class="fl">Link do Hotel / Reserva</label><input type="url" id="hmL" placeholder="https://..." oninput="saveHm()"></div>
+    <div class="fg"><label class="fl">Sonhos e Planos</label><textarea id="hmN" oninput="saveHm()"></textarea></div>
+  </div>
+  <div class="ct mb2">🌍 Destinos Populares</div>
+  <div class="g4 gap1 mb3" id="hmDests"></div>
+  <div class="card"><div class="ct flex jb aic"><span>📋 Checklist da Lua de Mel</span><button class="btn btn-s btn-sm" onclick="addHmT()">+ Item</button></div><div id="hmCk"></div></div>
+</div>
+
+<!-- MOODBOARD -->
+<div class="page" id="page-moodboard">
+  <div class="sh"><h1>🖼️ Moodboard</h1><p>Clique para ver a referência completa</p><div class="fd">✨</div></div>
+  <div class="flex gap1 mb2 fw">
+    <button class="btn btn-s" onclick="openM('mMood')">+ Referência</button>
+    <select id="mdCF" style="width:auto" onchange="rMood()"><option value="">Todas</option><option value="decoracao">Decoração</option><option value="flores">Flores</option><option value="vestido">Vestido</option><option value="bolo">Bolo</option><option value="local">Local</option><option value="outro">Outro</option></select>
+  </div>
+  <div id="mdCon"></div>
+</div>
+
+<!-- PHOTO BOOTH -->
+<div class="page" id="page-photobooth">
+  <div class="sh"><h1>📸 Foto Divertida</h1><p>Complete a cena e baixe sua foto! 🤣</p><div class="fd">🎭</div></div>
+  <div class="g2 gap2">
+    <div class="pb">
+      <div class="fscr" style="font-size:1.2rem;color:rgba(255,255,255,.88);margin-bottom:.9rem">✨ Complete a Cena!</div>
+      <div class="pf-opts" id="pbFrames"></div>
+      <div class="pbcw"><canvas id="pbCanvas" width="480" height="360"></canvas></div>
+      <div style="color:rgba(255,255,255,.55);font-size:.7rem;margin-bottom:.4rem">Adicionar adesivos:</div>
+      <div class="stt" id="stkTray"></div>
+      <div class="flex gap1"><button class="btn btn-s wf" onclick="dlBooth()">💾 Baixar Foto</button><button class="btn wf" style="border-color:rgba(255,255,255,.28);color:rgba(255,255,255,.7)" onclick="clrBooth()">🗑️</button></div>
+    </div>
+    <div>
+      <div class="card mb2" style="background:#1a0e14;color:#fff;border-color:rgba(232,180,184,.15)">
+        <div class="ct" style="color:rgba(255,255,255,.85)">😂 Frases do Casal</div>
+        <div id="funQ" style="background:rgba(255,255,255,.06);border-radius:9px;padding:.8rem;font-size:.83rem;color:rgba(255,255,255,.8);min-height:55px;line-height:1.5"></div>
+        <button class="btn btn-sm mt2" style="border-color:rgba(255,255,255,.28);color:rgba(255,255,255,.7)" onclick="nxtQ()">🎲 Nova frase</button>
+      </div>
+      <div class="card" style="background:#1a0e14;border-color:rgba(232,180,184,.15)">
+        <div class="ct" style="color:rgba(255,255,255,.85)">🎯 Desafios Românticos</div>
+        <div id="chall" style="background:rgba(255,255,255,.06);border-radius:9px;padding:.8rem;font-size:.83rem;color:rgba(255,255,255,.8);min-height:55px;line-height:1.5"></div>
+        <button class="btn btn-sm mt2" style="border-color:rgba(255,255,255,.28);color:rgba(255,255,255,.7)" onclick="nxtC()">🎲 Novo desafio</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MUSIC -->
+<div class="page" id="page-music">
+  <div class="sh"><h1>🎵 Trilha Sonora</h1><p>Clique ♪ para tocar no player abaixo</p><div class="fd">🎶</div></div>
+  <div class="flex gap1 mb2"><button class="btn btn-s" onclick="openM('mMusic')">+ Música</button></div>
+  <div id="muCon"></div>
+</div>
+
+<!-- VOWS -->
+<div class="page" id="page-vows">
+  <div class="sh"><h1>📜 Votos</h1><p>As palavras mais lindas que vocês vão dizer</p><div class="fd">💒</div></div>
+  <div class="g2 gap2">
+    <div class="card"><div class="ct fscr tro" style="font-size:1.2rem">💕 Votos de <span id="vn1">Khemely</span></div><textarea id="vwB" placeholder="Escreva aqui seus votos..." style="min-height:190px" oninput="svVows()"></textarea><div class="txs tmu mt1" id="vwBc">0 palavras</div></div>
+    <div class="card"><div class="ct fscr tro" style="font-size:1.2rem">💙 Votos de <span id="vn2">Mateus</span></div><textarea id="vwG" placeholder="Suas palavras que vão emocionar..." style="min-height:190px" oninput="svVows()"></textarea><div class="txs tmu mt1" id="vwGc">0 palavras</div></div>
+  </div>
+  <div class="card mt2"><div class="ct">💌 Inspirações</div><div class="g2 gap1" id="vwInsp"></div></div>
+</div>
+
+<!-- NOTES -->
+<div class="page" id="page-notes">
+  <div class="sh"><h1>📝 Notas</h1><p>Clique para ver e editar</p><div class="fd">📌</div></div>
+  <div class="flex gap1 mb2"><button class="btn btn-s" onclick="openM('mNote')">+ Nota</button></div>
+  <div class="g2 gap1" id="ntCon"></div>
+</div>
+
+<!-- SETTINGS -->
+<div class="page" id="page-settings">
+  <div class="sh"><h1>⚙️ Configurações</h1><div class="fd">💍</div></div>
+  <div class="g2 gap2 mb2">
+    <div class="card">
+      <div class="ct">💑 Dados do Casal</div>
+      <div class="fg"><label class="fl">Nome da Noiva</label><input type="text" id="sN1" placeholder="Khemely" oninput="svSet()"></div>
+      <div class="fg"><label class="fl">Nome do Noivo</label><input type="text" id="sN2" placeholder="Mateus" oninput="svSet()"></div>
+      <div class="fg"><label class="fl">📅 Data do Casamento</label><input type="date" id="sDt" oninput="svSet()"></div>
+      <div class="fg"><label class="fl">📍 Local</label><input type="text" id="sVn" placeholder="Nome do espaço..." oninput="svSet()"></div>
+      <div class="fg"><label class="fl">💰 Orçamento Total (R$)</label><input type="number" id="sBg" placeholder="0" oninput="svSet()"></div>
+    </div>
+    <div class="card">
+      <div class="ct">📊 Estatísticas</div>
+      <div id="setStats"></div>
+      <div class="mt2" style="display:flex;flex-direction:column;gap:.4rem">
+        <button class="btn btn-gd wf" onclick="shareData()">📤 Gerar Link</button>
+        <button class="btn btn-sg wf" onclick="loadFromUrl()">📥 Carregar do Link</button>
+        <button class="btn wf" onclick="expJSON()">💾 Exportar JSON</button>
+        <label class="btn wf" style="cursor:pointer;justify-content:center">📥 Importar JSON<input type="file" accept=".json" onchange="impJSON(event)" style="display:none"></label>
+        <button class="btn btn-sm wf" style="border-color:#e53;color:#e53;margin-top:.3rem" onclick="clearAll()">🗑️ Limpar Tudo</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FIREBASE SETUP CARD -->
+  <div class="card" id="fbSetupCard">
+    <div class="ct flex jb aic">
+      <span>🔥 Firebase — Sync em Tempo Real</span>
+      <span id="fbStatusBadge" class="badge b-gy">Não configurado</span>
+    </div>
+
+    <!-- STATUS connected -->
+    <div id="fbConnected" style="display:none">
+      <div style="background:#e8f5e9;border-radius:10px;padding:.9rem;margin-bottom:.9rem;display:flex;align-items:center;gap:10px">
+        <span style="font-size:1.5rem">✅</span>
+        <div>
+          <div style="font-weight:600;font-size:.85rem;color:#1b5e20">Firebase conectado!</div>
+          <div style="font-size:.75rem;color:#2e7d32" id="fbProjectName">Sincronizando em tempo real 🔄</div>
+        </div>
+      </div>
+      <button class="btn btn-sm" style="border-color:#e53;color:#e53" onclick="fbDisconnect()">🔌 Desconectar Firebase</button>
+    </div>
+
+    <!-- SETUP FORM -->
+    <div id="fbSetupForm">
+      <!-- Step-by-step guide -->
+      <div style="background:var(--bl);border-radius:10px;padding:.9rem;margin-bottom:1rem">
+        <div style="font-weight:600;font-size:.82rem;margin-bottom:.6rem;color:var(--tx2)">📋 Como configurar (5 minutos):</div>
+        <div class="fb-step"><span class="fb-sn">1</span><div>Acesse <a href="https://console.firebase.google.com" target="_blank" style="color:var(--gd2);font-weight:600">console.firebase.google.com</a> com sua conta Google</div></div>
+        <div class="fb-step"><span class="fb-sn">2</span><div>Clique em <b>"Criar projeto"</b> → nomeie como <code>casamento-km</code> → desative Google Analytics → <b>"Criar"</b></div></div>
+        <div class="fb-step"><span class="fb-sn">3</span><div>No menu lateral, clique em <b>"Realtime Database"</b> → <b>"Criar banco"</b> → escolha <b>Modo de teste</b> → <b>"Ativar"</b></div></div>
+        <div class="fb-step"><span class="fb-sn">4</span><div>Clique no ícone <b>"⚙️ Configurações do projeto"</b> (engrenagem no topo) → <b>"Seus apps"</b> → ícone <b>"&lt;/&gt;"</b> (Web) → registre o app com qualquer nome → copie os dados do <code>firebaseConfig</code></div></div>
+        <div class="fb-step"><span class="fb-sn">5</span><div>Cole abaixo e clique em <b>Conectar</b> ✅</div></div>
+      </div>
+
+      <div class="fg"><label class="fl">🔑 API Key</label><input type="text" id="fbApiKey" placeholder="AIzaSy..."></div>
+      <div class="fg"><label class="fl">📦 Project ID</label><input type="text" id="fbProjectId" placeholder="casamento-km-xxxxx"></div>
+      <div class="fg"><label class="fl">🌐 Database URL</label><input type="text" id="fbDbUrl" placeholder="https://casamento-km-xxxxx-default-rtdb.firebaseio.com"></div>
+      <div class="fg"><label class="fl">🔒 Auth Domain (opcional)</label><input type="text" id="fbAuthDomain" placeholder="casamento-km-xxxxx.firebaseapp.com"></div>
+
+      <div id="fbError" style="display:none;background:#fce4e4;color:#c62828;padding:.7rem .9rem;border-radius:8px;font-size:.78rem;margin-bottom:.7rem"></div>
+
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+        <button class="btn btn-s" onclick="fbConnect()" style="flex:1">🔥 Conectar Firebase</button>
+        <button class="btn" onclick="fbFillDemo()" style="font-size:.7rem">📋 Preencher demo</button>
+      </div>
+      <div style="font-size:.68rem;color:var(--tx3);margin-top:.5rem;line-height:1.5">
+        💡 Os dados ficam salvos no banco do Firebase. Qualquer pessoa com acesso ao app (pelo mesmo login) vê e edita em tempo real. Gratuito até 1GB de armazenamento e 10GB/mês de transferência.
+      </div>
+    </div>
+  </div>
+
+  <!-- NETLIFY — Publicar online -->
+  <div class="card mt2">
+    <div class="ct flex jb aic"><span>🌐 Publicar no Netlify</span></div>
+    <div style="font-size:.8rem;color:var(--tx2);line-height:1.55;margin-bottom:.6rem">
+      Para colocar o app online (só vocês dois usam): 1) Renomeie este arquivo para <code>index.html</code>. 2) Acesse <a href="https://app.netlify.com" target="_blank" rel="noopener" style="color:var(--gd2);font-weight:600">app.netlify.com</a>. 3) Arraste a pasta que contém o <code>index.html</code> para a área “Deploy” (drag and drop). 4) Netlify gera um link (ex: <em>nome-aleatorio.netlify.app</em>). Use esse link nos dois celulares para abrir o planejador. Continua tudo no mesmo arquivo; Firebase já está configurado acima.
+    </div>
+  </div>
+</div>
+
+</div><!-- #app -->
+</div><!-- #mainApp -->
+
+<!-- MODALS (Form) -->
+<div class="mb" id="mTask"><div class="mo"><div class="mh"><div class="mt2">✅ Tarefa</div><button class="mc" onclick="closeM('mTask')">✕</button></div><div class="fr"><div class="fg"><label class="fl">Tarefa</label><input type="text" id="tTx"></div><div class="fg"><label class="fl">Categoria</label><select id="tCt"><option value="local">🏛️ Local</option><option value="decoracao">🌸 Decoração</option><option value="buffet">🍽️ Buffet</option><option value="vestuario">👗 Vestuário</option><option value="foto">📸 Foto</option><option value="musica">🎵 Música</option><option value="papelaria">💌 Papelaria</option><option value="outro">📌 Outro</option></select></div></div><div class="fr"><div class="fg"><label class="fl">Prioridade</label><select id="tPr"><option value="alta">🔴 Alta</option><option value="media">🟡 Média</option><option value="baixa">🟢 Baixa</option></select></div><div class="fg"><label class="fl">Prazo</label><input type="date" id="tDt"></div></div><div class="fr"><div class="fg"><label class="fl">Responsável</label><input type="text" id="tOw" placeholder="Noiva, Noivo..."></div><div class="fg"></div></div><div class="fg"><label class="fl">Observação</label><textarea id="tNt" style="min-height:55px"></textarea></div><div style="text-align:right"><button class="btn btn-s" onclick="addTask()">💾 Salvar</button></div></div></div>
+
+<div class="mb" id="mGuest"><div class="mo"><div class="mh"><div class="mt2">👤 Convidado</div><button class="mc" onclick="closeM('mGuest')">✕</button></div><div class="fr"><div class="fg"><label class="fl">Nome</label><input type="text" id="gNm"></div><div class="fg"><label class="fl">WhatsApp</label><input type="text" id="gPh" placeholder="(00)00000-0000"></div></div><div class="fr"><div class="fg"><label class="fl">Email</label><input type="email" id="gEm"></div><div class="fg"><label class="fl">Grupo</label><select id="gGp"><option value="familiaNoiva">👗 Família Noiva</option><option value="familiaNoivo">🤵 Família Noivo</option><option value="amigos">👫 Amigos</option><option value="trabalho">💼 Trabalho</option><option value="outro">👤 Outro</option></select></div></div><div class="fr"><div class="fg"><label class="fl">RSVP</label><select id="gRv"><option value="pendente">⏳ Pendente</option><option value="confirmado">✅ Confirmado</option><option value="recusado">❌ Recusado</option></select></div><div class="fg"><label class="fl">Mesa</label><input type="text" id="gTb" placeholder="Mesa 1..."></div></div><div class="fr"><div class="fg"><label class="fl">Restrição Alimentar</label><input type="text" id="gDt" placeholder="Vegetariano..."></div><div class="fg"><label class="fl">Presente confirmado?</label><select id="gGf"><option value="">Não informado</option><option value="sim">✅ Sim</option><option value="nao">❌ Não</option></select></div></div><div class="fg"><label class="fl">Endereço / Cidade</label><input type="text" id="gAd" placeholder="Cidade, estado..."></div><div class="fg"><label class="fl">Observações</label><textarea id="gNt" style="min-height:50px"></textarea></div><div style="text-align:right"><button class="btn btn-s" onclick="addGuest()">💾 Salvar</button></div></div></div>
+
+<div class="mb" id="mTable"><div class="mo"><div class="mh"><div class="mt2">🪑 Mesa/Elemento</div><button class="mc" onclick="closeM('mTable')">✕</button></div><div class="fr"><div class="fg"><label class="fl">Nome</label><input type="text" id="tbNm" placeholder="Mesa 1, VIP, Altar..."></div><div class="fg"><label class="fl">Tipo</label><select id="tbTp"><option value="round">⭕ Mesa Redonda</option><option value="rect">▬ Mesa Retangular</option><option value="vip">⭐ Mesa VIP/Noivos</option><option value="portal_altar">🌸 Portal do Altar</option><option value="portal_entrada">🚪 Portal da Entrada</option><option value="buffet_bar">🍽️ Mesa de Buffet</option><option value="dj_stage">🎵 Palco/DJ</option><option value="cake">🎂 Mesa do Bolo</option></select></div></div><div class="fr"><div class="fg"><label class="fl">Capacidade (mesas)</label><input type="number" id="tbCp" value="8" min="1"></div><div class="fg"><label class="fl">Tema/Decoração</label><input type="text" id="tbTh" placeholder="Rosas, Vintage..."></div></div><div class="fg"><label class="fl">Observações / Notas</label><textarea id="tbNt" style="min-height:50px" placeholder="Detalhes sobre este elemento..."></textarea></div><div style="text-align:right"><button class="btn btn-s" onclick="addVenueEl()">💾 Adicionar</button></div></div></div>
+
+<div class="mb" id="mGm"><div class="mo"><div class="mh"><div class="mt2">💐 Padrinho/Madrinha</div><button class="mc" onclick="closeM('mGm')">✕</button></div><div class="fr"><div class="fg"><label class="fl">Nome</label><input type="text" id="gmNm"></div><div class="fg"><label class="fl">Papel</label><select id="gmRl"><option value="padrinho">🤵 Padrinho</option><option value="madrinha">💐 Madrinha</option><option value="florista">🌸 Florista</option><option value="daminha">👧 Daminha</option><option value="pajem">👦 Pajem</option><option value="outro">✨ Outro</option></select></div></div><div class="fr"><div class="fg"><label class="fl">WhatsApp</label><input type="text" id="gmPh"></div><div class="fg"><label class="fl">Email</label><input type="email" id="gmEm"></div></div><div class="fr"><div class="fg"><label class="fl">Instagram</label><input type="text" id="gmIg" placeholder="@usuario"></div><div class="fg"><label class="fl">Emoji/Avatar</label><input type="text" id="gmEj" placeholder="🌸 💐 🤵..."></div></div><div class="fg"><label class="fl">Responsabilidade Principal</label><textarea id="gmTk" style="min-height:55px" placeholder="Ex: Levar as alianças..."></textarea></div><div class="fg"><label class="fl">Observações</label><textarea id="gmNt" style="min-height:50px"></textarea></div><div style="text-align:right"><button class="btn btn-s" onclick="addGm()">💾 Salvar</button></div></div></div>
+
+<div class="mb" id="mMenu"><div class="mo"><div class="mh"><div class="mt2">🍽️ Item Cardápio</div><button class="mc" onclick="closeM('mMenu')">✕</button></div><div class="fr"><div class="fg"><label class="fl">Prato/Bebida</label><input type="text" id="mnNm"></div><div class="fg"><label class="fl">Categoria</label><select id="mnCt"><option value="entrada">🥗 Entrada</option><option value="principal">🍖 Principal</option><option value="sobremesa">🎂 Sobremesa</option><option value="bebida">🥂 Bebida</option><option value="coquetel">🍹 Coquetel</option><option value="outro">🍴 Outro</option></select></div></div><div class="fg"><label class="fl">Descrição / Ingredientes</label><textarea id="mnDs" style="min-height:65px"></textarea></div><div class="fr"><div class="fg"><label class="fl">Buffet/Fornecedor</label><input type="text" id="mnVd"></div><div class="fg"><label class="fl">Preço por pessoa (R$)</label><input type="number" id="mnPr" placeholder="0.00" step="0.01"></div></div><div class="fr"><div class="fg"><label class="fl">Alérgenos</label><input type="text" id="mnAl" placeholder="Glúten, lactose..."></div><div class="fg"><label class="fl">Vegetariano?</label><select id="mnVg"><option value="nao">Não</option><option value="sim">Sim 🌱</option></select></div></div><div style="text-align:right"><button class="btn btn-s" onclick="addMenu()">💾 Salvar</button></div></div></div>
+
+<div class="mb" id="mBudget"><div class="mo"><div class="mh"><div class="mt2">💰 Item Orçamento</div><button class="mc" onclick="closeM('mBudget')">✕</button></div><div class="fr"><div class="fg"><label class="fl">Item</label><input type="text" id="bNm"></div><div class="fg"><label class="fl">Categoria</label><select id="bCt"><option value="local">🏛️ Local</option><option value="decoracao">🌸 Decoração</option><option value="buffet">🍽️ Buffet</option><option value="musica">🎵 Música</option><option value="foto">📸 Foto/Vídeo</option><option value="vestuario">👗 Vestuário</option><option value="papelaria">💌 Papelaria</option><option value="outro">📌 Outro</option></select></div></div><div class="fr3"><div class="fg"><label class="fl">Eco (R$)</label><input type="number" id="bEc" step="0.01" oninput="calcBPv()"></div><div class="fg"><label class="fl">Médio (R$)</label><input type="number" id="bMd" step="0.01" oninput="calcBPv()"></div><div class="fg"><label class="fl">Premium (R$)</label><input type="number" id="bPr" step="0.01" oninput="calcBPv()"></div></div><div class="fr"><div class="fg"><label class="fl">Qtd</label><input type="number" id="bQt" value="1" min="1" oninput="calcBPv()"></div><div class="fg"><label class="fl">Unidade</label><input type="text" id="bUn" placeholder="und, m², kg..."></div></div><div class="fr"><div class="fg"><label class="fl">Fornecedor</label><input type="text" id="bVn"></div><div class="fg"><label class="fl">Contato Fornecedor</label><input type="text" id="bVC"></div></div><div class="fr"><div class="fg"><label class="fl">Status</label><select id="bSt"><option value="pesquisando">🔍 Pesquisando</option><option value="orcado">📋 Orçado</option><option value="aprovado">✅ Aprovado</option><option value="pago">💳 Pago</option></select></div><div class="fg"><label class="fl">Data Pagamento</label><input type="date" id="bPD"></div></div><div class="fg"><label class="fl">🔗 Link Referência</label><input type="url" id="bLk" placeholder="https://..."></div><div class="fg"><label class="fl">🖼️ URL Imagem</label><input type="url" id="bIm" placeholder="https://..."></div><div class="fg"><label class="fl">Observações</label><textarea id="bNt" style="min-height:50px"></textarea></div><div style="background:var(--bl);padding:.7rem;border-radius:9px;text-align:center;margin-bottom:.7rem"><div class="txs tmu">Total estimado (faixa atual)</div><div class="fser tro" style="font-size:1.25rem" id="bPvw">R$ 0</div></div><div style="text-align:right"><button class="btn btn-s" onclick="addBudget()">💾 Salvar</button></div></div></div>
+
+<div class="mb" id="mVendor"><div class="mo"><div class="mh"><div class="mt2">🏪 Fornecedor</div><button class="mc" onclick="closeM('mVendor')">✕</button></div><div class="fr"><div class="fg"><label class="fl">Nome da Empresa</label><input type="text" id="vNm"></div><div class="fg"><label class="fl">Categoria</label><select id="vCt"><option value="decoracao">🌸 Decoração</option><option value="buffet">🍽️ Buffet</option><option value="foto">📸 Foto/Vídeo</option><option value="musica">🎵 Música/DJ</option><option value="local">🏛️ Local</option><option value="vestuario">👗 Vestuário</option><option value="flores">💐 Flores</option><option value="outro">📌 Outro</option></select></div></div><div class="fr"><div class="fg"><label class="fl">WhatsApp / Telefone</label><input type="text" id="vPh"></div><div class="fg"><label class="fl">Email</label><input type="email" id="vEm"></div></div><div class="fr"><div class="fg"><label class="fl">Instagram / Site</label><input type="text" id="vSt" placeholder="@instagram ou https://..."></div><div class="fg"><label class="fl">Nome do Contato</label><input type="text" id="vCt2" placeholder="Nome da pessoa..."></div></div><div class="fr"><div class="fg"><label class="fl">Endereço</label><input type="text" id="vAd"></div><div class="fg"><label class="fl">Valor (R$)</label><input type="number" id="vPr" step="0.01"></div></div><div class="fr"><div class="fg"><label class="fl">Avaliação ⭐</label><select id="vRt"><option value="5">⭐⭐⭐⭐⭐</option><option value="4">⭐⭐⭐⭐</option><option value="3">⭐⭐⭐</option><option value="2">⭐⭐</option><option value="1">⭐</option></select></div><div class="fg"><label class="fl">Status Contrato</label><select id="vSt2"><option value="pesquisando">🔍 Pesquisando</option><option value="negociando">💬 Negociando</option><option value="contratado">✅ Contratado</option><option value="pago">💳 Pago</option><option value="cancelado">❌ Cancelado</option></select></div></div><div class="fg"><label class="fl">🔗 Link / Portfólio</label><input type="url" id="vLk"></div><div class="fg"><label class="fl">Observações / Inclui o quê</label><textarea id="vNt" style="min-height:55px"></textarea></div><div style="text-align:right"><button class="btn btn-s" onclick="addVendor()">💾 Salvar</button></div></div></div>
+
+<div class="mb" id="mDecor"><div class="mo"><div class="mh"><div class="mt2">🌸 Item Decoração</div><button class="mc" onclick="closeM('mDecor')">✕</button></div><div class="fr"><div class="fg"><label class="fl">Item</label><input type="text" id="dNm"></div><div class="fg"><label class="fl">Setor</label><select id="dSc"><option value="cerimonia">💒 Cerimônia</option><option value="recepcao">🥂 Recepção</option><option value="entrada">🚪 Entrada</option><option value="mesa">🌹 Mesas</option><option value="outro">✨ Outro</option></select></div></div><div class="fg"><label class="fl">Descrição / Material</label><textarea id="dDs" style="min-height:55px" placeholder="Tipo de tecido, flores, cores..."></textarea></div><div class="fr3"><div class="fg"><label class="fl">Eco (R$)</label><input type="number" id="dEc" step="0.01"></div><div class="fg"><label class="fl">Médio (R$)</label><input type="number" id="dMd" step="0.01"></div><div class="fg"><label class="fl">Premium (R$)</label><input type="number" id="dPr" step="0.01"></div></div><div class="fr"><div class="fg"><label class="fl">Qtd</label><input type="number" id="dQt" value="1" min="1"></div><div class="fg"><label class="fl">Unidade</label><input type="text" id="dUn" placeholder="und, m..."></div></div><div class="fr"><div class="fg"><label class="fl">Fornecedor</label><input type="text" id="dVn"></div><div class="fg"><label class="fl">Contato</label><input type="text" id="dVC"></div></div><div class="fg"><label class="fl">🔗 Link Referência</label><input type="url" id="dLk"></div><div class="fg"><label class="fl">🖼️ URL Imagem</label><input type="url" id="dIm" oninput="pvDImg()"></div><div id="dImPv" style="margin-bottom:.5rem"></div><div class="fg"><label class="fl">Status</label><select id="dSt"><option value="pesquisando">🔍 Pesquisando</option><option value="orcado">📋 Orçado</option><option value="aprovado">✅ Aprovado</option><option value="pago">💳 Pago</option></select></div><div style="text-align:right"><button class="btn btn-s" onclick="addDecor()">💾 Salvar</button></div></div></div>
+
+<div class="mb" id="mMood"><div class="mo"><div class="mh"><div class="mt2">🖼️ Referência</div><button class="mc" onclick="closeM('mMood')">✕</button></div><div class="fg"><label class="fl">Título</label><input type="text" id="mdNm"></div><div class="fr"><div class="fg"><label class="fl">Categoria</label><select id="mdCt"><option value="decoracao">🌸 Decoração</option><option value="flores">💐 Flores</option><option value="vestido">👗 Vestido</option><option value="bolo">🎂 Bolo</option><option value="local">🏛️ Local</option><option value="outro">✨ Outro</option></select></div><div class="fg"><label class="fl">🔗 Link Ref.</label><input type="url" id="mdLk"></div></div><div class="fg"><label class="fl">🖼️ URL da Imagem</label><input type="url" id="mdIm" oninput="pvMdImg()"></div><div id="mdPv" style="margin-bottom:.5rem"></div><div class="fg"><label class="fl">Por que amei isso?</label><textarea id="mdNt" style="min-height:55px"></textarea></div><div style="text-align:right"><button class="btn btn-s" onclick="addMood()">💾 Salvar</button></div></div></div>
+
+<div class="mb" id="mMusic"><div class="mo"><div class="mh"><div class="mt2">🎵 Música</div><button class="mc" onclick="closeM('mMusic')">✕</button></div><div class="fr"><div class="fg"><label class="fl">Música</label><input type="text" id="muNm"></div><div class="fg"><label class="fl">Artista</label><input type="text" id="muAr"></div></div><div class="fg"><label class="fl">Momento</label><select id="muMo"><option value="entrada">💒 Entrada da noiva</option><option value="aliancas">💍 Troca de alianças</option><option value="saida">🎉 Saída dos noivos</option><option value="primeiro">💃 Primeiro baile</option><option value="jantar">🍽️ Durante jantar</option><option value="festa">🪩 Festa</option><option value="outro">🎶 Outro</option></select></div><div class="fg"><label class="fl">🔗 Link (YouTube/Spotify)</label><input type="url" id="muLk"></div><div style="text-align:right"><button class="btn btn-s" onclick="addMusic()">💾 Salvar</button></div></div></div>
+
+<div class="mb" id="mNote"><div class="mo"><div class="mh"><div class="mt2">📝 Nota</div><button class="mc" onclick="closeM('mNote')">✕</button></div><div class="fg"><label class="fl">Título</label><input type="text" id="ntNm"></div><div class="fg"><label class="fl">Conteúdo</label><textarea id="ntCt" style="min-height:100px"></textarea></div><div class="fr"><div class="fg"><label class="fl">Cor</label><select id="ntCl"><option value="yellow">🟡 Amarela</option><option value="pink">🩷 Rosa</option><option value="blue">🔵 Azul</option><option value="green">🟢 Verde</option></select></div><div class="fg"><label class="fl">Emoji</label><input type="text" id="ntEm" placeholder="📌 💡 ⚠️..."></div></div><div style="text-align:right"><button class="btn btn-s" onclick="addNote()">💾 Salvar</button></div></div></div>
+
+<!-- DETAIL MODAL -->
+<div class="mb" id="mDetail"><div class="mo" style="max-width:580px"><div class="mh"><div class="mt2" id="detTitle">Detalhes</div><button class="mc" onclick="closeM('mDetail')">✕</button></div><div id="detBody"></div><div class="flex gap1 mt2 jb" id="detAct"></div></div></div>
+
+<!-- VENUE ELEMENT EDIT MODAL -->
+<div class="mb" id="mElEdit"><div class="mo"><div class="mh"><div class="mt2">✏️ Editar Elemento</div><button class="mc" onclick="closeM('mElEdit')">✕</button></div><div class="fg"><label class="fl">Nome</label><input type="text" id="elEditNm"></div><div class="fg"><label class="fl">Observações / Decoração</label><textarea id="elEditNt" style="min-height:65px"></textarea></div><div style="text-align:right"><button class="btn btn-s" onclick="saveElEdit()">💾 Salvar</button></div></div></div>
+
+<script>
+// ================================================================
+// DB — localStorage
+// ================================================================
+// If this line runs, JS is enabled (hide banner)
+try{ document.getElementById('jsBlockedBanner')?.remove(); }catch{}
+const DB={
+  get(k){try{return JSON.parse(localStorage.getItem('km3_'+k)||'null')}catch{return null}},
+  set(k,v){localStorage.setItem('km3_'+k,JSON.stringify(v))},
+  del(k){try{localStorage.removeItem('km3_'+k)}catch{}}
+};
+// Firebase do casal (uso compartilhado entre os noivos)
+const DEFAULT_FIREBASE_CONFIG = {
+  apiKey: "AIzaSyD2APOk32vldFVH2YFYXa6yl384wvJ1jNM",
+  authDomain: "casamento-de16b.firebaseapp.com",
+  databaseURL: "https://casamento-de16b-default-rtdb.firebaseio.com",
+  projectId: "casamento-de16b",
+  storageBucket: "casamento-de16b.firebasestorage.app",
+  messagingSenderId: "651589423244",
+  appId: "1:651589423244:web:692475c7c582f36b28eba9",
+  measurementId: "G-53HSVSHCHY"
+};
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+const fR=v=>'R$ '+(+v||0).toLocaleString('pt-BR',{minimumFractionDigits:0,maximumFractionDigits:0});
+const esc=s=>String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const q=id=>document.getElementById(id);
+const qv=id=>q(id)?.value||'';
+
+// ================================================================
+// DATA
+// ================================================================
+let S  = DB.get('S')  || {n1:'Khemely',n2:'Mateus',date:'',venue:'',budget:0,tier:'mid'};
+let tasks    = DB.get('tasks')    || defTasks();
+let guests   = DB.get('guests')   || [];
+let venueEls = DB.get('venueEls') || defVenue();
+let grooms   = DB.get('grooms')   || defGrooms();
+let menuIt   = DB.get('menu')     || [];
+let budget   = DB.get('budget')   || defBudget();
+let vendors  = DB.get('vendors')  || [];
+let decor    = DB.get('decor')    || defDecor();
+let mood     = DB.get('mood')     || [];
+let music    = DB.get('music')    || defMusic();
+let notes    = DB.get('notes')    || [];
+let hm       = DB.get('hm')       || {dest:'',dates:'',hotel:'',budget:0,link:'',note:'',tasks:[]};
+let env      = DB.get('env')      || 'tenda';
+let ckFilter='all', gmFilter='todos', decFilter='all', musicPlay=false;
+
+function save(){
+  DB.set('S',S);DB.set('tasks',tasks);DB.set('guests',guests);
+  DB.set('venueEls',venueEls);DB.set('grooms',grooms);DB.set('menu',menuIt);
+  DB.set('budget',budget);DB.set('vendors',vendors);DB.set('decor',decor);
+  DB.set('mood',mood);DB.set('music',music);DB.set('notes',notes);
+  DB.set('hm',hm);DB.set('env',env);
+}
+
+// ================================================================
+// DEFAULTS
+// ================================================================
+function defTasks(){return[
+  {id:uid(),tx:'Definir data do casamento',cat:'local',pri:'alta',dt:'',ow:'Ambos',nt:'',done:false},
+  {id:uid(),tx:'Reservar o espaço',cat:'local',pri:'alta',dt:'',ow:'Ambos',nt:'',done:false},
+  {id:uid(),tx:'Contratar decoradora',cat:'decoracao',pri:'alta',dt:'',ow:'Noiva',nt:'',done:false},
+  {id:uid(),tx:'Contratar buffet',cat:'buffet',pri:'alta',dt:'',ow:'Ambos',nt:'',done:false},
+  {id:uid(),tx:'Lista de convidados',cat:'outro',pri:'media',dt:'',ow:'Ambos',nt:'',done:false},
+  {id:uid(),tx:'Contratar fotógrafo',cat:'foto',pri:'alta',dt:'',ow:'Noivo',nt:'',done:false},
+  {id:uid(),tx:'Escolher vestido',cat:'vestuario',pri:'alta',dt:'',ow:'Noiva',nt:'',done:false},
+  {id:uid(),tx:'Enviar convites',cat:'papelaria',pri:'media',dt:'',ow:'Ambos',nt:'',done:false},
+  {id:uid(),tx:'Contratar DJ/Banda',cat:'musica',pri:'media',dt:'',ow:'Noivo',nt:'',done:false},
+  {id:uid(),tx:'Planejar lua de mel',cat:'outro',pri:'baixa',dt:'',ow:'Noivo',nt:'',done:false},
+];}
+function defGrooms(){return[
+  {id:uid(),nm:'Padrinho Principal',rl:'padrinho',ph:'',em:'',ig:'',ej:'🤵',tk:'Levar as alianças',nt:''},
+  {id:uid(),nm:'Madrinha Principal',rl:'madrinha',ph:'',em:'',ig:'',ej:'💐',tk:'Apoiar a noiva',nt:''},
+];}
+function defBudget(){return[
+  {id:uid(),nm:'Aluguel do Espaço',cat:'local',vn:'',vc:'',eco:5000,mid:12000,prem:25000,qt:1,un:'serviço',st:'pesquisando',pd:'',lk:'',im:'',nt:''},
+  {id:uid(),nm:'Decoração Geral',cat:'decoracao',vn:'',vc:'',eco:3000,mid:7000,prem:18000,qt:1,un:'serviço',st:'pesquisando',pd:'',lk:'',im:'',nt:''},
+  {id:uid(),nm:'Buffet',cat:'buffet',vn:'',vc:'',eco:80,mid:150,prem:300,qt:100,un:'por pessoa',st:'pesquisando',pd:'',lk:'',im:'',nt:''},
+  {id:uid(),nm:'Fotografia & Vídeo',cat:'foto',vn:'',vc:'',eco:2500,mid:5000,prem:12000,qt:1,un:'serviço',st:'pesquisando',pd:'',lk:'',im:'',nt:''},
+  {id:uid(),nm:'DJ / Banda',cat:'musica',vn:'',vc:'',eco:1500,mid:3500,prem:8000,qt:1,un:'serviço',st:'pesquisando',pd:'',lk:'',im:'',nt:''},
+  {id:uid(),nm:'Vestido da Noiva',cat:'vestuario',vn:'',vc:'',eco:1500,mid:4000,prem:12000,qt:1,un:'und',st:'pesquisando',pd:'',lk:'',im:'',nt:''},
+];}
+function defDecor(){return[
+  {id:uid(),nm:'Arco drapeado de tule',sc:'cerimonia',ds:'Chiffon branco com arranjo floral',eco:1200,mid:2200,prem:4500,qt:1,un:'und',vn:'',vc:'',lk:'',im:'',st:'pesquisando'},
+  {id:uid(),nm:'Passadeira de tecido',sc:'cerimonia',ds:'Corredor central 8m',eco:280,mid:520,prem:960,qt:8,un:'m',vn:'',vc:'',lk:'',im:'',st:'pesquisando'},
+  {id:uid(),nm:'Teto drapeado em tule',sc:'recepcao',ds:'Cobre o salão inteiro',eco:960,mid:1760,prem:3600,qt:80,un:'m²',vn:'',vc:'',lk:'',im:'',st:'pesquisando'},
+  {id:uid(),nm:'Centro de mesa floral',sc:'mesa',ds:'Arranjo flores frescas + velas',eco:80,mid:160,prem:350,qt:15,un:'und',vn:'',vc:'',lk:'',im:'',st:'pesquisando'},
+  {id:uid(),nm:'Portal de entrada florido',sc:'entrada',ds:'Flores naturais e greenery',eco:500,mid:950,prem:2000,qt:1,un:'und',vn:'',vc:'',lk:'',im:'',st:'pesquisando'},
+];}
+function defMusic(){return[
+  {id:uid(),nm:"Can't Help Falling in Love",ar:'Elvis Presley',mo:'entrada',lk:'https://youtube.com/watch?v=vGJTaP6anOU',play:false},
+  {id:uid(),nm:'A Thousand Years',ar:'Christina Perri',mo:'aliancas',lk:'https://youtube.com/watch?v=rtOvBOTyX00',play:false},
+  {id:uid(),nm:'Perfect',ar:'Ed Sheeran',mo:'primeiro',lk:'https://youtube.com/watch?v=2Vv-BfVoq4g',play:false},
+];}
+function defVenue(){
+  return [
+    {id:uid(),nm:'Altar',tp:'portal_altar',cp:0,th:'Flores e drapeado branco',nt:'Portal principal da cerimônia',x:310,y:30},
+    {id:uid(),nm:'Portal Entrada',tp:'portal_entrada',cp:0,th:'',nt:'Portal de boas-vindas',x:310,y:420},
+    {id:uid(),nm:'Mesa dos Noivos',tp:'vip',cp:2,th:'VIP com flores',nt:'Mesa principal',x:270,y:120},
+    {id:uid(),nm:'Mesa 1',tp:'round',cp:8,th:'',nt:'',x:80,y:190},
+    {id:uid(),nm:'Mesa 2',tp:'round',cp:8,th:'',nt:'',x:500,y:190},
+    {id:uid(),nm:'Mesa 3',tp:'round',cp:8,th:'',nt:'',x:80,y:320},
+    {id:uid(),nm:'Mesa 4',tp:'round',cp:8,th:'',nt:'',x:500,y:320},
+    {id:uid(),nm:'Buffet',tp:'buffet_bar',cp:0,th:'',nt:'',x:80,y:30},
+    {id:uid(),nm:'Bolo',tp:'cake',cp:0,th:'',nt:'',x:540,y:30},
+    {id:uid(),nm:'DJ / Palco',tp:'dj_stage',cp:0,th:'',nt:'',x:220,y:430},
+  ];
+}
+
+// ================================================================
+// LOGIN
+// ================================================================
+function doLogin(){
+  const u=qv('lgU').trim().toLowerCase(), p=qv('lgP');
+  const ok=(u==='noivos'||u==='khemely'||u==='mateus'||u===S.n1.toLowerCase()||u===S.n2.toLowerCase())&&(p==='amor2025'||p==='casamento');
+  if(ok){
+    q('loginScreen').classList.add('out');
+    q('mainApp').style.display='block';
+    setTimeout(()=>q('loginScreen').remove(),800);
+    initApp();
+  } else {
+    q('lgErr').style.display='block';
+    q('lgP').style.borderColor='#f48';
+    setTimeout(()=>{q('lgErr').style.display='none';q('lgP').style.borderColor='';},3000);
+  }
+}
+function doLogout(){if(confirm('Sair?'))location.reload()}
+['lgP','lgU'].forEach(id=>{q(id).addEventListener('keypress',e=>{if(e.key==='Enter')(id==='lgU'?q('lgP'):null)?.focus()||doLogin()})});
+
+// Login particles
+(()=>{const c=q('lgpart');if(!c)return;setInterval(()=>{const d=document.createElement('div');const icons=['💕','💖','🌸','✨','💍','🌹'];d.textContent=icons[Math.floor(Math.random()*icons.length)];d.style.cssText=`position:absolute;left:${Math.random()*100}%;top:${Math.random()*100}%;font-size:${.7+Math.random()*1.1}rem;opacity:0;animation:fadeup 2.5s ease ${Math.random()*2}s forwards;pointer-events:none;`;c.appendChild(d);setTimeout(()=>d.remove(),5000);},700);})();
+
+// ================================================================
+// INIT
+// ================================================================
+function initApp(){
+  updateSB();renderDashboard();startCD();startPetals();setMusicBar();
+  const vb=DB.get('vwB')||'',vg=DB.get('vwG')||'';
+  if(q('vwB'))q('vwB').value=vb;if(q('vwG'))q('vwG').value=vg;
+  if(q('sN1'))q('sN1').value=S.n1;if(q('sN2'))q('sN2').value=S.n2;
+  if(q('sDt'))q('sDt').value=S.date;if(q('sVn'))q('sVn').value=S.venue||'';
+  if(q('sBg'))q('sBg').value=S.budget||'';
+  loadFromUrl(true);
+  // Auto-reconnect Firebase if previously configured
+  fbAutoConnect();
+}
+
+// ================================================================
+// NAVIGATION
+// ================================================================
+const PGT={dashboard:'🏠 Início',countdown:'⏳ Contagem',checklist:'✅ Checklist',guests:'👥 Convidados',venue:'🏛️ Ambientes',groomsmen:'💐 Padrinhos',menu:'🍽️ Cardápio',budget:'💰 Orçamento',vendors:'🏪 Fornecedores',decor:'🌸 Decoração',honeymoon:'🌴 Lua de Mel',moodboard:'🖼️ Moodboard',photobooth:'📸 Foto Divertida',music:'🎵 Músicas',vows:'📜 Votos',notes:'📝 Notas',settings:'⚙️ Config.'};
+let curPage='dashboard';
+function go(pg){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.ni').forEach(n=>n.classList.remove('active'));
+  document.querySelectorAll('.mbn').forEach(n=>n.classList.remove('active'));
+  q('page-'+pg)?.classList.add('active');
+  document.querySelectorAll('.ni').forEach(n=>{if(n.getAttribute('onclick')?.includes("'"+pg+"'"))n.classList.add('active')});
+  const mbn=q('mbn-'+pg);if(mbn)mbn.classList.add('active');
+  q('tbTitle').textContent=PGT[pg]||pg;curPage=pg;
+  const R={dashboard:renderDashboard,countdown:renderCountdown,checklist:rChecklist,guests:rGuests,venue:rVenue,groomsmen:rGrooms,menu:rMenu,budget:rBudget,vendors:rVendors,decor:rDecor,honeymoon:rHoneymoon,moodboard:rMood,photobooth:initBooth,music:rMusic,vows:rVows,notes:rNotes,settings:rSettings};
+  if(R[pg])R[pg]();
+  q('sidebar').classList.remove('open');
+  // scroll to top on page change
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function toggleSB(){q('sidebar').classList.toggle('open')}
+document.addEventListener('click',e=>{
+  if(q('sidebar').classList.contains('open')&&!q('sidebar').contains(e.target)&&!e.target.closest('.menu-tog'))q('sidebar').classList.remove('open');
+  if(e.target.classList.contains('mb'))e.target.classList.remove('open');
+});
+
+// ================================================================
+// MODALS
+// ================================================================
+function openM(id){q(id).classList.add('open')}
+function closeM(id){q(id).classList.remove('open')}
+
+// ================================================================
+// TOAST
+// ================================================================
+let toTO;
+function toast(msg,ico='💕'){
+  const t=q('toast');t.innerHTML=ico+' '+msg;t.classList.add('show');
+  clearTimeout(toTO);toTO=setTimeout(()=>t.classList.remove('show'),3000);
+}
+
+// ================================================================
+// PETALS
+// ================================================================
+function startPetals(){
+  const L=q('petalLayer');
+  const shapes=['🌸','🌺','🌹','🍃','✨','💕'];
+  setInterval(()=>{
+    if(document.hidden)return;
+    const p=document.createElement('div');p.className='petal';
+    p.textContent=shapes[Math.floor(Math.random()*shapes.length)];
+    p.style.cssText=`left:${Math.random()*100}%;font-size:${.65+Math.random()*.75}rem;animation-duration:${5+Math.random()*6}s;animation-delay:${Math.random()*2}s;`;
+    L.appendChild(p);setTimeout(()=>p.remove(),13000);
+  },1500);
+}
+function spawnHearts(e){
+  for(let i=0;i<7;i++){setTimeout(()=>{
+    const h=document.createElement('div');h.className='heartburst';
+    h.textContent=['💕','💖','💗','💝','🌸','✨','💍'][Math.floor(Math.random()*7)];
+    const cx=(e?.clientX||window.innerWidth/2)-10+Math.random()*40-20;
+    const cy=(e?.clientY||window.innerHeight*.7)-20;
+    h.style.left=cx+'px';h.style.top=cy+'px';
+    document.body.appendChild(h);setTimeout(()=>h.remove(),2700);
+  },i*160);}
+}
+
+// ================================================================
+// COUNTDOWN
+// ================================================================
+function getCD(){
+  if(!S.date)return null;
+  const now=new Date(),wed=new Date(S.date+'T10:00:00'),d=wed-now;
+  if(d<0)return{past:true};
+  return{d:Math.floor(d/864e5),h:Math.floor(d%864e5/36e5),m:Math.floor(d%36e5/6e4),s:Math.floor(d%6e4/1e3),past:false};
+}
+function cdHTML(c,big=false){
+  if(!S.date)return'<div class="txs tmu">Configure a data em ⚙️ Config.</div>';
+  if(c?.past)return'<div class="fscr tro" style="font-size:1.8rem">🎉 O dia chegou! 🎉</div>';
+  if(big)return`<div class="cdb"><div class="cdbig">${c.d}</div><div class="cdlbl">dias</div></div><div class="cdb"><div class="cdbig">${c.h}</div><div class="cdlbl">horas</div></div><div class="cdb"><div class="cdbig">${c.m}</div><div class="cdlbl">min</div></div><div class="cdb"><div class="cdbig">${c.s}</div><div class="cdlbl">seg</div></div>`;
+  return`<div class="cdm"><div class="cdm-n">${c.d}</div><div class="cdm-l">d</div></div><div class="cdm"><div class="cdm-n">${c.h}</div><div class="cdm-l">h</div></div><div class="cdm"><div class="cdm-n">${c.m}</div><div class="cdm-l">m</div></div>`;
+}
+function startCD(){
+  const tick=()=>{
+    const c=getCD();
+    q('sbCD').innerHTML=cdHTML(c);
+    q('dbCD').innerHTML=cdHTML(c,true);
+    q('cdHero').innerHTML=cdHTML(c,true);
+  };
+  tick();setInterval(tick,1000);
+}
+
+// ================================================================
+// SIDEBAR
+// ================================================================
+function updateSB(){
+  q('sbNames').innerHTML=`${esc(S.n1)}<br>&amp; ${esc(S.n2)}`;
+  if(S.date){const d=new Date(S.date);q('sbDate').textContent=d.toLocaleDateString('pt-BR');}
+  q('nb-c').textContent=tasks.filter(t=>!t.done).length;
+  q('nb-g').textContent=guests.length;
+}
+
+// ================================================================
+// DETAIL MODAL SYSTEM
+// ================================================================
+function showDetail(title, bodyHTML, actions=''){
+  q('detTitle').innerHTML=title;
+  q('detBody').innerHTML=bodyHTML;
+  q('detAct').innerHTML=actions;
+  openM('mDetail');
+}
+function detRow(k,v,link=false){
+  if(!v&&v!==0)return'';
+  const val=link?`<a href="${esc(v)}" target="_blank" class="det-link">🔗 Abrir Referência</a>`:esc(v);
+  return`<div class="det-row"><div class="det-key">${k}</div><div class="det-val">${val}</div></div>`;
+}
+function priceCmp(eco,mid,prem,qty=1,tier=S.tier){
+  const fmt=(v,t)=>`<div class="pc-box pc-${t}${tier===t?' active-tier':''}"><div class="pc-lbl">${t==='eco'?'Econômica':t==='mid'?'Intermediária':'Premium'}</div><div class="pc-val">${fR(v)}</div><div class="pc-tot">${qty>1?'× '+qty+' = '+fR(v*qty):''}</div></div>`;
+  return`<div class="price-compare">${fmt(eco,'eco')}${fmt(mid,'mid')}${fmt(prem,'prem')}</div>`;
+}
+function statusBadge(st){
+  const m={pesquisando:'b-gy',orcado:'b-gd',aprovado:'b-rose',pago:'b-gr',contratado:'b-gr',negociando:'b-bl',cancelado:'b-rd'};
+  return`<span class="badge ${m[st]||'b-gy'}">${st}</span>`;
+}
+
+// ================================================================
+// DASHBOARD
+// ================================================================
+function renderDashboard(){
+  q('dbTitle').innerHTML=`💕 ${esc(S.n1)} &amp; ${esc(S.n2)}`;
+  // Couple SVG
+  q('dbCouple').innerHTML=`
+    <svg width="75" height="130" viewBox="0 0 75 130" style="cursor:pointer">
+      <ellipse cx="37" cy="16" rx="13" ry="14" fill="#d4878d"/>
+      <path d="M15,36 Q37,26 59,36 L65,105 Q37,122 9,105 Z" fill="#e8b4b8"/>
+      <path d="M13,36 Q37,31 61,36 L67,108 Q37,126 7,108 Z" fill="rgba(201,168,76,.25)"/>
+      <path d="M26,34 Q37,26 48,34 L52,98 Q37,112 22,98 Z" fill="rgba(255,255,255,.35)"/>
+      <path d="M24,16 Q10,28 6,76 Q19,72 24,16" fill="rgba(255,255,255,.45)"/>
+      <text x="22" y="8" font-size="11">🌸</text>
+    </svg>
+    <div style="font-size:1.6rem;align-self:center;margin:0 -2px;animation:pulse 1.2s ease-in-out infinite">💕</div>
+    <svg width="70" height="130" viewBox="0 0 70 130" style="cursor:pointer">
+      <ellipse cx="35" cy="16" rx="12" ry="13" fill="#8b5a4a"/>
+      <rect x="17" y="32" width="36" height="68" rx="5" fill="#2a1a1e"/>
+      <rect x="21" y="32" width="11" height="34" rx="2" fill="rgba(255,255,255,.85)"/>
+      <rect x="38" y="32" width="11" height="34" rx="2" fill="rgba(255,255,255,.85)"/>
+      <rect x="21" y="32" width="28" height="7" rx="2" fill="#c9a84c"/>
+      <polygon points="31,34 35,40 31,46 40,40" fill="#b8545c"/>
+      <polygon points="40,34 36,40 40,46 31,40" fill="#b8545c"/>
+      <rect x="13" y="32" width="7" height="54" rx="3" fill="#2a1a1e"/>
+      <rect x="50" y="32" width="7" height="54" rx="3" fill="#2a1a1e"/>
+    </svg>`;
+
+  const done=tasks.filter(t=>t.done).length;
+  const conf=guests.filter(g=>g.rsvp==='confirmado').length;
+  const spent=calcSpent();
+  q('dbStats').innerHTML=`
+    <div class="sc"><div class="sc-ico">👥</div><div class="sc-val">${guests.length}</div><div class="sc-lbl">Convidados</div></div>
+    <div class="sc"><div class="sc-ico">✅</div><div class="sc-val">${done}/${tasks.length}</div><div class="sc-lbl">Tarefas</div></div>
+    <div class="sc"><div class="sc-ico">💰</div><div class="sc-val">${fR(spent)}</div><div class="sc-lbl">Orçado</div></div>
+    <div class="sc"><div class="sc-ico">💌</div><div class="sc-val">${conf}</div><div class="sc-lbl">Confirmados</div></div>`;
+
+  const cI={local:'🏛️',decoracao:'🌸',buffet:'🍽️',vestuario:'👗',foto:'📸',musica:'🎵',papelaria:'💌',outro:'📌'};
+  const pend=tasks.filter(t=>!t.done).slice(0,5);
+  q('dbTasks').innerHTML=pend.length?pend.map(t=>`
+    <div class="flex aic gap1" style="padding:6px 0;border-bottom:1px solid rgba(232,180,184,.09)">
+      <div onclick="toggleTask('${t.id}',event)" style="width:17px;height:17px;border-radius:50%;border:2px solid var(--r2);cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:${t.done?'var(--r2)':'transparent'};color:#fff;font-size:.58rem;transition:all .18s">${t.done?'✓':''}</div>
+      <span style="flex:1;font-size:.8rem;${t.done?'text-decoration:line-through;color:var(--tx3)':''}">${esc(t.tx)}</span>
+      <span class="badge ${t.pri==='alta'?'b-rd':t.pri==='media'?'b-gd':'b-sg'}">${t.pri}</span>
+    </div>`).join(''):'<div class="txs tmu">🎉 Todas concluídas!</div>';
+
+  const total=S.budget||0,pct=total>0?Math.min(100,Math.round(spent/total*100)):0;
+  q('dbBudget').innerHTML=`
+    <div class="flex jb tsm mb1"><span class="tmu">Orçado (${S.tier})</span><span class="fser tro">${fR(spent)}</span></div>
+    <div class="flex jb tsm mb1"><span class="tmu">Limite</span><span>${fR(total)}</span></div>
+    <div class="pt mb1"><div class="pf" style="width:${pct}%"></div></div>
+    <div class="txs tmu">${pct}% comprometido</div>
+    <button class="btn btn-sm mt2" onclick="go('budget')">Detalhes →</button>`;
+
+  const rC=guests.filter(g=>g.rsvp==='confirmado').length,rP=guests.filter(g=>g.rsvp==='pendente').length,rR=guests.filter(g=>g.rsvp==='recusado').length;
+  q('dbRsvp').innerHTML=`<div class="flex gap1 fw mb2"><span class="badge b-gr">✅ ${rC}</span><span class="badge b-gd">⏳ ${rP}</span><span class="badge b-rd">❌ ${rR}</span></div>${!guests.length?'<div class="txs tmu">Sem convidados ainda</div>':''}<button class="btn btn-sm" onclick="go('guests')">Gerenciar →</button>`;
+}
+
+// ================================================================
+// COUNTDOWN PAGE
+// ================================================================
+function renderCountdown(){
+  if(S.date){
+    const wed=new Date(S.date);
+    const days=['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'];
+    q('cdDate').textContent=wed.toLocaleDateString('pt-BR',{year:'numeric',month:'long',day:'numeric'});
+    q('cdDay').textContent=days[wed.getDay()]+'-feira 🎊';
+  }
+  const facts=['Casamentos com flores brancas simbolizam pureza! 🤍','O véu da noiva protege de espíritos invejosos! ✨','Jogar arroz vem de rituais de fertilidade! 🌾','O primeiro baile era o "branco" aberto pelos noivos!','A lua de mel vem de um mês de mel (licor) dado ao casal! 🍯'];
+  q('cdFact').textContent='💡 '+facts[Math.floor(Math.random()*facts.length)];
+  q('altarCouple').innerHTML=`<svg width="55" height="95" viewBox="0 0 55 95"><ellipse cx="27" cy="13" rx="11" ry="12" fill="#d4878d"/><path d="M8,28 Q27,20 46,28 L51,82 Q27,96 3,82 Z" fill="#e8b4b8"/><path d="M22,13 Q10,26 8,62" stroke="rgba(255,255,255,.45)" stroke-width="2.5" fill="none"/><text x="15" y="5" font-size="9">🌸</text></svg><div style="font-size:1.3rem;align-self:center;margin:0 -3px">💕</div><svg width="50" height="95" viewBox="0 0 50 95"><ellipse cx="25" cy="13" rx="10" ry="11" fill="#8b5a4a"/><rect x="10" y="26" width="30" height="55" rx="5" fill="#2a1a1e"/><rect x="14" y="26" width="10" height="30" rx="2" fill="rgba(255,255,255,.8)"/><rect x="27" y="26" width="10" height="30" rx="2" fill="rgba(255,255,255,.8)"/><rect x="6" y="26" width="7" height="50" rx="3" fill="#2a1a1e"/><rect x="37" y="26" width="7" height="50" rx="3" fill="#2a1a1e"/></svg>`;
+  const ms=[{ico:'💌',t:'Enviar Convites',d:90},{ico:'🌸',t:'Confirmar Decor.',d:60},{ico:'🍽️',t:'Fechar Cardápio',d:45},{ico:'✅',t:'Confirmar Conv.',d:30},{ico:'📸',t:'Ensaio Foto',d:14},{ico:'💍',t:'O Grande Dia!',d:0}];
+  q('cdMs').innerHTML=ms.map(m=>`<div class="card tc" style="padding:.65rem"><div style="font-size:1.4rem">${m.ico}</div><div class="tsm" style="margin-top:3px">${m.t}</div><div class="txs tmu">${m.d===0?'💕 Hoje!':m.d+' dias antes'}</div></div>`).join('');
+}
+
+// ================================================================
+// CHECKLIST
+// ================================================================
+const catI={local:'🏛️',decoracao:'🌸',buffet:'🍽️',vestuario:'👗',foto:'📸',musica:'🎵',papelaria:'💌',outro:'📌'};
+const catN={local:'Local',decoracao:'Decoração',buffet:'Buffet',vestuario:'Vestuário',foto:'Foto/Vídeo',musica:'Música',papelaria:'Papelaria',outro:'Outros'};
+function fCk(f,btn){ckFilter=f;document.querySelectorAll('#ckTabs .tab').forEach(b=>b.classList.remove('active'));btn.classList.add('active');rChecklist()}
+function rChecklist(){
+  const d=tasks.filter(t=>t.done).length,tot=tasks.length,pct=tot?Math.round(d/tot*100):0;
+  q('ckPct').textContent=pct+'%';q('ckBar').style.width=pct+'%';q('ckSt').textContent=`${d} de ${tot} concluídas`;
+  q('nb-c').textContent=tasks.filter(t=>!t.done).length;
+  let flt=tasks.filter(t=>{if(ckFilter==='pendente')return!t.done;if(ckFilter==='done')return t.done;if(ckFilter==='alta')return!t.done&&t.pri==='alta';return true;});
+  const cats={};flt.forEach(t=>{if(!cats[t.cat])cats[t.cat]=[];cats[t.cat].push(t)});
+  let html='';
+  for(const cat in cats){
+    html+=`<div class="card mb2"><div class="ct">${catI[cat]||'📌'} ${catN[cat]||cat}</div>${cats[cat].map(t=>`
+      <div class="flex aic gap1" style="padding:7px 0;border-bottom:1px solid rgba(232,180,184,.07)">
+        <div onclick="toggleTask('${t.id}',event)" style="width:18px;height:18px;border-radius:50%;border:2px solid var(--r2);cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:${t.done?'var(--r2)':'transparent'};color:#fff;font-size:.58rem;transition:all .18s;user-select:none">${t.done?'✓':''}</div>
+        <div style="flex:1;cursor:pointer" onclick="detTask('${t.id}')">
+          <div class="tsm ${t.done?'tmu':''}" style="${t.done?'text-decoration:line-through':''}">${esc(t.tx)}</div>
+          <div class="txs tmu">${t.dt?'📅 '+t.dt+' · ':''}${t.ow?'👤 '+esc(t.ow):''}${t.nt?' · '+esc(t.nt):''}</div>
+        </div>
+        <span class="badge ${t.pri==='alta'?'b-rd':t.pri==='media'?'b-gd':'b-sg'}">${t.pri}</span>
+        <button onclick="delTask('${t.id}')" style="background:none;border:none;cursor:pointer;color:var(--tx3);font-size:.72rem;padding:2px 5px">✕</button>
+      </div>`).join('')}</div>`;
+  }
+  q('ckCon').innerHTML=html||'<div class="empty"><div class="empty-ico">✅</div><div class="empty-txt">Nenhuma tarefa aqui!</div></div>';
+}
+function detTask(id){
+  const t=tasks.find(x=>x.id===id);if(!t)return;
+  showDetail(`${catI[t.cat]||'📌'} ${esc(t.tx)}`,`
+    <div class="det-badges"><span class="badge ${t.pri==='alta'?'b-rd':t.pri==='media'?'b-gd':'b-sg'}">${t.pri}</span><span class="badge b-rose">${catN[t.cat]||t.cat}</span>${t.done?'<span class="badge b-gr">✅ Concluída</span>':''}</div>
+    ${detRow('Responsável',t.ow)}${detRow('Prazo',t.dt)}${detRow('Observação',t.nt)}`,
+    `<button class="btn btn-sm" onclick="toggleTask('${t.id}');closeM('mDetail')">${t.done?'↩ Reabrir':'✅ Concluir'}</button><button class="btn btn-sm" style="border-color:#e53;color:#e53" onclick="delTask('${t.id}');closeM('mDetail')">🗑️</button>`);
+}
+function toggleTask(id,evt){const t=tasks.find(t=>t.id===id);if(!t)return;t.done=!t.done;if(t.done){spawnHearts(evt);toast('Concluída! 🎉','✅')}save();rChecklist();updateSB();}
+function delTask(id){tasks=tasks.filter(t=>t.id!==id);save();rChecklist();updateSB()}
+function addTask(){
+  const tx=qv('tTx').trim();if(!tx)return toast('Digite a tarefa!','⚠️');
+  tasks.push({id:uid(),tx,cat:qv('tCt'),pri:qv('tPr'),dt:qv('tDt'),ow:qv('tOw'),nt:qv('tNt'),done:false});
+  save();closeM('mTask');['tTx','tNt','tOw'].forEach(i=>q(i).value='');
+  toast('Tarefa adicionada! 📋');rChecklist();updateSB();
+}
+
+// ================================================================
+// GUESTS
+// ================================================================
+const gGrads=['linear-gradient(135deg,#e8b4b8,#d4878d)','linear-gradient(135deg,#a8b89a,#7a9068)','linear-gradient(135deg,#c9a84c,#a8873a)','linear-gradient(135deg,#b4b8e8,#9090d4)','linear-gradient(135deg,#e8c8b4,#d4a878)'];
+function gGrad(n){return gGrads[(n||'?').charCodeAt(0)%gGrads.length]}
+const grpIco={familiaNoiva:'👗',familiaNoivo:'🤵',amigos:'👫',trabalho:'💼',outro:'👤'};
+function rGuests(){
+  const sr=qv('gSrch').toLowerCase(),gf=qv('gGF'),rf=qv('gRF');
+  const fl=guests.filter(g=>(!sr||(g.nm||'').toLowerCase().includes(sr))&&(!gf||g.grp===gf)&&(!rf||g.rsvp===rf));
+  const conf=guests.filter(g=>g.rsvp==='confirmado').length,pend=guests.filter(g=>g.rsvp==='pendente').length,rec=guests.filter(g=>g.rsvp==='recusado').length;
+  q('gStats').innerHTML=`<div class="sc"><div class="sc-ico">👥</div><div class="sc-val">${guests.length}</div><div class="sc-lbl">Total</div></div><div class="sc"><div class="sc-ico">✅</div><div class="sc-val">${conf}</div><div class="sc-lbl">Confirmados</div></div><div class="sc"><div class="sc-ico">⏳</div><div class="sc-val">${pend}</div><div class="sc-lbl">Pendentes</div></div><div class="sc"><div class="sc-ico">❌</div><div class="sc-val">${rec}</div><div class="sc-lbl">Recusados</div></div>`;
+  q('nb-g').textContent=guests.length;
+  q('gList').innerHTML=fl.length?fl.map(g=>`
+    <div class="gc" onclick="detGuest('${g.id}')">
+      <div class="gca" style="background:${gGrad(g.nm)}">${(g.nm||'?')[0].toUpperCase()}</div>
+      <div style="flex:1;min-width:0">
+        <div style="font-weight:600;font-size:.83rem">${esc(g.nm)}</div>
+        <div class="txs tmu">${grpIco[g.grp]||'👤'} ${esc(g.grp||'')} ${g.ph?'· 📱'+esc(g.ph):''}</div>
+        ${g.tb?`<div class="txs tmu">🪑 ${esc(g.tb)}</div>`:''}
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:3px">
+        <span class="badge ${g.rsvp==='confirmado'?'b-gr':g.rsvp==='recusado'?'b-rd':'b-gd'}">${g.rsvp||'pendente'}</span>
+        ${g.dt?'<span class="txs" title="Restrição">🌱</span>':''}
+      </div>
+    </div>`).join(''):'<div class="empty" style="grid-column:1/-1"><div class="empty-ico">💌</div><div class="empty-txt">Nenhum convidado encontrado</div></div>';
+}
+function detGuest(id){
+  const g=guests.find(x=>x.id===id);if(!g)return;
+  showDetail(`${grpIco[g.grp]||'👤'} ${esc(g.nm)}`,`
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:1rem">
+      <div class="gca" style="background:${gGrad(g.nm)};width:52px;height:52px;font-size:1.3rem;border-radius:50%">${(g.nm||'?')[0].toUpperCase()}</div>
+      <div>
+        <div class="fser" style="font-size:1rem">${esc(g.nm)}</div>
+        <div class="txs tmu">${grpIco[g.grp]||'👤'} ${esc(g.grp||'')}</div>
+      </div>
+      <span class="badge ${g.rsvp==='confirmado'?'b-gr':g.rsvp==='recusado'?'b-rd':'b-gd'}" style="margin-left:auto">${g.rsvp||'pendente'}</span>
+    </div>
+    <div style="display:grid;gap:0">
+      ${detRow('📱 WhatsApp',g.ph)}${detRow('📧 Email',g.em)}${detRow('📍 Endereço',g.ad)}${detRow('🪑 Mesa',g.tb)}${detRow('🌱 Restrição Alimentar',g.dt)}${detRow('🎁 Presente',g.gf)}${detRow('📝 Observações',g.nt)}
+    </div>`,
+    `${g.ph?`<a href="https://wa.me/55${g.ph.replace(/\D/g,'')}" target="_blank" class="btn btn-sg btn-sm">💬 WhatsApp</a>`:''}
+     ${g.em?`<a href="mailto:${g.em}" class="btn btn-sm">📧 Email</a>`:''}
+     <button class="btn btn-sm" style="border-color:#e53;color:#e53" onclick="delGuest('${g.id}');closeM('mDetail')">🗑️</button>`);
+}
+function addGuest(){
+  const nm=qv('gNm').trim();if(!nm)return toast('Digite o nome!','⚠️');
+  guests.push({id:uid(),nm,ph:qv('gPh'),em:qv('gEm'),grp:qv('gGp'),rsvp:qv('gRv'),tb:qv('gTb'),dt:qv('gDt'),gf:qv('gGf'),ad:qv('gAd'),nt:qv('gNt')});
+  save();closeM('mGuest');['gNm','gPh','gEm','gTb','gDt','gAd','gNt'].forEach(i=>{if(q(i))q(i).value=''});
+  toast(nm+' adicionado(a)! 🎉');rGuests();updateSB();
+}
+function delGuest(id){guests=guests.filter(g=>g.id!==id);save();rGuests();updateSB()}
+
+// ================================================================
+// VENUE DESIGNER
+// ================================================================
+const envConfigs={
+  tenda:{class:'env-tenda',label:'🏕️ Tenda Drapeada',floorColor:'rgba(168,140,100,.08)',bg:'#f8f3ee',noAltarZone:false},
+  salao:{class:'env-salao',label:'🏛️ Salão de Festas',floorColor:'rgba(180,150,220,.06)',bg:'#f5f0f8',noAltarZone:false},
+  jantar:{class:'env-jantar',label:'🕯️ Jantar Íntimo',floorColor:'rgba(201,168,76,.05)',bg:'#1e1410',noAltarZone:true},
+};
+const elTypes={
+  round:{label:'⭕ Mesa Redonda',size:78,svg:(el,guests_at)=>drawRoundTable(el,guests_at)},
+  rect:{label:'▬ Mesa Retangular',size:[110,60],svg:(el,guests_at)=>drawRectTable(el,guests_at)},
+  vip:{label:'⭐ Mesa VIP',size:88,svg:(el,guests_at)=>drawVipTable(el,guests_at)},
+  portal_altar:{label:'🌸 Portal Altar',size:[120,100],svg:(el)=>drawPortalAltar(el)},
+  portal_entrada:{label:'🚪 Portal Entrada',size:[120,100],svg:(el)=>drawPortalEntrada(el)},
+  buffet_bar:{label:'🍽️ Mesa Buffet',size:[130,50],svg:(el)=>drawBuffet(el)},
+  dj_stage:{label:'🎵 Palco/DJ',size:[120,60],svg:(el)=>drawDJ(el)},
+  cake:{label:'🎂 Mesa do Bolo',size:60,svg:(el)=>drawCake(el)},
+};
+
+// SVG drawers for each element type
+function drawRoundTable(el,gAt){
+  const n=el.cp||8,occ=gAt.length,r=36,cr=12,w=r*2+cr*2+8,h=w;
+  let chairs='';
+  for(let i=0;i<n;i++){const a=(i/n)*Math.PI*2-Math.PI/2,cx=w/2+Math.cos(a)*(r+cr+1),cy=h/2+Math.sin(a)*(r+cr+1);const isOcc=i<occ,isVip=false;chairs+=`<circle cx="${cx}" cy="${cy}" r="${cr}" fill="${isOcc?'var(--r3)':'var(--r)'}" stroke="var(--r2)" stroke-width="1.5"/>`;}
+  return`<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}"><defs><radialGradient id="tg${el.id.slice(-4)}" cx="50%" cy="40%"><stop offset="0%" stop-color="#fff"/><stop offset="100%" stop-color="var(--bl)"/></radialGradient></defs>${chairs}<circle cx="${w/2}" cy="${h/2}" r="${r}" fill="url(#tg${el.id.slice(-4)})" stroke="var(--r2)" stroke-width="2"/><text x="${w/2}" y="${h/2-5}" text-anchor="middle" font-size="9" fill="var(--tx2)" font-family="Dancing Script,cursive">${esc(el.nm)}</text><text x="${w/2}" y="${h/2+8}" text-anchor="middle" font-size="8" fill="var(--tx3)">${occ}/${n}</text></svg>`;
+}
+function drawRectTable(el,gAt){
+  const n=el.cp||8,occ=gAt.length,w=130,h=65,cr=11;
+  const perSide=Math.floor(n/2);let chairs='';
+  for(let i=0;i<perSide;i++){const x=15+(i*(w-30)/(perSide-1||1));chairs+=`<circle cx="${x}" cy="5" r="${cr}" fill="${i<Math.floor(occ/2)?'var(--r3)':'var(--r)'}" stroke="var(--r2)" stroke-width="1.5"/>`;}
+  for(let i=0;i<perSide;i++){const x=15+(i*(w-30)/(perSide-1||1));chairs+=`<circle cx="${x}" cy="${h-5}" r="${cr}" fill="${i<occ-Math.floor(occ/2)?'var(--r3)':'var(--r)'}" stroke="var(--r2)" stroke-width="1.5"/>`;}
+  return`<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}"><rect x="8" y="14" width="${w-16}" height="${h-28}" rx="6" fill="white" stroke="var(--ch2)" stroke-width="2"/>${chairs}<text x="${w/2}" y="${h/2-3}" text-anchor="middle" font-size="9" fill="var(--tx2)" font-family="Dancing Script,cursive">${esc(el.nm)}</text><text x="${w/2}" y="${h/2+9}" text-anchor="middle" font-size="7" fill="var(--tx3)">${occ}/${n}</text></svg>`;
+}
+function drawVipTable(el,gAt){
+  const n=el.cp||2,occ=gAt.length,r=40,cr=13,w=r*2+cr*2+8,h=w;
+  let chairs='';
+  for(let i=0;i<n;i++){const a=(i/n)*Math.PI*2-Math.PI/2,cx=w/2+Math.cos(a)*(r+cr+1),cy=h/2+Math.sin(a)*(r+cr+1);chairs+=`<circle cx="${cx}" cy="${cy}" r="${cr}" fill="${i<occ?'var(--gd)':'rgba(201,168,76,.3)'}" stroke="var(--gd)" stroke-width="1.5"/>`;}
+  return`<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}"><defs><radialGradient id="vg${el.id.slice(-4)}" cx="50%" cy="40%"><stop offset="0%" stop-color="#fffdf0"/><stop offset="100%" stop-color="var(--ch)"/></radialGradient></defs>${chairs}<circle cx="${w/2}" cy="${h/2}" r="${r}" fill="url(#vg${el.id.slice(-4)})" stroke="var(--gd)" stroke-width="2.5"/><text x="${w/2}" y="${h/2-6}" text-anchor="middle" font-size="9" fill="var(--gd2)" font-family="Dancing Script,cursive">${esc(el.nm)}</text><text x="${w/2}" y="${h/2+7}" text-anchor="middle" font-size="8" fill="var(--gd2)">⭐ VIP</text></svg>`;
+}
+function drawPortalAltar(el){
+  const envC=envConfigs[env];const isDark=env==='jantar';const flrC=isDark?'#c9a84c':'#b8545c';const bgFill=isDark?'rgba(201,168,76,.12)':'rgba(232,180,184,.15)';const strokeC=isDark?'#c9a84c':'#d4878d';
+  return`<svg width="130" height="110" viewBox="0 0 130 110">
+    <path d="M20,100 L20,45 Q65,5 110,45 L110,100" fill="${bgFill}" stroke="${strokeC}" stroke-width="3"/>
+    <path d="M30,100 L30,50 Q65,18 100,50 L100,100" fill="${bgFill}" stroke="${strokeC}" stroke-width="1.5"/>
+    <text x="5" y="18" font-size="15">🌸</text><text x="105" y="18" font-size="15">🌸</text>
+    <text x="15" y="35" font-size="12">🌺</text><text x="100" y="35" font-size="12">🌺</text>
+    <text x="55" y="70" text-anchor="middle" font-size="11" fill="${flrC}" font-family="Dancing Script,cursive">${esc(el.nm)}</text>
+    <path d="M45,100 L45,100" stroke="${strokeC}" stroke-width="1" stroke-dasharray="3,2"/>
+  </svg>`;
+}
+function drawPortalEntrada(el){
+  const isDark=env==='jantar';const strokeC=isDark?'rgba(201,168,76,.8)':'#d4878d';const bgFill=isDark?'rgba(201,168,76,.08)':'rgba(232,180,184,.12)';
+  return`<svg width="130" height="110" viewBox="0 0 130 110">
+    <rect x="15" y="20" width="100" height="80" rx="50 50 0 0 / 40 40 0 0" fill="${bgFill}" stroke="${strokeC}" stroke-width="2.5"/>
+    <rect x="25" y="28" width="80" height="72" rx="40 40 0 0 / 34 34 0 0" fill="none" stroke="${strokeC}" stroke-width="1" stroke-dasharray="4,3"/>
+    <line x1="15" y1="99" x2="115" y2="99" stroke="${strokeC}" stroke-width="2.5"/>
+    <text x="32" y="12" font-size="11">🌿🌸🌿</text>
+    <text x="65" y="65" text-anchor="middle" font-size="10" fill="${isDark?'rgba(201,168,76,.9)':'var(--r3)'}" font-family="Dancing Script,cursive">${esc(el.nm)}</text>
+    <text x="65" y="80" text-anchor="middle" font-size="18">🚪</text>
+  </svg>`;
+}
+function drawBuffet(el){
+  const isDark=env==='jantar';const fill=isDark?'rgba(201,168,76,.15)':'var(--bl)';const stroke=isDark?'var(--gd)':'var(--ch2)';
+  return`<svg width="135" height="58" viewBox="0 0 135 58">
+    <rect x="5" y="14" width="125" height="35" rx="5" fill="${fill}" stroke="${stroke}" stroke-width="2"/>
+    <rect x="8" y="16" width="30" height="31" rx="3" fill="rgba(255,255,255,.4)" stroke="${stroke}" stroke-width="1"/>
+    <rect x="41" y="16" width="30" height="31" rx="3" fill="rgba(255,255,255,.4)" stroke="${stroke}" stroke-width="1"/>
+    <rect x="74" y="16" width="30" height="31" rx="3" fill="rgba(255,255,255,.4)" stroke="${stroke}" stroke-width="1"/>
+    <text x="12" y="36" font-size="16">🍖</text><text x="45" y="36" font-size="16">🥗</text><text x="78" y="36" font-size="16">🥩</text>
+    <text x="67" y="10" text-anchor="middle" font-size="8" fill="${isDark?'var(--gd2)':'var(--tx2)'}" font-family="Dancing Script,cursive">${esc(el.nm)}</text>
+  </svg>`;
+}
+function drawDJ(el){
+  const isDark=env==='jantar';const fill=isDark?'rgba(180,150,220,.15)':'rgba(180,150,220,.1)';
+  return`<svg width="125" height="62" viewBox="0 0 125 62">
+    <rect x="5" y="18" width="115" height="38" rx="6" fill="${fill}" stroke="rgba(180,150,220,.5)" stroke-width="2"/>
+    <circle cx="28" cy="37" r="13" fill="rgba(180,150,220,.2)" stroke="rgba(180,150,220,.6)" stroke-width="1.5"/>
+    <circle cx="28" cy="37" r="5" fill="rgba(180,150,220,.5)"/>
+    <circle cx="97" cy="37" r="13" fill="rgba(180,150,220,.2)" stroke="rgba(180,150,220,.6)" stroke-width="1.5"/>
+    <circle cx="97" cy="37" r="5" fill="rgba(180,150,220,.5)"/>
+    <rect x="52" y="25" width="21" height="24" rx="3" fill="rgba(255,255,255,.15)" stroke="rgba(180,150,220,.4)" stroke-width="1"/>
+    <text x="62" y="11" text-anchor="middle" font-size="8" fill="rgba(180,150,220,.9)" font-family="Dancing Script,cursive">${esc(el.nm)}</text>
+    <text x="57" y="42" font-size="12">🎵</text>
+  </svg>`;
+}
+function drawCake(el){
+  const isDark=env==='jantar';const bgC=isDark?'rgba(201,168,76,.15)':'var(--bl)';
+  return`<svg width="68" height="68" viewBox="0 0 68 68">
+    <circle cx="34" cy="34" r="28" fill="${bgC}" stroke="var(--ch2)" stroke-width="2"/>
+    <text x="34" y="42" text-anchor="middle" font-size="24">🎂</text>
+    <text x="34" y="12" text-anchor="middle" font-size="7" fill="var(--r3)" font-family="Dancing Script,cursive">${esc(el.nm)}</text>
+  </svg>`;
+}
+
+let selElId=null;
+function rVenue(){
+  // Update env canvas class
+  const canvas=q('venueCanvas');
+  canvas.className='venue-canvas env-'+env;
+  const cfg=envConfigs[env];
+
+  // Draw tent drapes if tenda
+  let drapeHTML='';
+  if(env==='tenda'){
+    drapeHTML=`<div style="position:absolute;top:0;left:0;right:0;height:40px;pointer-events:none;z-index:1;background:linear-gradient(180deg,rgba(168,140,100,.15),transparent)"></div>
+    <svg style="position:absolute;top:0;left:0;right:0;width:100%;pointer-events:none;z-index:1" height="35" viewBox="0 0 700 35" preserveAspectRatio="none">
+      <path d="M0,0 Q50,30 100,0 Q150,30 200,0 Q250,30 300,0 Q350,30 400,0 Q450,30 500,0 Q550,30 600,0 Q650,30 700,0 L700,0 L0,0" fill="rgba(205,185,155,.25)"/>
+      <path d="M0,0 Q50,30 100,0 Q150,30 200,0 Q250,30 300,0 Q350,30 400,0 Q450,30 500,0 Q550,30 600,0 Q650,30 700,0" fill="none" stroke="rgba(168,140,100,.5)" stroke-width="1.5"/>
+    </svg>`;
+  } else if(env==='jantar'){
+    drapeHTML=`<div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 30%,rgba(201,168,76,.08) 0%,transparent 70%);pointer-events:none;z-index:0"></div>`;
+  }
+
+  // Render elements
+  const guestsByTable={};guests.forEach(g=>{if(g.tb){if(!guestsByTable[g.tb])guestsByTable[g.tb]=[];guestsByTable[g.tb].push(g);}});
+
+  const elEls=venueEls.map(el=>{
+    const gAt=guestsByTable[el.nm]||[];
+    const elType=elTypes[el.tp]||elTypes.round;
+    const svgHTML=elType.svg(el,gAt);
+    const sz=elType.size;
+    const w=Array.isArray(sz)?sz[0]:sz,h=Array.isArray(sz)?sz[1]:sz;
+    const isSelected=selElId===el.id;
+    return`<div class="ve-el${isSelected?' selected':''}" id="vel-${el.id}" data-id="${el.id}" style="left:${el.x||50}px;top:${el.y||50}px;width:${w}px;height:${h}px" onclick="selectEl('${el.id}',event)" ondblclick="detVenueEl('${el.id}')">${svgHTML}</div>`;
+  }).join('');
+
+  canvas.innerHTML=drapeHTML+`<div id="velCon" style="position:absolute;inset:0">${elEls}</div>`;
+
+  // Make draggable
+  venueEls.forEach(el=>{
+    const div=q('vel-'+el.id);
+    if(!div)return;
+    let dragging=false,ox,oy,moved=false;
+    div.addEventListener('mousedown',e=>{if(e.button!==0)return;dragging=true;moved=false;ox=e.clientX-el.x;oy=e.clientY-el.y;div.classList.add('dragging');e.stopPropagation();});
+    document.addEventListener('mousemove',e=>{if(!dragging)return;moved=true;el.x=Math.max(0,e.clientX-ox);el.y=Math.max(0,e.clientY-oy);div.style.left=el.x+'px';div.style.top=el.y+'px';});
+    document.addEventListener('mouseup',()=>{if(dragging){dragging=false;div.classList.remove('dragging');if(moved)save();}});
+    // Touch
+    div.addEventListener('touchstart',e=>{const t=e.touches[0];dragging=true;moved=false;ox=t.clientX-el.x;oy=t.clientY-el.y;e.stopPropagation();},{passive:true});
+    div.addEventListener('touchmove',e=>{if(!dragging)return;moved=true;const t=e.touches[0];el.x=Math.max(0,t.clientX-ox);el.y=Math.max(0,t.clientY-oy);div.style.left=el.x+'px';div.style.top=el.y+'px';e.preventDefault();},{passive:false});
+    div.addEventListener('touchend',()=>{if(dragging){dragging=false;if(moved)save();}});
+  });
+
+  // List
+  q('venueList').innerHTML=venueEls.length?`<div class="tw"><table><thead><tr><th>Tipo</th><th>Nome</th><th>Cap.</th><th>Tema</th><th>Convidados</th><th>Notas</th><th></th></tr></thead><tbody>${venueEls.map(el=>`<tr class="tr-click" onclick="detVenueEl('${el.id}')">
+    <td>${elTypes[el.tp]?.label||el.tp}</td><td><strong>${esc(el.nm)}</strong></td>
+    <td>${el.cp||'—'}</td><td>${esc(el.th||'')}</td>
+    <td>${(guestsByTable[el.nm]||[]).map(g=>`<span class="txs">${esc(g.nm)}</span>`).join(', ')||'—'}</td>
+    <td class="txs tmu">${esc(el.nt||'')}</td>
+    <td><button onclick="delVenueEl('${el.id}');event.stopPropagation()" style="background:none;border:none;cursor:pointer;color:var(--tx3);font-size:.72rem">✕</button></td>
+  </tr>`).join('')}</tbody></table></div>`:'<div class="empty"><div class="empty-ico">🪑</div><div class="empty-txt">Nenhum elemento ainda</div></div>';
+
+  updateElPalette();
+}
+
+function updateElPalette(){
+  q('elPalette').innerHTML=Object.entries(elTypes).map(([k,v])=>`<button class="el-btn" onclick="quickAddEl('${k}')">${v.label}</button>`).join('');
+}
+
+function setEnv(envName,btn){
+  env=envName;save();
+  document.querySelectorAll('.venue-tab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  rVenue();toast('Ambiente: '+envConfigs[envName].label,'🏛️');
+}
+
+function selectEl(id,e){
+  e?.stopPropagation();
+  selElId=selElId===id?null:id;
+  const el=venueEls.find(x=>x.id===id);
+  const panel=q('selPanel');
+  if(selElId&&el){
+    panel.style.display='block';
+    q('selName').textContent=elTypes[el.tp]?.label+' — '+el.nm;
+    q('selInfo').innerHTML=`${el.th?'✨ '+esc(el.th):''}${el.nt?' · 📝 '+esc(el.nt):''}${(guests.filter(g=>g.tb===el.nm).map(g=>g.nm).join(', '))?'<br>👥 '+guests.filter(g=>g.tb===el.nm).map(g=>esc(g.nm)).join(', '):''}`;
+  } else {panel.style.display='none';}
+  // re-highlight
+  document.querySelectorAll('.ve-el').forEach(d=>{d.classList.toggle('selected',d.dataset.id===selElId)});
+}
+function deselect(){selElId=null;document.querySelectorAll('.ve-el').forEach(d=>d.classList.remove('selected'));q('selPanel').style.display='none';}
+
+function detVenueEl(id){
+  const el=venueEls.find(x=>x.id===id);if(!el)return;
+  const gAt=guests.filter(g=>g.tb===el.nm);
+  showDetail(`${elTypes[el.tp]?.label||el.tp} — ${esc(el.nm)}`,`
+    ${detRow('Tipo',elTypes[el.tp]?.label||el.tp)}${detRow('Capacidade',el.cp?el.cp+' pessoas':null)}${detRow('Tema/Decoração',el.th)}${detRow('Observações',el.nt)}
+    ${gAt.length?`<div class="det-row"><div class="det-key">Convidados</div><div class="det-val">${gAt.map(g=>`<span class="badge b-rose" style="margin:1px">${esc(g.nm)}</span>`).join(' ')}</div></div>`:''}`,
+    `<button class="btn btn-sm" onclick="editSelEl2('${id}');closeM('mDetail')">✏️ Editar</button><button class="btn btn-sm" style="border-color:#e53;color:#e53" onclick="delVenueEl('${id}');closeM('mDetail')">🗑️</button>`);
+}
+
+let editingElId=null;
+function editSelEl(){if(selElId)editSelEl2(selElId)}
+function editSelEl2(id){
+  editingElId=id;
+  const el=venueEls.find(x=>x.id===id);if(!el)return;
+  q('elEditNm').value=el.nm;q('elEditNt').value=el.nt||'';
+  openM('mElEdit');
+}
+function saveElEdit(){
+  const el=venueEls.find(x=>x.id===editingElId);if(!el)return;
+  el.nm=qv('elEditNm')||el.nm;el.nt=qv('elEditNt');
+  save();closeM('mElEdit');rVenue();toast('Elemento atualizado! ✏️');
+}
+
+function quickAddEl(type){
+  const typ=elTypes[type];if(!typ)return;
+  const sz=typ.size,w=Array.isArray(sz)?sz[0]:sz,h=Array.isArray(sz)?sz[1]:sz;
+  const canvas=q('venueCanvas'),cb=canvas.getBoundingClientRect();
+  const newEl={id:uid(),nm:typ.label.replace(/^[^\s]+\s/,''),tp:type,cp:type==='round'?8:type==='rect'?10:type==='vip'?2:0,th:'',nt:'',x:Math.max(20,Math.random()*(Math.max(500,cb.width)-w-40)),y:Math.max(20,Math.random()*(Math.max(440,cb.height)-h-40))};
+  venueEls.push(newEl);save();rVenue();toast(typ.label+' adicionado(a)! 🎉');
+}
+
+function addVenueEl(){
+  const nm=qv('tbNm').trim();if(!nm)return toast('Digite o nome!','⚠️');
+  const type=qv('tbTp');const sz=elTypes[type]?.size||70;const w=Array.isArray(sz)?sz[0]:sz,h=Array.isArray(sz)?sz[1]:sz;
+  venueEls.push({id:uid(),nm,tp:type,cp:parseInt(qv('tbCp'))||8,th:qv('tbTh'),nt:qv('tbNt'),x:60+Math.random()*200,y:100+Math.random()*200});
+  save();closeM('mTable');['tbNm','tbTh','tbNt'].forEach(i=>{if(q(i))q(i).value=''});
+  toast('Elemento adicionado! 🏛️');rVenue();
+}
+function delVenueEl(id){venueEls=venueEls.filter(e=>e.id!==id);selElId=null;save();rVenue()}
+
+// ================================================================
+// GROOMSMEN
+// ================================================================
+const roleIco={padrinho:'🤵',madrinha:'💐',florista:'🌸',daminha:'👧',pajem:'👦',outro:'✨'};
+const gmGrads=['linear-gradient(135deg,var(--bl),var(--ch))','linear-gradient(135deg,#f0f4ee,#e8f5e9)','linear-gradient(135deg,#fef9e7,var(--ch))','linear-gradient(135deg,#e8f0fe,#f0e8fe)'];
+function fGm(f,btn){gmFilter=f;document.querySelectorAll('#gmTabs .tab').forEach(b=>b.classList.remove('active'));btn.classList.add('active');rGrooms()}
+function rGrooms(){
+  const fl=gmFilter==='todos'?grooms:grooms.filter(g=>g.rl===gmFilter);
+  q('gmGrid').innerHTML=fl.length?fl.map((g,i)=>`
+    <div class="gmc" onclick="detGroom('${g.id}')">
+      <div class="gm-av" style="background:${gmGrads[i%gmGrads.length]}">${g.ej||roleIco[g.rl]||'✨'}</div>
+      <div style="padding:.8rem">
+        <div style="font-weight:700;font-size:.83rem">${esc(g.nm)}</div>
+        <span class="badge b-rose" style="margin:.2rem 0">${roleIco[g.rl]||'✨'} ${g.rl}</span>
+        ${g.ph?`<div class="txs tmu mt1">📱 ${esc(g.ph)}</div>`:''}
+        ${g.tk?`<div class="txs tmu mt1">📌 ${esc(g.tk)}</div>`:''}
+      </div>
+    </div>`).join(''):'<div class="empty" style="grid-column:1/-1"><div class="empty-ico">💐</div><div class="empty-txt">Adicione padrinhos e madrinhas!</div></div>';
+}
+function detGroom(id){
+  const g=grooms.find(x=>x.id===id);if(!g)return;
+  showDetail(`${roleIco[g.rl]||'✨'} ${esc(g.nm)}`,`
+    <div style="font-size:2.5rem;text-align:center;margin:-.5rem 0 .8rem">${g.ej||roleIco[g.rl]||'✨'}</div>
+    <div class="det-badges"><span class="badge b-rose">${g.rl}</span></div>
+    ${detRow('📱 WhatsApp',g.ph)}${detRow('📧 Email',g.em)}${detRow('📱 Instagram',g.ig)}${detRow('📌 Responsabilidade',g.tk)}${detRow('📝 Observações',g.nt)}`,
+    `${g.ph?`<a href="https://wa.me/55${g.ph.replace(/\D/g,'')}" target="_blank" class="btn btn-sg btn-sm">💬 WhatsApp</a>`:''}${g.em?`<a href="mailto:${g.em}" class="btn btn-sm">📧 Email</a>`:''}${g.ig?`<a href="https://instagram.com/${g.ig.replace('@','')}" target="_blank" class="btn btn-sm">📱 Insta</a>`:''}
+    <button class="btn btn-sm" style="border-color:#e53;color:#e53" onclick="delGroom('${g.id}');closeM('mDetail')">🗑️</button>`);
+}
+function addGm(){
+  const nm=qv('gmNm').trim();if(!nm)return toast('Digite o nome!','⚠️');
+  grooms.push({id:uid(),nm,rl:qv('gmRl'),ph:qv('gmPh'),em:qv('gmEm'),ig:qv('gmIg'),ej:qv('gmEj'),tk:qv('gmTk'),nt:qv('gmNt')});
+  save();closeM('mGm');['gmNm','gmPh','gmEm','gmIg','gmEj','gmTk','gmNt'].forEach(i=>{if(q(i))q(i).value=''});
+  toast('Adicionado(a)! 💐');rGrooms();
+}
+function delGroom(id){grooms=grooms.filter(g=>g.id!==id);save();rGrooms()}
+
+// ================================================================
+// MENU
+// ================================================================
+const mnCatI={entrada:'🥗',principal:'🍖',sobremesa:'🎂',bebida:'🥂',coquetel:'🍹',outro:'🍴'};
+const mnCatN={entrada:'Entradas',principal:'Principal',sobremesa:'Sobremesas',bebida:'Bebidas',coquetel:'Coquetel',outro:'Outros'};
+function rMenu(){
+  const cats={};menuIt.forEach(m=>{if(!cats[m.cat])cats[m.cat]=[];cats[m.cat].push(m)});
+  let html='';
+  for(const cat in cats){
+    html+=`<div class="card mb2"><div class="ct">${mnCatI[cat]||'🍴'} ${mnCatN[cat]||cat}</div><div class="tw"><table><thead><tr><th>Prato</th><th>Descrição</th><th>Buffet</th><th>Preço</th><th>Alérgenos</th><th>Veg.</th><th></th></tr></thead><tbody>${cats[cat].map(m=>`<tr class="tr-click" onclick="detMenu('${m.id}')">
+      <td><strong>${esc(m.nm)}</strong></td><td class="txs tmu">${esc(m.ds||'')}</td><td class="txs">${esc(m.vd||'')}</td>
+      <td class="txs">${m.pr?fR(m.pr)+'p/p':''}</td><td class="txs tmu">${esc(m.al||'')}</td>
+      <td>${m.vg==='sim'?'🌱':''}</td>
+      <td><button onclick="delMenu('${m.id}');event.stopPropagation()" style="background:none;border:none;cursor:pointer;color:var(--tx3);font-size:.72rem">✕</button></td>
+    </tr>`).join('')}</tbody></table></div></div>`;
+  }
+  q('menuCon').innerHTML=html||'<div class="empty"><div class="empty-ico">🍽️</div><div class="empty-txt">Nenhum item no cardápio</div></div>';
+}
+function detMenu(id){
+  const m=menuIt.find(x=>x.id===id);if(!m)return;
+  showDetail(`${mnCatI[m.cat]||'🍴'} ${esc(m.nm)}`,`
+    <div class="det-badges"><span class="badge b-rose">${mnCatN[m.cat]||m.cat}</span>${m.vg==='sim'?'<span class="badge b-sg">🌱 Vegetariano</span>':''}</div>
+    ${detRow('Descrição',m.ds)}${detRow('Buffet/Fornecedor',m.vd)}${detRow('Preço por pessoa',m.pr?fR(m.pr):null)}${detRow('Alérgenos',m.al)}`,
+    `<button class="btn btn-sm" style="border-color:#e53;color:#e53" onclick="delMenu('${m.id}');closeM('mDetail')">🗑️</button>`);
+}
+function addMenu(){
+  const nm=qv('mnNm').trim();if(!nm)return toast('Digite o prato!','⚠️');
+  menuIt.push({id:uid(),nm,cat:qv('mnCt'),ds:qv('mnDs'),vd:qv('mnVd'),pr:+qv('mnPr')||0,al:qv('mnAl'),vg:qv('mnVg')});
+  save();closeM('mMenu');['mnNm','mnDs','mnVd','mnPr','mnAl'].forEach(i=>{if(q(i))q(i).value=''});
+  toast('Item adicionado! 🍽️');rMenu();
+}
+function delMenu(id){menuIt=menuIt.filter(m=>m.id!==id);save();rMenu()}
+
+// ================================================================
+// BUDGET
+// ================================================================
+function calcSpent(){return budget.reduce((s,b)=>(b[S.tier||'mid']||0)*(b.qt||1)+s,0)}
+function setT(t){S.tier=t;save();rBudget();['eco','mid','prem'].forEach(x=>{const b=q('dt-'+x);if(b){b.classList.toggle('btn-s',x===t);}});}
+function calcBPv(){const e=+qv('bEc')||0,m=+qv('bMd')||0,p=+qv('bPr')||0,qt=+qv('bQt')||1;const mp={eco:e,mid:m,prem:p};if(q('bPvw'))q('bPvw').textContent=fR((mp[S.tier||'mid']||0)*qt)}
+function rBudget(){
+  const tier=S.tier||'mid',cf=qv('bCF');
+  let spent=0,paid=0;budget.forEach(b=>{const v=(b[tier]||0)*(b.qt||1);spent+=v;if(b.st==='pago')paid+=v;});
+  const total=S.budget||0,pct=total>0?Math.min(100,Math.round(spent/total*100)):0;
+  q('bTotV').textContent=fR(total||spent);q('bSpent').textContent=fR(spent);q('bPaid').textContent=fR(paid);q('bRem').textContent=fR(total-spent);q('bPrg').style.width=pct+'%';
+  const cI2={local:'🏛️',decoracao:'🌸',buffet:'🍽️',musica:'🎵',foto:'📸',vestuario:'👗',papelaria:'💌',outro:'📌'};
+  const stB={pesquisando:'b-gy',orcado:'b-gd',aprovado:'b-rose',pago:'b-gr'};
+  const fl=budget.filter(b=>!cf||b.cat===cf);
+  q('bTbody').innerHTML=fl.map(b=>`<tr class="tr-click" onclick="detBudget('${b.id}')">
+    <td><strong>${esc(b.nm)}</strong>${b.nt?`<div class="txs tmu">${esc(b.nt)}</div>`:''}</td>
+    <td><span class="badge b-rose">${cI2[b.cat]||'📌'} ${b.cat}</span></td>
+    <td>${b.qt||1} ${esc(b.un||'')}</td>
+    <td class="txs">${fR(b.eco||0)}</td><td class="txs"><strong>${fR(b.mid||0)}</strong></td><td class="txs">${fR(b.prem||0)}</td>
+    <td><strong class="tro">${fR((b[tier]||0)*(b.qt||1))}</strong></td>
+    <td>${statusBadge(b.st||'pesquisando')}</td>
+    <td><button onclick="delBudget('${b.id}');event.stopPropagation()" style="background:none;border:none;cursor:pointer;color:var(--tx3);font-size:.72rem">✕</button></td>
+  </tr>`).join('')||'<tr><td colspan="9" style="text-align:center;padding:2rem;color:var(--tx3)">Nenhum item</td></tr>';
+  const catTot={};budget.forEach(b=>{if(!catTot[b.cat])catTot[b.cat]=0;catTot[b.cat]+=(b[tier]||0)*(b.qt||1)});
+  q('bCatC').innerHTML=Object.entries(catTot).sort((a,b)=>b[1]-a[1]).map(([c,v])=>`<div class="sc"><div class="sc-ico">${cI2[c]||'📌'}</div><div class="sc-val">${fR(v)}</div><div class="sc-lbl">${c}</div></div>`).join('');
+}
+function detBudget(id){
+  const b=budget.find(x=>x.id===id);if(!b)return;
+  const cI2={local:'🏛️',decoracao:'🌸',buffet:'🍽️',musica:'🎵',foto:'📸',vestuario:'👗',papelaria:'💌',outro:'📌'};
+  showDetail(`${cI2[b.cat]||'📌'} ${esc(b.nm)}`,`
+    ${b.im?`<img src="${esc(b.im)}" class="det-hero-img" onerror="this.style.display='none'">`:''}
+    <div class="det-badges"><span class="badge b-rose">${cI2[b.cat]||'📌'} ${b.cat}</span>${statusBadge(b.st||'pesquisando')}</div>
+    ${priceCmp(b.eco||0,b.mid||0,b.prem||0,b.qt||1)}
+    ${detRow('Qtd / Unidade',(b.qt||1)+' '+esc(b.un||''))}
+    ${detRow('Fornecedor',b.vn)}${detRow('Contato',b.vc)}${detRow('Data pagamento',b.pd)}
+    ${b.lk?`<div class="det-row"><div class="det-key">Referência</div><div class="det-val"><a href="${esc(b.lk)}" target="_blank" class="det-link">🔗 Abrir Link</a></div></div>`:''}
+    ${detRow('Observações',b.nt)}`,
+    `${b.lk?`<a href="${esc(b.lk)}" target="_blank" class="btn btn-sm btn-gd">🔗 Abrir Ref.</a>`:''}${b.vc?`<a href="https://wa.me/55${b.vc.replace(/\D/g,'')}" target="_blank" class="btn btn-sm btn-sg">💬 WhatsApp</a>`:''}
+    <button class="btn btn-sm" style="border-color:#e53;color:#e53" onclick="delBudget('${b.id}');closeM('mDetail')">🗑️</button>`);
+}
+function addBudget(){
+  const nm=qv('bNm').trim();if(!nm)return toast('Digite o item!','⚠️');
+  budget.push({id:uid(),nm,cat:qv('bCt'),vn:qv('bVn'),vc:qv('bVC'),eco:+qv('bEc')||0,mid:+qv('bMd')||0,prem:+qv('bPr')||0,qt:+qv('bQt')||1,un:qv('bUn'),st:qv('bSt'),pd:qv('bPD'),lk:qv('bLk'),im:qv('bIm'),nt:qv('bNt')});
+  save();closeM('mBudget');['bNm','bVn','bVC','bEc','bMd','bPr','bUn','bLk','bIm','bNt'].forEach(i=>{if(q(i))q(i).value='';});if(q('bQt'))q('bQt').value='1';
+  toast('Item adicionado! 💰');rBudget();
+}
+function delBudget(id){budget=budget.filter(b=>b.id!==id);save();rBudget()}
+
+// ================================================================
+// VENDORS
+// ================================================================
+const vCatI={decoracao:'🌸',buffet:'🍽️',foto:'📸',musica:'🎵',local:'🏛️',vestuario:'👗',flores:'💐',outro:'🏪'};
+const vBgs={decoracao:'linear-gradient(135deg,var(--bl),var(--ch))',buffet:'linear-gradient(135deg,#fff8f0,#ffeedd)',foto:'linear-gradient(135deg,#f0f4ff,#e8eeff)',musica:'linear-gradient(135deg,#fff0f8,#ffe8f4)',local:'linear-gradient(135deg,#f0f8f0,#e8f4e8)',vestuario:'linear-gradient(135deg,#fdf0ff,#f8e8ff)',flores:'linear-gradient(135deg,var(--bl),#fff0f8)',outro:'linear-gradient(135deg,#f8f8f8,#f0f0f0)'};
+const vStB={pesquisando:'b-gy',negociando:'b-gd',contratado:'b-gr',pago:'b-sg',cancelado:'b-rd'};
+function rVendors(){
+  const cf=qv('vCF');const fl=vendors.filter(v=>!cf||v.cat===cf);
+  q('vGrid').innerHTML=fl.length?fl.map(v=>`
+    <div class="vc" onclick="detVendor('${v.id}')">
+      <div class="vc-banner" style="background:${vBgs[v.cat]||vBgs.outro}">${vCatI[v.cat]||'🏪'}</div>
+      <div style="padding:.85rem">
+        <div style="font-weight:700;font-size:.85rem">${esc(v.nm)}</div>
+        <div class="txs tmu">${v.cat}</div>
+        <div style="color:var(--gd);font-size:.78rem;margin:.2rem 0">${'⭐'.repeat(v.rt||5)}</div>
+        <div class="fser tro" style="font-size:.98rem">${v.pr?fR(v.pr):'—'}</div>
+        <span class="badge ${vStB[v.st2]||'b-gy'} mt1">${v.st2||'pesquisando'}</span>
+        ${v.ph?`<div class="txs tmu mt1">📱 ${esc(v.ph)}</div>`:''}
+      </div>
+    </div>`).join(''):'<div class="empty" style="grid-column:1/-1"><div class="empty-ico">🏪</div><div class="empty-txt">Nenhum fornecedor</div></div>';
+}
+function detVendor(id){
+  const v=vendors.find(x=>x.id===id);if(!v)return;
+  showDetail(`${vCatI[v.cat]||'🏪'} ${esc(v.nm)}`,`
+    <div class="det-badges"><span class="badge b-rose">${v.cat}</span>${statusBadge(v.st2||'pesquisando')}<span style="color:var(--gd)">${'⭐'.repeat(v.rt||5)}</span></div>
+    ${detRow('💰 Valor',v.pr?fR(v.pr):null)}
+    ${detRow('📱 WhatsApp',v.ph)}${detRow('📧 Email',v.em)}${detRow('👤 Contato',v.ct2)}${detRow('📍 Endereço',v.ad)}
+    ${v.st?`<div class="det-row"><div class="det-key">Site/Insta</div><div class="det-val"><a href="${v.st.startsWith('http')?esc(v.st):'https://instagram.com/'+esc(v.st.replace('@',''))}" target="_blank" class="det-link">🔗 ${esc(v.st)}</a></div></div>`:''}
+    ${v.lk?`<div class="det-row"><div class="det-key">Portfólio</div><div class="det-val"><a href="${esc(v.lk)}" target="_blank" class="det-link">🔗 Ver Portfólio</a></div></div>`:''}
+    ${detRow('📝 Inclui / Observações',v.nt)}`,
+    `${v.ph?`<a href="https://wa.me/55${v.ph.replace(/\D/g,'')}" target="_blank" class="btn btn-sm btn-sg">💬 WhatsApp</a>`:''}
+     ${v.em?`<a href="mailto:${v.em}" class="btn btn-sm">📧 Email</a>`:''}
+     ${v.lk?`<a href="${esc(v.lk)}" target="_blank" class="btn btn-sm btn-gd">🔗 Portfólio</a>`:''}
+     <button class="btn btn-sm" style="border-color:#e53;color:#e53" onclick="delVendor('${v.id}');closeM('mDetail')">🗑️</button>`);
+}
+function addVendor(){
+  const nm=qv('vNm').trim();if(!nm)return toast('Digite o nome!','⚠️');
+  vendors.push({id:uid(),nm,cat:qv('vCt'),ph:qv('vPh'),em:qv('vEm'),st:qv('vSt'),ct2:qv('vCt2'),ad:qv('vAd'),pr:+qv('vPr')||0,rt:+qv('vRt')||5,st2:qv('vSt2'),lk:qv('vLk'),nt:qv('vNt')});
+  save();closeM('mVendor');['vNm','vPh','vEm','vSt','vCt2','vAd','vPr','vLk','vNt'].forEach(i=>{if(q(i))q(i).value=''});
+  toast('Fornecedor adicionado! 🤝');rVendors();
+}
+function delVendor(id){vendors=vendors.filter(v=>v.id!==id);save();rVendors()}
+
+// ================================================================
+// DECOR
+// ================================================================
+function pvDImg(){const u=qv('dIm');q('dImPv').innerHTML=u?`<img src="${esc(u)}" style="max-width:100%;border-radius:8px;max-height:90px;object-fit:cover" onerror="this.style.display='none'">`:''}
+function fDec(f,btn){decFilter=f;document.querySelectorAll('#dTabs .tab').forEach(b=>b.classList.remove('active'));btn.classList.add('active');rDecor()}
+function rDecor(){
+  const tier=S.tier||'mid';
+  const fl=decFilter==='all'?decor:decor.filter(d=>d.sc===decFilter);
+  const sects={};fl.forEach(d=>{if(!sects[d.sc])sects[d.sc]=[];sects[d.sc].push(d)});
+  const scI={cerimonia:'💒',recepcao:'🥂',entrada:'🚪',mesa:'🌹',outro:'✨'};
+  const scN={cerimonia:'Cerimônia',recepcao:'Recepção',entrada:'Entrada',mesa:'Mesas',outro:'Outros'};
+  const stB={pesquisando:'b-gy',orcado:'b-gd',aprovado:'b-rose',pago:'b-gr',contratado:'b-bl'};
+  const tot=fl.reduce((s,d)=>(d[tier]||0)*(d.qt||1)+s,0);
+  let html=`<div class="card mb2" style="background:linear-gradient(135deg,var(--bl),var(--ch))"><div class="flex jb aic"><div><div class="txs tmu">TOTAL (${tier.toUpperCase()})</div><div class="fser tro" style="font-size:1.35rem">${fR(tot)}</div></div></div></div>`;
+  for(const sc in sects){
+    const scTot=sects[sc].reduce((s,d)=>(d[tier]||0)*(d.qt||1)+s,0);
+    html+=`<div class="card mb2"><div class="flex jb aic mb2"><div class="ct">${scI[sc]||'✨'} ${scN[sc]||sc}</div><div class="fser tro">${fR(scTot)}</div></div>
+    <div class="tw"><table><thead><tr><th>Item</th><th>Desc.</th><th>Qtd</th><th>Eco</th><th>Médio</th><th>Prem</th><th>Total</th><th>Status</th><th></th></tr></thead>
+    <tbody>${sects[sc].map(d=>`<tr class="tr-click" onclick="detDecor('${d.id}')">
+      <td><strong>${esc(d.nm)}</strong></td><td class="txs tmu">${esc(d.ds||'')}</td>
+      <td>${d.qt||1} ${esc(d.un||'')}</td>
+      <td class="txs">${fR(d.eco||0)}</td><td class="txs"><strong>${fR(d.mid||0)}</strong></td><td class="txs">${fR(d.prem||0)}</td>
+      <td><strong class="tro">${fR((d[tier]||0)*(d.qt||1))}</strong></td>
+      <td>${statusBadge(d.st||'pesquisando')}</td>
+      <td><button onclick="delDecor('${d.id}');event.stopPropagation()" style="background:none;border:none;cursor:pointer;color:var(--tx3);font-size:.72rem">✕</button></td>
+    </tr>`).join('')}</tbody></table></div></div>`;
+  }
+  q('decCon').innerHTML=html||'<div class="empty"><div class="empty-ico">🌸</div><div class="empty-txt">Nenhum item de decoração</div></div>';
+}
+function detDecor(id){
+  const d=decor.find(x=>x.id===id);if(!d)return;
+  const scI={cerimonia:'💒',recepcao:'🥂',entrada:'🚪',mesa:'🌹',outro:'✨'};
+  showDetail(`${scI[d.sc]||'✨'} ${esc(d.nm)}`,`
+    ${d.im?`<img src="${esc(d.im)}" class="det-hero-img" onerror="this.style.display='none'">`:''}
+    <div class="det-badges"><span class="badge b-rose">${d.sc}</span>${statusBadge(d.st||'pesquisando')}</div>
+    ${detRow('Descrição/Material',d.ds)}
+    ${priceCmp(d.eco||0,d.mid||0,d.prem||0,d.qt||1)}
+    ${detRow('Qtd/Unidade',(d.qt||1)+' '+esc(d.un||''))}${detRow('Fornecedor',d.vn)}${detRow('Contato',d.vc)}
+    ${d.lk?`<div class="det-row"><div class="det-key">Referência</div><div class="det-val"><a href="${esc(d.lk)}" target="_blank" class="det-link">🔗 Abrir Link</a></div></div>`:''}`
+    ,`${d.lk?`<a href="${esc(d.lk)}" target="_blank" class="btn btn-sm btn-gd">🔗 Ver Ref.</a>`:''}${d.vc?`<a href="https://wa.me/55${d.vc.replace(/\D/g,'')}" target="_blank" class="btn btn-sm btn-sg">💬 WhatsApp</a>`:''}
+    <button class="btn btn-sm" style="border-color:#e53;color:#e53" onclick="delDecor('${d.id}');closeM('mDetail')">🗑️</button>`);
+}
+function addDecor(){
+  const nm=qv('dNm').trim();if(!nm)return toast('Digite o nome!','⚠️');
+  decor.push({id:uid(),nm,sc:qv('dSc'),ds:qv('dDs'),eco:+qv('dEc')||0,mid:+qv('dMd')||0,prem:+qv('dPr')||0,qt:+qv('dQt')||1,un:qv('dUn')||'und',vn:qv('dVn'),vc:qv('dVC'),lk:qv('dLk'),im:qv('dIm'),st:qv('dSt')});
+  save();closeM('mDecor');['dNm','dDs','dVn','dVC','dLk','dIm'].forEach(i=>{if(q(i))q(i).value=''});q('dImPv').innerHTML='';
+  toast('Item adicionado! 🌸');rDecor();
+}
+function delDecor(id){decor=decor.filter(d=>d.id!==id);save();rDecor()}
+
+// ================================================================
+// HONEYMOON
+// ================================================================
+const hmDests=[
+  {ico:'🗼',nm:'Paris',co:'França',em:'🇫🇷',bg:'linear-gradient(135deg,#f0f4ff,#e0eaff)'},
+  {ico:'🏖️',nm:'Maldivas',co:'Oceano Índico',em:'🇲🇻',bg:'linear-gradient(135deg,#e0f8ff,#c0f0ff)'},
+  {ico:'🌸',nm:'Tóquio',co:'Japão',em:'🇯🇵',bg:'linear-gradient(135deg,#fff0f8,#ffe0f4)'},
+  {ico:'🏛️',nm:'Roma',co:'Itália',em:'🇮🇹',bg:'linear-gradient(135deg,#fff8f0,#ffe8d0)'},
+  {ico:'🌅',nm:'Bali',co:'Indonésia',em:'🇮🇩',bg:'linear-gradient(135deg,#f0fff4,#d0ffe0)'},
+  {ico:'🏔️',nm:'Gramado',co:'Brasil',em:'🇧🇷',bg:'linear-gradient(135deg,#f0f8ff,#e0f0ff)'},
+  {ico:'🌊',nm:'Noronha',co:'Brasil',em:'🇧🇷',bg:'linear-gradient(135deg,#e0f8ff,#c8f8ff)'},
+  {ico:'🎠',nm:'Floripa',co:'Brasil',em:'🇧🇷',bg:'linear-gradient(135deg,#f0fff8,#d0ffe8)'},
+];
+const hmDefTasks=['Verificar passaportes','Comprar passagens','Reservar hotel','Pesquisar atrações','Contratar seguro viagem','Preparar malas'];
+function saveHm(){hm.dest=qv('hmD');hm.dates=qv('hmDt');hm.hotel=qv('hmH');hm.budget=+qv('hmB')||0;hm.link=qv('hmL');hm.note=qv('hmN');save();}
+function rHoneymoon(){
+  ['hmD','hmDt','hmH','hmL','hmN'].forEach(i=>{const v={hmD:hm.dest,hmDt:hm.dates,hmH:hm.hotel,hmL:hm.link,hmN:hm.note}[i];if(q(i))q(i).value=v||'';});
+  if(q('hmB'))q('hmB').value=hm.budget||'';
+  q('hmDests').innerHTML=hmDests.map(d=>`<div class="hd" onclick="selDest('${esc(d.nm)}')"><div class="hdb" style="background:${d.bg}">${d.ico}</div><div style="padding:.8rem"><div style="font-weight:700;font-size:.82rem">${d.em} ${d.nm}</div><div class="txs tmu">${d.co}</div></div></div>`).join('');
+  if(!hm.tasks?.length)hm.tasks=hmDefTasks.map(t=>({id:uid(),tx:t,done:false}));
+  q('hmCk').innerHTML=hm.tasks.map(t=>`<div class="flex aic gap1" style="padding:6px 0;border-bottom:1px solid rgba(232,180,184,.08)">
+    <div onclick="togHmT('${t.id}')" style="width:17px;height:17px;border-radius:50%;border:2px solid var(--gd);cursor:pointer;display:flex;align-items:center;justify-content:center;background:${t.done?'var(--gd)':'transparent'};color:#fff;font-size:.58rem;flex-shrink:0">${t.done?'✓':''}</div>
+    <span style="flex:1;font-size:.8rem;${t.done?'text-decoration:line-through;color:var(--tx3)':''}">${esc(t.tx)}</span>
+    <button onclick="delHmT('${t.id}')" style="background:none;border:none;cursor:pointer;color:var(--tx3);font-size:.72rem">✕</button>
+  </div>`).join('');
+}
+function selDest(nm){if(q('hmD'))q('hmD').value=nm;saveHm();toast('Destino: '+nm+' ✈️','🌴')}
+function togHmT(id){const t=hm.tasks.find(t=>t.id===id);if(t){t.done=!t.done;save();rHoneymoon();}}
+function delHmT(id){hm.tasks=hm.tasks.filter(t=>t.id!==id);save();rHoneymoon()}
+function addHmT(){const t=prompt('Nova tarefa da lua de mel:');if(t){hm.tasks.push({id:uid(),tx:t,done:false});save();rHoneymoon()}}
+
+// ================================================================
+// MOODBOARD
+// ================================================================
+function pvMdImg(){const u=qv('mdIm');q('mdPv').innerHTML=u?`<img src="${esc(u)}" style="max-width:100%;border-radius:8px;max-height:90px;object-fit:cover" onerror="this.style.display='none'">`:''}
+const mdCatI={decoracao:'🌸',flores:'💐',vestido:'👗',bolo:'🎂',local:'🏛️',outro:'✨'};
+function rMood(){
+  const cf=qv('mdCF');const fl=mood.filter(m=>!cf||m.cat===cf);
+  q('mdCon').innerHTML=fl.length?`<div class="mg">${fl.map(m=>`
+    <div class="mi" onclick="detMood('${m.id}')">
+      ${m.im?`<img src="${esc(m.im)}" alt="${esc(m.nm)}" onerror="this.parentElement.innerHTML='<div class=\\'mi-ph\\'><span style=\\'font-size:2rem\\'>${mdCatI[m.cat]||'✨'}</span><span class=\\'txs tmu\\'>${esc(m.nm)}</span></div>'">`:`<div class="mi-ph"><span style="font-size:2rem">${mdCatI[m.cat]||'✨'}</span><span class="txs tmu">${esc(m.nm)}</span></div>`}
+      <div class="mi-ov">${esc(m.nm)}${m.lk?` <a href="${esc(m.lk)}" target="_blank" style="color:var(--gd);margin-left:3px" onclick="event.stopPropagation()">🔗</a>`:''}<button onclick="delMood('${m.id}');event.stopPropagation()" style="background:none;border:none;color:#faa;cursor:pointer;margin-left:auto;font-size:.65rem">✕</button></div>
+    </div>`).join('')}</div>`:'<div class="empty"><div class="empty-ico">🖼️</div><div class="empty-txt">Adicione suas inspirações!</div></div>';
+}
+function detMood(id){
+  const m=mood.find(x=>x.id===id);if(!m)return;
+  showDetail(`${mdCatI[m.cat]||'✨'} ${esc(m.nm)}`,`
+    ${m.im?`<img src="${esc(m.im)}" style="width:100%;max-height:220px;object-fit:cover;border-radius:12px;margin-bottom:.8rem" onerror="this.style.display='none'">`:''}
+    <div class="det-badges"><span class="badge b-rose">${m.cat}</span></div>
+    ${detRow('Por que amei?',m.nt)}${m.lk?`<div class="det-row"><div class="det-key">Link</div><div class="det-val"><a href="${esc(m.lk)}" target="_blank" class="det-link">🔗 Abrir Referência</a></div></div>`:''}`,
+    `${m.lk?`<a href="${esc(m.lk)}" target="_blank" class="btn btn-sm btn-gd">🔗 Abrir</a>`:''}
+    <button class="btn btn-sm" style="border-color:#e53;color:#e53" onclick="delMood('${m.id}');closeM('mDetail')">🗑️</button>`);
+}
+function addMood(){
+  const nm=qv('mdNm').trim();if(!nm)return toast('Digite o título!','⚠️');
+  mood.push({id:uid(),nm,cat:qv('mdCt'),im:qv('mdIm'),lk:qv('mdLk'),nt:qv('mdNt')});
+  save();closeM('mMood');['mdNm','mdIm','mdLk','mdNt'].forEach(i=>{if(q(i))q(i).value=''});q('mdPv').innerHTML='';
+  toast('Referência adicionada! 🖼️');rMood();
+}
+function delMood(id){mood=mood.filter(m=>m.id!==id);save();rMood()}
+
+// ================================================================
+// PHOTO BOOTH
+// ================================================================
+let pbCvs,pbCtx,pbStks=[],pbFrame='romantic',isMusicOn=false;
+const pbFs={romantic:{bg1:'#2a1a1e',bg2:'#4a2a30',brd:'rgba(232,180,184,.4)',lbl:'💕 Romântico'},funny:{bg1:'#1a2a1e',bg2:'#2a4a30',brd:'rgba(168,184,154,.4)',lbl:'😂 Engraçado'},vintage:{bg1:'#2a1e0a',bg2:'#4a3a1e',brd:'rgba(201,168,76,.4)',lbl:'📜 Vintage'},party:{bg1:'#1a1a2a',bg2:'#2a1a4a',brd:'rgba(180,150,230,.4)',lbl:'🎉 Festa'}};
+const pbStkList=['💕','💍','🌸','🎂','🥂','💒','🌹','✨','👗','🤵','💐','😂','🤣','😍','🥰','💏','👫','🎊','🎉','🌟','🍾','🎵'];
+const funQs=['Ela disse sim! (mas às vezes arrepende rsrs) 😂','Eles viveram felizes... exceto pelos cobertores 🛌','30min de cerimônia, para sempre de casamento 😬','Encontrei minha alma gêmea e meu Wi-Fi pessoal! 📶','Prometemos amar, honrar... e dividir o controle 📺','Ela é linda, ele é sortudo, todos sabem! 😄','Love is blind... mas o Pinterest ajuda muito! 📌','Finalmente alguém que aguenta meus defeitos! 😅'];
+const challList=['🌹 Dizer 3 coisas que ama um no outro','📸 Tirar foto juntos sem rir','💃 Dançar uma música aleatória','🍰 Se alimentar mutuamente com bolo','💌 Escrever bilhete secreto agora','🎯 Adivinhar a comida favorita um do outro','🤣 Fazer rir em 10 segundos','💕 Se olhar nos olhos por 1 minuto'];
+let qIdx=0,cIdx=0;
+function initBooth(){
+  pbCvs=q('pbCanvas');pbCtx=pbCvs?.getContext('2d');if(!pbCtx)return;
+  q('pbFrames').innerHTML=Object.entries(pbFs).map(([k,v])=>`<button class="pf-o${k===pbFrame?' active':''}" onclick="setPbF('${k}')">${v.lbl}</button>`).join('');
+  q('stkTray').innerHTML=pbStkList.map(s=>`<button class="stk" onclick="addStk('${s}')">${s}</button>`).join('');
+  q('funQ').textContent=funQs[qIdx];q('chall').textContent=challList[cIdx];
+  drawBooth();
+}
+function setPbF(f){pbFrame=f;document.querySelectorAll('.pf-o').forEach(b=>{b.classList.toggle('active',b.textContent===pbFs[f].lbl)});drawBooth()}
+function addStk(s){pbStks.push({s,x:40+Math.random()*380,y:40+Math.random()*280,sz:28+Math.random()*16});drawBooth()}
+function drawBooth(){
+  if(!pbCtx)return;
+  const f=pbFs[pbFrame];pbCtx.clearRect(0,0,480,360);
+  const g=pbCtx.createLinearGradient(0,0,480,360);g.addColorStop(0,f.bg1);g.addColorStop(1,f.bg2);
+  pbCtx.fillStyle=g;pbCtx.fillRect(0,0,480,360);
+  pbCtx.strokeStyle=f.brd;pbCtx.lineWidth=4;pbCtx.strokeRect(10,10,460,340);
+  // Bride
+  pbCtx.fillStyle='rgba(212,135,141,.75)';pbCtx.beginPath();pbCtx.ellipse(175,88,28,32,0,0,Math.PI*2);pbCtx.fill();
+  pbCtx.beginPath();pbCtx.moveTo(130,130);pbCtx.quadraticCurveTo(175,115,220,130);pbCtx.lineTo(228,255);pbCtx.quadraticCurveTo(175,275,122,255);pbCtx.closePath();pbCtx.fill();
+  pbCtx.fillStyle='rgba(255,255,255,.18)';pbCtx.beginPath();pbCtx.moveTo(158,88);pbCtx.lineTo(108,175);pbCtx.lineTo(158,128);pbCtx.closePath();pbCtx.fill();
+  // Groom
+  pbCtx.fillStyle='rgba(58,42,46,.85)';pbCtx.beginPath();pbCtx.ellipse(305,88,26,30,0,0,Math.PI*2);pbCtx.fill();
+  pbCtx.fillRect(272,125,66,118);pbCtx.fillRect(258,125,18,98);pbCtx.fillRect(322,125,18,98);
+  pbCtx.fillStyle='rgba(255,255,255,.75)';pbCtx.fillRect(280,125,12,52);pbCtx.fillRect(296,125,12,52);
+  pbCtx.fillStyle='rgba(201,168,76,.85)';pbCtx.fillRect(280,125,28,7);
+  pbCtx.font='22px serif';pbCtx.textAlign='center';pbCtx.fillText('💕',240,175);
+  pbCtx.fillStyle='rgba(255,255,255,.88)';pbCtx.font='bold 16px "Dancing Script",serif';pbCtx.fillText(S.n1+' & '+S.n2,240,305);
+  pbCtx.fillStyle='rgba(255,255,255,.5)';pbCtx.font='11px serif';pbCtx.fillText(S.date?new Date(S.date).toLocaleDateString('pt-BR'):'Nosso Grande Dia 💍',240,323);
+  pbStks.forEach(st=>{pbCtx.font=st.sz+'px serif';pbCtx.textAlign='center';pbCtx.fillText(st.s,st.x,st.y)});
+  pbCtx.font='18px serif';['🌸','✨'].forEach((e,i)=>{pbCtx.fillText(e,28+i*24,38)});['🌸','✨'].forEach((e,i)=>{pbCtx.fillText(e,408+i*24,38)});
+}
+function clrBooth(){pbStks=[];drawBooth();toast('Canvas limpo!','🗑️')}
+function dlBooth(){if(!pbCvs)return;const a=document.createElement('a');a.href=pbCvs.toDataURL('image/png');a.download=`${S.n1}_${S.n2}_foto.png`;a.click();toast('Foto salva! 📸','💕');spawnHearts()}
+function nxtQ(){qIdx=(qIdx+1)%funQs.length;if(q('funQ'))q('funQ').textContent=funQs[qIdx]}
+function nxtC(){cIdx=(cIdx+1)%challList.length;if(q('chall'))q('chall').textContent=challList[cIdx]}
+
+// ================================================================
+// MUSIC
+// ================================================================
+const moI={entrada:'💒',aliancas:'💍',saida:'🎉',primeiro:'💃',jantar:'🍽️',festa:'🪩',outro:'🎶'};
+const moN={entrada:'Entrada da Noiva',aliancas:'Troca de Alianças',saida:'Saída dos Noivos',primeiro:'Primeiro Baile',jantar:'Durante o Jantar',festa:'Festa / Pista',outro:'Outro'};
+function setMusicBar(){const m=music.find(x=>x.play)||music[0];if(m){q('mnow').textContent='♪ '+m.nm;q('mart').textContent=m.ar||'';q('mmom').textContent=moI[m.mo]||''}}
+function toggleMusic(){isMusicOn=!isMusicOn;q('mpbtn').textContent=isMusicOn?'⏸':'▶';q('vv').classList.toggle('paused',!isMusicOn);toast(isMusicOn?'Tocando! 🎵':'Pausado ⏸',isMusicOn?'🎵':'⏸')}
+function playThis(id){music.forEach(m=>m.play=m.id===id);save();setMusicBar();toast('Tocando! 🎵','🎵')}
+function rMusic(){
+  const moms={};music.forEach(m=>{if(!moms[m.mo])moms[m.mo]=[];moms[m.mo].push(m)});
+  let html='';
+  for(const mo in moms){
+    html+=`<div class="card mb2"><div class="ct">${moI[mo]||'🎵'} ${moN[mo]||mo}</div>${moms[mo].map(m=>`
+      <div class="flex aic gap1" style="padding:7px 0;border-bottom:1px solid rgba(232,180,184,.08);cursor:pointer" onclick="detMusic('${m.id}')">
+        <span style="font-size:1.1rem">🎵</span>
+        <div style="flex:1"><div class="tsm" style="font-weight:600">${esc(m.nm)}</div><div class="txs tmu">${esc(m.ar||'')}</div></div>
+        ${m.lk?`<a href="${esc(m.lk)}" target="_blank" class="btn btn-sm btn-sg" onclick="event.stopPropagation()">▶ Ouvir</a>`:''}
+        <button onclick="playThis('${m.id}');event.stopPropagation()" class="btn btn-sm btn-s">♪</button>
+        <button onclick="delMusic('${m.id}');event.stopPropagation()" style="background:none;border:none;cursor:pointer;color:var(--tx3);font-size:.72rem">✕</button>
+      </div>`).join('')}</div>`;
+  }
+  q('muCon').innerHTML=html||'<div class="empty"><div class="empty-ico">🎵</div><div class="empty-txt">Nenhuma música</div></div>';
+}
+function detMusic(id){
+  const m=music.find(x=>x.id===id);if(!m)return;
+  showDetail(`🎵 ${esc(m.nm)}`,`
+    <div class="det-badges"><span class="badge b-rose">${moN[m.mo]||m.mo}</span></div>
+    ${detRow('Artista',m.ar)}${m.lk?`<div class="det-row"><div class="det-key">Link</div><div class="det-val"><a href="${esc(m.lk)}" target="_blank" class="det-link">🔗 Ouvir Agora</a></div></div>`:''}`,
+    `<button class="btn btn-sm btn-s" onclick="playThis('${m.id}');closeM('mDetail')">♪ Tocar no Player</button>${m.lk?`<a href="${esc(m.lk)}" target="_blank" class="btn btn-sm btn-sg">▶ Abrir Link</a>`:''}
+    <button class="btn btn-sm" style="border-color:#e53;color:#e53" onclick="delMusic('${m.id}');closeM('mDetail')">🗑️</button>`);
+}
+function addMusic(){
+  const nm=qv('muNm').trim();if(!nm)return toast('Digite a música!','⚠️');
+  music.push({id:uid(),nm,ar:qv('muAr'),mo:qv('muMo'),lk:qv('muLk'),play:false});
+  save();closeM('mMusic');['muNm','muAr','muLk'].forEach(i=>{if(q(i))q(i).value=''});
+  toast('Música adicionada! 🎵');rMusic();setMusicBar();
+}
+function delMusic(id){music=music.filter(m=>m.id!==id);save();rMusic();setMusicBar()}
+
+// ================================================================
+// VOWS
+// ================================================================
+const vowInspList=[
+  {t:'Para sempre',q:'"Você é meu lar, meu porto seguro, meu tudo."'},
+  {t:'Companheirismo',q:'"Prometo estar ao seu lado em todos os momentos."'},
+  {t:'Escolha',q:'"Escolho você hoje, amanhã e em todos os dias."'},
+  {t:'Gratidão',q:'"Obrigada por me mostrar o que é amor de verdade."'},
+  {t:'Cúmplices',q:'"Somos cúmplices da vida, do amor e dos sonhos."'},
+  {t:'Alma gêmea',q:'"Em você encontrei minha metade perfeita."'},
+];
+function rVows(){
+  if(q('vn1'))q('vn1').textContent=S.n1||'Khemely';if(q('vn2'))q('vn2').textContent=S.n2||'Mateus';
+  q('vwInsp').innerHTML=vowInspList.map(v=>`<div class="nc" style="background:linear-gradient(135deg,#fffef0,#fff9e6);border:1px solid rgba(201,168,76,.22)"><div class="fser" style="font-size:.85rem;font-weight:700;color:var(--gd2)">${v.t}</div><div class="tsm italic tmu mt1">${v.q}</div></div>`).join('');
+}
+function svVows(){
+  DB.set('vwB',qv('vwB'));DB.set('vwG',qv('vwG'));
+  const bw=qv('vwB').trim().split(/\s+/).filter(w=>w).length,gw=qv('vwG').trim().split(/\s+/).filter(w=>w).length;
+  if(q('vwBc'))q('vwBc').textContent=bw+' palavras';if(q('vwGc'))q('vwGc').textContent=gw+' palavras';
+}
+
+// ================================================================
+// NOTES
+// ================================================================
+const ntBgs={yellow:'linear-gradient(135deg,#fffef0,#fff9e6)',pink:'linear-gradient(135deg,#fff0f4,#fce4ec)',blue:'linear-gradient(135deg,#f0f4ff,#e8eeff)',green:'linear-gradient(135deg,#f0faf0,#e8f5e9)'};
+const ntBrs={yellow:'rgba(201,168,76,.28)',pink:'rgba(232,180,184,.38)',blue:'rgba(100,130,220,.28)',green:'rgba(100,180,100,.28)'};
+function rNotes(){
+  q('ntCon').innerHTML=notes.length?notes.map(n=>`<div class="nc" style="background:${ntBgs[n.cl]||ntBgs.yellow};border:1px solid ${ntBrs[n.cl]||ntBrs.yellow}" onclick="detNote('${n.id}')">
+    <div class="flex jb aic mb1"><div class="fser tsm" style="font-weight:700">${n.em||'📌'} ${esc(n.nm)}</div><button onclick="delNote('${n.id}');event.stopPropagation()" style="background:none;border:none;cursor:pointer;color:var(--tx3);font-size:.78rem">✕</button></div>
+    <div class="tsm" style="white-space:pre-wrap;line-height:1.5;overflow:hidden;max-height:80px">${esc(n.ct)}</div>
+    <div class="txs tmu mt1">${n.dt||''}</div>
+  </div>`).join(''):'<div class="empty" style="grid-column:1/-1"><div class="empty-ico">📝</div><div class="empty-txt">Nenhuma nota</div></div>';
+}
+function detNote(id){
+  const n=notes.find(x=>x.id===id);if(!n)return;
+  showDetail(`${n.em||'📌'} ${esc(n.nm)}`,`<div style="white-space:pre-wrap;font-size:.9rem;line-height:1.7;padding:.5rem">${esc(n.ct)}</div><div class="txs tmu mt1">${n.dt||''}</div>`,
+    `<button class="btn btn-sm" style="border-color:#e53;color:#e53" onclick="delNote('${n.id}');closeM('mDetail')">🗑️</button>`);
+}
+function addNote(){
+  const nm=qv('ntNm').trim();if(!nm)return toast('Digite o título!','⚠️');
+  notes.push({id:uid(),nm,ct:qv('ntCt'),cl:qv('ntCl'),em:qv('ntEm')||'📌',dt:new Date().toLocaleDateString('pt-BR')});
+  save();closeM('mNote');['ntNm','ntCt','ntEm'].forEach(i=>{if(q(i))q(i).value=''});
+  toast('Nota salva! 📝');rNotes();
+}
+function delNote(id){notes=notes.filter(n=>n.id!==id);save();rNotes()}
+
+// ================================================================
+// SETTINGS
+// ================================================================
+function svSet(){S.n1=qv('sN1')||'Khemely';S.n2=qv('sN2')||'Mateus';S.date=qv('sDt');S.venue=qv('sVn');S.budget=+qv('sBg')||0;save();updateSB();}
+function rSettings(){
+  ['sN1','sN2','sDt','sVn','sBg'].forEach(id=>{const v={sN1:S.n1,sN2:S.n2,sDt:S.date,sVn:S.venue,sBg:S.budget}[id];if(q(id))q(id).value=v||'';});
+  q('setStats').innerHTML=`<div style="display:flex;flex-direction:column;gap:.35rem">${[['👥','Convidados',guests.length],['✅','Tarefas',tasks.filter(t=>t.done).length+'/'+tasks.length],['💰','Itens orçamento',budget.length],['🌸','Itens decoração',decor.length],['🏪','Fornecedores',vendors.length],['🎵','Músicas',music.length],['💐','Padrinhos',grooms.length],['🖼️','Referências',mood.length]].map(([i,l,v])=>`<div class="flex jb" style="padding:4px 0;border-bottom:1px solid rgba(232,180,184,.09)"><span class="tsm tmu">${i} ${l}</span><strong class="tsm">${v}</strong></div>`).join('')}</div>`;
+  // Firebase state: prefill form from saved config or default (casal)
+  const cfg = DB.get(FB_KEY) || (DEFAULT_FIREBASE_CONFIG.apiKey ? { apiKey: DEFAULT_FIREBASE_CONFIG.apiKey, projectId: DEFAULT_FIREBASE_CONFIG.projectId, databaseURL: DEFAULT_FIREBASE_CONFIG.databaseURL, authDomain: DEFAULT_FIREBASE_CONFIG.authDomain || (DEFAULT_FIREBASE_CONFIG.projectId+'.firebaseapp.com') } : null);
+  if(fbApp && fbRef){
+    showFbConnected(cfg?.projectId||'conectado');
+  }
+  if(cfg?.apiKey){
+    if(q('fbApiKey'))q('fbApiKey').value=cfg.apiKey||'';
+    if(q('fbProjectId'))q('fbProjectId').value=cfg.projectId||'';
+    if(q('fbDbUrl'))q('fbDbUrl').value=cfg.databaseURL||'';
+    if(q('fbAuthDomain'))q('fbAuthDomain').value=cfg.authDomain||'';
+  }
+}
+
+// ================================================================
+// SYNC / SHARE (base64 URL)
+// ================================================================
+function getAllData(){
+  return {S,tasks,guests,venueEls,grooms,menuIt,budget,vendors,decor,mood,music,notes,hm,env,vwB:DB.get('vwB'),vwG:DB.get('vwG')};
+}
+function shareData(){
+  try{
+    const json=JSON.stringify(getAllData());
+    const b64=btoa(unescape(encodeURIComponent(json)));
+    const url=location.href.split('?')[0]+'?d='+encodeURIComponent(b64);
+    if(url.length>8000){
+      // fallback to download
+      expJSON();
+      toast('Dados exportados em arquivo JSON (link muito longo para URL)','📤');
+      return;
+    }
+    navigator.clipboard.writeText(url).then(()=>toast('Link copiado! Cole para o parceiro(a) 💕','📤')).catch(()=>{prompt('Copie este link:',url);toast('Link gerado! Copie e envie','📤')});
+  }catch(e){expJSON();}
+}
+function loadFromUrl(silent=false){
+  const params=new URLSearchParams(location.search);const d=params.get('d');
+  if(!d)return;
+  try{
+    const json=decodeURIComponent(escape(atob(decodeURIComponent(d))));
+    const data=JSON.parse(json);
+    if(data.S)S=data.S;if(data.tasks)tasks=data.tasks;if(data.guests)guests=data.guests;
+    if(data.venueEls)venueEls=data.venueEls;if(data.grooms)grooms=data.grooms;
+    if(data.menuIt)menuIt=data.menuIt;if(data.budget)budget=data.budget;
+    if(data.vendors)vendors=data.vendors;if(data.decor)decor=data.decor;
+    if(data.mood)mood=data.mood;if(data.music)music=data.music;
+    if(data.notes)notes=data.notes;if(data.hm)hm=data.hm;
+    if(data.env)env=data.env;
+    if(data.vwB)DB.set('vwB',data.vwB);if(data.vwG)DB.set('vwG',data.vwG);
+    save();updateSB();
+    if(!silent)toast('Dados carregados do link! 🎉');
+    history.replaceState({},'',location.href.split('?')[0]);
+  }catch(e){if(!silent)toast('Erro ao carregar do link','⚠️');}
+}
+function expJSON(){
+  const blob=new Blob([JSON.stringify(getAllData(),null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`casamento_${S.n1}_${S.n2}.json`;a.click();toast('JSON exportado! 💾');
+}
+function impJSON(e){
+  const f=e.target.files[0];if(!f)return;
+  const r=new FileReader();r.onload=ev=>{try{const d=JSON.parse(ev.target.result);if(d.S)S=d.S;if(d.tasks)tasks=d.tasks;if(d.guests)guests=d.guests;if(d.venueEls)venueEls=d.venueEls;if(d.grooms)grooms=d.grooms;if(d.menuIt)menuIt=d.menuIt;if(d.budget)budget=d.budget;if(d.vendors)vendors=d.vendors;if(d.decor)decor=d.decor;if(d.mood)mood=d.mood;if(d.music)music=d.music;if(d.notes)notes=d.notes;if(d.hm)hm=d.hm;if(d.env)env=d.env;if(d.vwB)DB.set('vwB',d.vwB);if(d.vwG)DB.set('vwG',d.vwG);save();updateSB();rSettings();toast('Dados importados! 🎉');}catch{toast('Erro ao importar!','⚠️');}};r.readAsText(f);
+}
+function clearAll(){if(confirm('Apagar TUDO? Sem volta! 😱')){localStorage.clear();location.reload()}}
+
+// ================================================================
+// FIREBASE REALTIME DATABASE — SYNC EM TEMPO REAL
+// ================================================================
+const FB_KEY = 'fbConfig';
+let fbApp = null, fbDb = null, fbRef = null, fbListening = false, fbWriting = false;
+
+function fbGetConfig(){ return DB.get(FB_KEY) || (DEFAULT_FIREBASE_CONFIG.apiKey ? { apiKey: DEFAULT_FIREBASE_CONFIG.apiKey, projectId: DEFAULT_FIREBASE_CONFIG.projectId, databaseURL: DEFAULT_FIREBASE_CONFIG.databaseURL, authDomain: DEFAULT_FIREBASE_CONFIG.authDomain || (DEFAULT_FIREBASE_CONFIG.projectId+'.firebaseapp.com') } : null); }
+
+function fbSetSyncUI(state, label){
+  const el = q('syncIndicator');
+  if(!el) return;
+  el.className = 'syncing live error'.includes(state) ? state : '';
+  el.classList.add(state);
+  const sp = el.querySelector('.si-label');
+  if(sp) sp.textContent = label || 'Local';
+}
+
+async function fbConnect(){
+  const apiKey    = (q('fbApiKey')?.value||'').trim();
+  const projectId = (q('fbProjectId')?.value||'').trim();
+  const dbUrl     = (q('fbDbUrl')?.value||'').trim();
+  const authDomain= (q('fbAuthDomain')?.value||'').trim();
+
+  if(!apiKey || !projectId || !dbUrl){
+    const errEl = q('fbError');
+    if(errEl){ errEl.style.display='block'; errEl.textContent='⚠️ Preencha API Key, Project ID e Database URL!'; }
+    return;
+  }
+  if(q('fbError')) q('fbError').style.display='none';
+
+  const cfg = { apiKey, projectId, databaseURL: dbUrl, authDomain: authDomain||`${projectId}.firebaseapp.com` };
+  DB.set(FB_KEY, cfg);
+  toast('Conectando ao Firebase...','🔥');
+  await fbInitSDK(cfg);
+}
+
+async function fbInitSDK(cfg){
+  try {
+    // Dynamically load Firebase SDKs from CDN (compat version — works as globals)
+    await loadScript('https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js');
+    await loadScript('https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js');
+
+    // Delete previous app if exists
+    if(fbApp){ try{ fbApp.delete(); }catch{} }
+
+    fbApp = firebase.initializeApp(cfg, 'km-wedding-' + Date.now());
+    fbDb  = firebase.database(fbApp);
+    fbRef = fbDb.ref('casamento');
+
+    // Test connection
+    fbSetSyncUI('syncing','Conectando...');
+    // IMPORTANT: .info/connected is a special root path (can't be used with child()).
+    fbDb.ref('.info/connected').on('value', snap => {
+      if(snap.val() === true){
+        fbSetSyncUI('live','🔥 Ao vivo');
+        toast('Firebase conectado! Sync ativo 🎉','✅');
+        fbSave(); // push current data immediately
+      } else {
+        fbSetSyncUI('error','Offline');
+      }
+    });
+
+    // Start listening for remote changes
+    fbStartListening();
+
+    // Update UI
+    DB.set(FB_KEY, cfg);
+    showFbConnected(cfg.projectId);
+    if(curPage==='settings') rSettings();
+
+  } catch(e) {
+    console.error('Firebase error:', e);
+    const errEl = q('fbError');
+    if(errEl){ errEl.style.display='block'; errEl.textContent='❌ Erro: ' + e.message + '. Verifique os dados e tente novamente.'; }
+    fbSetSyncUI('error','Erro');
+    toast('Erro ao conectar. Verifique os dados.','⚠️');
+  }
+}
+
+function loadScript(src){
+  return new Promise((resolve, reject) => {
+    if(document.querySelector(`script[src="${src}"]`)){ resolve(); return; }
+    const s = document.createElement('script');
+    s.src = src; s.onload = resolve; s.onerror = reject;
+    document.head.appendChild(s);
+  });
+}
+
+function fbStartListening(){
+  if(!fbRef || fbListening) return;
+  fbListening = true;
+  fbRef.on('value', snap => {
+    if(fbWriting) return; // ignore our own writes
+    const d = snap.val();
+    if(!d) return;
+    // Apply remote data
+    if(d.S) S = d.S;
+    if(d.tasks) tasks = d.tasks;
+    if(d.guests) guests = d.guests;
+    if(d.venueEls) venueEls = d.venueEls;
+    if(d.grooms) grooms = d.grooms;
+    if(d.menuIt) menuIt = d.menuIt;
+    if(d.budget) budget = d.budget;
+    if(d.vendors) vendors = d.vendors;
+    if(d.decor) decor = d.decor;
+    if(d.mood) mood = d.mood;
+    if(d.music) music = d.music;
+    if(d.notes) notes = d.notes;
+    if(d.hm) hm = d.hm;
+    if(d.env) env = d.env;
+    if(d.vwB) DB.set('vwB', d.vwB);
+    if(d.vwG) DB.set('vwG', d.vwG);
+    // Persist locally too
+    save();
+    updateSB();
+    // Re-render current page
+    const R={dashboard:renderDashboard,checklist:rChecklist,guests:rGuests,venue:rVenue,
+      groomsmen:rGrooms,menu:rMenu,budget:rBudget,vendors:rVendors,decor:rDecor,
+      honeymoon:rHoneymoon,moodboard:rMood,music:rMusic,vows:rVows,notes:rNotes,settings:rSettings};
+    if(R[curPage]) R[curPage]();
+    fbSetSyncUI('live','🔥 Ao vivo');
+  }, err => {
+    console.error('FB listen error:', err);
+    fbSetSyncUI('error','Erro sync');
+    toast('Erro de sincronização: '+err.message,'⚠️');
+  });
+}
+
+// Override save() to also push to Firebase
+const _origSave = save;
+function save(){
+  _origSave();
+  fbSave();
+}
+
+let fbSaveTO = null;
+function fbSave(){
+  if(!fbRef) return;
+  clearTimeout(fbSaveTO);
+  fbSaveTO = setTimeout(()=>{
+    fbWriting = true;
+    fbSetSyncUI('syncing','Salvando...');
+    const d = getAllData();
+    fbRef.set(d)
+      .then(()=>{ fbWriting=false; fbSetSyncUI('live','🔥 Ao vivo'); })
+      .catch(e=>{ fbWriting=false; fbSetSyncUI('error','Erro'); console.error('FB write:',e); });
+  }, 800); // debounce 800ms to avoid thrashing
+}
+
+function fbDisconnect(){
+  if(!confirm('Desconectar o Firebase? Os dados ficam só localmente.')) return;
+  if(fbRef) fbRef.off();
+  if(fbApp){ try{ fbApp.delete(); }catch{} }
+  fbApp=null; fbDb=null; fbRef=null; fbListening=false;
+  DB.del(FB_KEY);
+  fbSetSyncUI('','Local');
+  showFbForm();
+  toast('Firebase desconectado','🔌');
+}
+
+function showFbConnected(pid){
+  const f = q('fbSetupForm'), c = q('fbConnected'), b = q('fbStatusBadge');
+  if(f) f.style.display='none';
+  if(c){ c.style.display='block'; const pn=q('fbProjectName'); if(pn) pn.textContent='Projeto: '+pid; }
+  if(b){ b.className='badge b-gr'; b.textContent='🔥 Conectado'; }
+}
+function showFbForm(){
+  const f = q('fbSetupForm'), c = q('fbConnected'), b = q('fbStatusBadge');
+  if(f) f.style.display='block';
+  if(c) c.style.display='none';
+  if(b){ b.className='badge b-gy'; b.textContent='Não configurado'; }
+}
+function fbFillDemo(){
+  const c = DEFAULT_FIREBASE_CONFIG;
+  if(!c.apiKey) return;
+  if(q('fbApiKey')) q('fbApiKey').value=c.apiKey;
+  if(q('fbProjectId')) q('fbProjectId').value=c.projectId||'';
+  if(q('fbDbUrl')) q('fbDbUrl').value=c.databaseURL||'';
+  if(q('fbAuthDomain')) q('fbAuthDomain').value=c.authDomain||(c.projectId+'.firebaseapp.com')||'';
+  toast('Configuração do casal aplicada. Clique em Conectar Firebase.','💡');
+}
+
+// Auto-reconnect: use saved config or default (casal)
+async function fbAutoConnect(){
+  const cfg = fbGetConfig();
+  if(!cfg || !cfg.apiKey) return;
+  if(!DB.get(FB_KEY) && DEFAULT_FIREBASE_CONFIG.apiKey) DB.set(FB_KEY, { apiKey: cfg.apiKey, projectId: cfg.projectId, databaseURL: cfg.databaseURL, authDomain: cfg.authDomain });
+  await fbInitSDK(cfg);
+}
+
+// ================================================================
+// LOADER
+// ================================================================
+window.addEventListener('load',()=>{
+  setTimeout(()=>{q('loader').classList.add('out');setTimeout(()=>{try{q('loader').remove()}catch{}},750);},1800);
+});
+</script>
+</body>
+</html>
