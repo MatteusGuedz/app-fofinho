@@ -83,7 +83,7 @@ export function ReportsPage() {
             <div className="tabs" style={{ margin: 0 }}>
               {(['all','tasks','guests','budget'] as const).map(s => (
                 <button key={s} type="button" className={`tab${activeSection === s ? ' active' : ''}`} onClick={() => setActiveSection(s)}>
-                  {({ all: '📋 Tudo', tasks: '✅ Tarefas', guests: '👥 Convidados', budget: '💰 Orçamento' })[s]}
+                  {{ all: '📋 Tudo', tasks: '✅ Tarefas', guests: '👥 Convidados', budget: '💰 Orçamento' }[s]}
                 </button>
               ))}
             </div>

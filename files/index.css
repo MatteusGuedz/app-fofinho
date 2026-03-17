@@ -74,10 +74,6 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
-#root {
-  min-height: 100vh;
-  min-height: 100dvh;
-}
 input, select, textarea, button { font-family: var(--font-sans); }
 ::-webkit-scrollbar { width: 5px; height: 5px; }
 ::-webkit-scrollbar-track { background: var(--blush); }
@@ -193,7 +189,6 @@ input, select, textarea, button { font-family: var(--font-sans); }
   min-height: 100dvh;
   max-width: 1440px;
   margin: 0 auto;
-  width: 100%;
 }
 
 /* ============ SIDEBAR ============ */
@@ -338,15 +333,6 @@ input, select, textarea, button { font-family: var(--font-sans); }
   display: flex;
   flex-direction: column;
   gap: 6px;
-}
-
-/* Menu toggle: só aparece no mobile (ver RESPONSIVE) */
-.menu-toggle {
-  display: none;
-}
-/* Overlay da sidebar: só no mobile */
-.sidebar-overlay {
-  display: none;
 }
 
 /* ============ MAIN AREA ============ */
