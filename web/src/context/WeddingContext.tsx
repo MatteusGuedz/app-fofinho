@@ -46,13 +46,35 @@ export function WeddingProvider({ children }: { children: ReactNode }) {
     setLoading(true);
 
     const t0 = performance.now();
-    const { data, error } = await supabase
+    // 1) Casamento onde sou dono
+    let { data, error } = await supabase
       .from('weddings')
       .select(
         'id,name_1,name_2,wedding_date,venue_name,budget_total,tier,happened_at,purge_at',
       )
       .eq('owner_id', user.id)
       .maybeSingle();
+
+    // 2) Se não tenho como dono, busco como parceiro(a) compartilhado
+    if (!error && !data) {
+      const memberRes = await supabase
+        .from('wedding_members')
+        .select('wedding_id')
+        .eq('user_id', user.id)
+        .limit(1)
+        .maybeSingle();
+      if (memberRes.data?.wedding_id) {
+        const wRes = await supabase
+          .from('weddings')
+          .select(
+            'id,name_1,name_2,wedding_date,venue_name,budget_total,tier,happened_at,purge_at',
+          )
+          .eq('id', memberRes.data.wedding_id)
+          .single();
+        data = wRes.data as Wedding | null;
+        error = wRes.error;
+      }
+    }
 
     const ms = Math.round(performance.now() - t0);
     log('wedding.refresh', error ? 'error' : 'info', `fetch weddings in ${ms}ms`, {

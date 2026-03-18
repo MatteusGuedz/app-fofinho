@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useUi } from '../../context/UiContext';
 import { log } from '../../lib/logger';
@@ -111,6 +111,8 @@ export function LoginPage() {
   const { signInWithEmail } = useAuth();
   const { toastError, toastSuccess } = useUi();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const redirectTo = searchParams.get('redirect') || '/';
   const particles = useParticles(10);
   const emailRef = useRef<HTMLInputElement>(null);
 
@@ -129,7 +131,7 @@ export function LoginPage() {
       log('auth.login', 'info', 'attempt', { email });
       await signInWithEmail(email, password);
       toastSuccess('Bem-vindo(a) de volta! 💕');
-      navigate('/');
+      navigate(redirectTo);
     } catch (e: unknown) {
       const msg = e instanceof Error ? e.message : 'Erro ao entrar.';
       log('auth.login', 'error', msg);
@@ -192,6 +194,8 @@ export function SignUpPage() {
   const { signUpWithEmail } = useAuth();
   const { toastError, toastSuccess } = useUi();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const redirectTo = searchParams.get('redirect');
   const particles = useParticles(10);
 
   const [email,    setEmail]    = useState('');
@@ -212,7 +216,7 @@ export function SignUpPage() {
       log('auth.signup', 'info', 'attempt', { email });
       await signUpWithEmail(email, password);
       toastSuccess('Conta criada! Faça login para começar 💕');
-      navigate('/login');
+      navigate(redirectTo ? `/login?redirect=${encodeURIComponent(redirectTo)}` : '/login');
     } catch (e: unknown) {
       const msg = e instanceof Error ? e.message : 'Erro ao cadastrar.';
       log('auth.signup', 'error', msg);

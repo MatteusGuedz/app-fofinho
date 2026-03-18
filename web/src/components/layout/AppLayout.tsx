@@ -3,6 +3,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useWedding } from '../../context/WeddingContext';
+import { AnimatePresence, PageTransition } from '../ui/Motion';
 
 /* ── Navigation pages ───────────────────────────────────── */
 const PAGES = [
@@ -65,7 +66,7 @@ export function AppLayout({ children }: { children: ReactNode }) {
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [petals, setPetals] = useState<Particle[]>([]);
-  const petalTimerRef = useRef<ReturnType<typeof setTimeout>>();
+  const petalTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
   const cd = useCountdown(wedding?.wedding_date);
 
@@ -255,11 +256,13 @@ export function AppLayout({ children }: { children: ReactNode }) {
             </div>
           </header>
 
-          {/* Page content */}
+          {/* Page content — transição suave entre páginas (animação do secundário) */}
           <main className="app-content" id="main-content">
-            <div className="page-enter" key={location.pathname}>
-              {children}
-            </div>
+            <AnimatePresence mode="wait">
+              <PageTransition key={location.pathname}>
+                {children}
+              </PageTransition>
+            </AnimatePresence>
           </main>
 
           {/* Bottom nav (mobile) */}

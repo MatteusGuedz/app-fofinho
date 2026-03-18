@@ -1,0 +1,25 @@
+# Netlify — Wedding Fofinho (produção)
+# Se o repositório for a pasta raiz (App_fofinho), defina "Base directory" = web no dashboard.
+
+[build]
+  command = "pnpm run build"
+  publish = "dist"
+
+# SPA: todas as rotas caem no index.html (React Router)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Headers de segurança e cache (opcional)
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

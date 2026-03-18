@@ -5,7 +5,7 @@ import { supabase } from '../../lib/supabase';
 import { formatBRL, formatDateBR } from '../../lib/format';
 import { log } from '../../lib/logger';
 
-type Task   = { id: string; title: string; done: boolean; priority: string | null; due_date: string | null; category: string | null };
+type Task   = { id: string; title: string; done: boolean; priority: string | null; due_date: string | null };
 type Guest  = { id: string; name: string; rsvp: string | null; group: string | null; table_name: string | null };
 type Budget = { id: string; name: string; category: string | null; eco: number | null; mid: number | null; prem: number | null; qty: number | null; status: string | null; vendor_name: string | null };
 
@@ -27,11 +27,16 @@ export function ReportsPage() {
     if (!wedding) return;
     setLoading(true);
     const [t, g, b] = await Promise.all([
-      supabase.from('tasks').select('id,title,done,priority,due_date,category').eq('wedding_id', wedding.id).order('done').order('due_date'),
+      supabase.from('tasks').select('id,title,done,priority,due_date').eq('wedding_id', wedding.id).order('done').order('due_date'),
       supabase.from('guests').select('id,name,rsvp,group,table_name').eq('wedding_id', wedding.id).order('name'),
       supabase.from('budget_items').select('id,name,category,eco,mid,prem,qty,status,vendor_name').eq('wedding_id', wedding.id).order('name'),
     ]);
-    log('reports.load', 'info', 'loaded report data');
+    const hasError = t.error || g.error || b.error;
+    if (hasError) {
+      log('reports.load', 'warn', 'load failed', { tasks: t.error?.message, guests: g.error?.message, budget: b.error?.message });
+    } else {
+      log('reports.load', 'info', 'loaded report data');
+    }
     setTasks((t.data as Task[]) ?? []);
     setGuests((g.data as Guest[]) ?? []);
     setBudget((b.data as Budget[]) ?? []);

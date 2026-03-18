@@ -277,10 +277,22 @@ export function BudgetPage() {
           </select>
         </div>
         <div className="card" style={{ padding: 12, background: 'linear-gradient(135deg,#fdf0f1,#f5e6d3)' }}>
-          <div className="muted">Total estimado (faixa atual)</div>
-          <div style={{ fontFamily: 'var(--heading)', fontSize: '1.4rem', color: 'var(--rose-deep)' }}>
+          <div className="muted">Total estimado (faixa {tier === 'eco' ? 'Eco' : tier === 'prem' ? 'Premium' : 'Médio'})</div>
+          <div style={{ fontFamily: 'var(--font-display)', fontSize: '1.4rem', fontWeight: 600, color: 'var(--rose-deep)' }}>
             {formatBRL(estimateCurrentTier)}
           </div>
+          {(() => {
+            const q = Number(qty || 1);
+            const v = tier === 'eco' ? Number(eco || 0) : tier === 'prem' ? Number(prem || 0) : Number(mid || 0);
+            if (q > 1 && v > 0) {
+              return (
+                <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: 4 }}>
+                  {formatBRL(v)} × {q} {Number(qty || 1) === 1 ? '' : 'un.'}
+                </div>
+              );
+            }
+            return null;
+          })()}
         </div>
         <TextField label="Observações" value={notes} onChange={(e) => setNotes(e.target.value)} />
       </Modal>

@@ -294,6 +294,16 @@ input, select, textarea, button { font-family: var(--font-sans); }
   border-bottom: 1px solid rgba(201,165,90,.1);
   position: relative;
 }
+/* Animação suave do ícone da sidebar (extraída do secundário) */
+.sidebar-crown {
+  display: inline-block;
+  margin-bottom: 10px;
+  animation: sidebarIconFloat 4s ease-in-out infinite;
+}
+@keyframes sidebarIconFloat {
+  0%, 100% { transform: translateY(0) rotate(-3deg); }
+  50% { transform: translateY(-8px) rotate(3deg); }
+}
 
 /* Ring icon in brand */
 .sidebar-ring-icon {
@@ -747,6 +757,27 @@ input, select, textarea, button { font-family: var(--font-sans); }
 }
 .card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
 .card:hover::before { opacity: 1; }
+
+/* Glass card — usado com Motion.tsx GlassCard (hover animado via Framer) */
+.glass-card {
+  background: var(--glass-white);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+}
+.glass-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.5), transparent);
+  pointer-events: none;
+}
+
 .card-header {
   display: flex;
   align-items: baseline;

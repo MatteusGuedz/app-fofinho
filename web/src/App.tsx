@@ -11,6 +11,8 @@ import { SettingsPage } from './pages/settings/SettingsPage';
 import { OnboardingCreateWeddingPage } from './pages/onboarding/CreateWeddingPage';
 import { ReportsPage } from './pages/reports/ReportsPage';
 import { MoodboardPage } from './pages/moodboard/MoodboardPage';
+import { InvitePage } from './pages/invite/InvitePage';
+import { DiagnosticoPage } from './pages/admin/DiagnosticoPage';
 import { WeddingProvider, useWedding } from './context/WeddingContext';
 import { SUPABASE_CONFIG_OK } from './lib/env';
 
@@ -93,6 +95,7 @@ function ProtectedRoutes() {
         element={wedding ? <ReportsPage /> : <Navigate to="/onboarding/create-wedding" replace />}
       />
       <Route path="/settings" element={<SettingsPage />} />
+      <Route path="/admin/diagnostico" element={<DiagnosticoPage />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
@@ -179,7 +182,12 @@ VITE_SUPABASE_ANON_KEY=sua-anon-key`}
 
 /* ── Root ───────────────────────────────────────────────── */
 export default function App() {
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
   if (!SUPABASE_CONFIG_OK) return <ConfigWarning />;
-  return user ? <ProtectedApp /> : <PublicApp />;
+  return (
+    <Routes>
+      <Route path="/invite/:token" element={<InvitePage />} />
+      <Route path="*" element={loading ? <AppLoader /> : user ? <ProtectedApp /> : <PublicApp />} />
+    </Routes>
+  );
 }

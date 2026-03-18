@@ -1,25 +1,60 @@
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Card } from '../../components/ui/Card';
 import { Button } from '../../components/ui/Button';
 import { TextField } from '../../components/ui/TextField';
 import { useWedding } from '../../context/WeddingContext';
+import { useAuth } from '../../context/AuthContext';
 import { useUi } from '../../context/UiContext';
 import { supabase } from '../../lib/supabase';
-import { log, getLogs, clearLogs } from '../../lib/logger';
+import { log } from '../../lib/logger';
 import { formatBRL } from '../../lib/format';
 import { exportBackup, importBackup, type BackupV1 } from '../../lib/backup';
+import { isAdminEmail } from '../../lib/env';
 
 export function SettingsPage() {
+  const navigate = useNavigate();
+  const { user } = useAuth();
   const { wedding, refresh } = useWedding();
   const { toastError, toastSuccess, confirm } = useUi();
+  const isAdmin = isAdminEmail(user?.email ?? undefined);
 
   const [tier, setTier] = useState(wedding?.tier ?? 'mid');
   const [budgetTotal, setBudgetTotal] = useState(String(wedding?.budget_total ?? ''));
   const [venueName, setVenueName] = useState(wedding?.venue_name ?? '');
   const [date, setDate] = useState(wedding?.wedding_date ?? '');
   const [saving, setSaving] = useState(false);
+  const [inviteLink, setInviteLink] = useState<string | null>(null);
+  const [inviteLoading, setInviteLoading] = useState(false);
 
-  const logs = useMemo(() => getLogs().slice().reverse().slice(0, 50), []);
+  const generateInviteLink = async () => {
+    if (!wedding) return;
+    setInviteLoading(true);
+    try {
+      const token = crypto.randomUUID();
+      await supabase.from('wedding_invites').delete().eq('wedding_id', wedding.id);
+      const { error } = await supabase.from('wedding_invites').insert({
+        wedding_id: wedding.id,
+        token,
+      });
+      if (error) throw error;
+      const base = window.location.origin;
+      setInviteLink(`${base}/invite/${token}`);
+      toastSuccess('Link gerado! Envie para sua parceira ou parceiro.');
+    } catch (e: unknown) {
+      toastError(e instanceof Error ? e.message : 'Erro ao gerar link.');
+    } finally {
+      setInviteLoading(false);
+    }
+  };
+
+  const copyInviteLink = () => {
+    if (!inviteLink) return;
+    navigator.clipboard.writeText(inviteLink).then(
+      () => toastSuccess('Link copiado!'),
+      () => toastError('Não foi possível copiar.')
+    );
+  };
 
   const save = async () => {
     if (!wedding) return;
@@ -75,19 +110,6 @@ export function SettingsPage() {
     if (res.error) return toastError(res.error.message);
     toastSuccess('Marcado! Lembre de exportar um backup 💾');
     await refresh();
-  };
-
-  const clearLocalLogs = async () => {
-    const ok = await confirm({
-      title: 'Limpar logs locais?',
-      body: 'Isso apaga apenas logs armazenados no navegador (não afeta dados do casamento).',
-      confirmText: 'Limpar',
-      danger: true,
-    });
-    if (!ok) return;
-    clearLogs();
-    toastSuccess('Logs limpos.');
-    location.reload();
   };
 
   const doExport = async () => {
@@ -188,6 +210,31 @@ export function SettingsPage() {
         )}
       </Card>
 
+      <Card title="💑 Compartilhar casamento" subtitle="Noiva e noivo planejando juntos">
+        <div className="muted" style={{ marginBottom: 12 }}>
+          Gere um link e envie para sua parceira ou parceiro. Quem receber pode criar conta ou entrar e aceitar o convite — aí os dois veem e editam o mesmo casamento.
+        </div>
+        {inviteLink ? (
+          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' }}>
+            <input
+              type="text"
+              readOnly
+              value={inviteLink}
+              className="field-input"
+              style={{ flex: '1 1 200px', fontSize: '.8rem' }}
+            />
+            <Button onClick={copyInviteLink}>Copiar link</Button>
+            <Button variant="outline" onClick={generateInviteLink} disabled={inviteLoading}>
+              {inviteLoading ? 'Gerando…' : 'Gerar novo link'}
+            </Button>
+          </div>
+        ) : (
+          <Button loading={inviteLoading} onClick={generateInviteLink}>
+            Gerar link de convite
+          </Button>
+        )}
+      </Card>
+
       <Card title="💾 Backup" subtitle="Exportar e importar tudo do app (MVP)">
         <div className="muted">
           Exporta e importa tarefas, convidados e orçamento. (Em seguida vamos incluir fornecedores, decoração, etc.)
@@ -228,53 +275,16 @@ export function SettingsPage() {
         ) : null}
       </Card>
 
-      <Card title="🧪 Diagnóstico" subtitle="Logs locais (últimos 50 eventos)">
-        <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-          <Button variant="outline" onClick={clearLocalLogs}>
-            Limpar logs
+      {isAdmin && (
+        <Card title="🔧 Admin" subtitle="Acesso restrito ao administrador">
+          <div className="muted" style={{ marginBottom: 12 }}>
+            Logado como administrador. Use o botão abaixo para abrir a página de diagnóstico (logs).
+          </div>
+          <Button variant="outline" onClick={() => navigate('/admin/diagnostico')}>
+            Abrir diagnóstico (logs)
           </Button>
-        </div>
-        <div style={{ marginTop: 10, display: 'grid', gap: 8 }}>
-          {logs.length ? (
-            logs.map((l) => (
-              <div
-                key={l.id}
-                style={{
-                  border: '1px solid rgba(232,180,184,.35)',
-                  borderRadius: 14,
-                  padding: '10px 10px',
-                  background: 'rgba(255,255,255,.7)',
-                }}
-              >
-                <div style={{ display: 'flex', justifyContent: 'space-between', gap: 10 }}>
-                  <strong style={{ color: l.level === 'error' ? '#b71c1c' : l.level === 'warn' ? '#7a5a00' : 'var(--text)' }}>
-                    [{l.scope}] {l.message}
-                  </strong>
-                  <span className="muted" style={{ whiteSpace: 'nowrap' }}>
-                    {new Date(l.at).toLocaleTimeString('pt-BR')}
-                  </span>
-                </div>
-                {l.data ? (
-                  <pre
-                    style={{
-                      margin: '8px 0 0',
-                      padding: 10,
-                      borderRadius: 12,
-                      background: 'rgba(0,0,0,.05)',
-                      overflowX: 'auto',
-                      fontSize: 12,
-                    }}
-                  >
-                    {JSON.stringify(l.data, null, 2)}
-                  </pre>
-                ) : null}
-              </div>
-            ))
-          ) : (
-            <div className="muted">Sem logs ainda.</div>
-          )}
-        </div>
-      </Card>
+        </Card>
+      )}
     </div>
   );
 }
